@@ -1,0 +1,8 @@
+.vscode
+
+# ignore node_modules
+node_modules
+
+# nodecg components
+cfg
+db

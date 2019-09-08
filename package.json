@@ -1,0 +1,50 @@
+{
+  "name": "relay-race-layout",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "cma",
+    "email": "yamanaka-team@hotmail.co.jp",
+    "url": ""
+  },
+  "scripts": {
+    "postinstall": "include-nodecg postinstall",
+    "start": "include-nodecg start"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "config",
+        "title": "Config",
+        "file": "config.html",
+        "fullbleed": true,
+        "headerColor": "#bcbcff"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "standard.html",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "repository": "https://github.com/cma2819/relay-race-layout.git",
+  "license": "MIT",
+  "dependencies": {
+    "include-nodecg": "0.0.1-6",
+    "nodecg": "^1.4.1"
+  }
+}
