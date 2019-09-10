@@ -6,3 +6,9 @@ node_modules
 # nodecg components
 cfg
 db
+
+# all script js files
+script/*.js
+
+# generated d.ts files
+src/nodecg/generated/*
