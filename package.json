@@ -11,7 +11,7 @@
   "scripts": {
     "postinstall": "include-nodecg postinstall",
     "start": "include-nodecg start",
-    "script:generate": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js"
+    "script:generate-schema-ts": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js"
   },
   "files": [
     "dashboard",
