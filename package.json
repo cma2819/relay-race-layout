@@ -9,7 +9,8 @@
     "url": ""
   },
   "scripts": {
-    "postinstall": "include-nodecg postinstall",
+    "postinstall": "run-p postinstall:include-nodecg script:generate-schema-ts",
+    "postinstall:include-nodecg": "include-nodecg postinstall",
     "start": "include-nodecg start",
     "script:generate-schema-ts": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js"
   },
@@ -46,7 +47,8 @@
   "license": "MIT",
   "dependencies": {
     "include-nodecg": "0.0.1-6",
-    "nodecg": "^1.4.1"
+    "nodecg": "^1.4.1",
+    "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
     "@types/node": "^12.7.4",
