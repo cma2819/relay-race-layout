@@ -11,4 +11,4 @@ db
 script/*.js
 
 # generated d.ts files
-src/nodecg/generated/*
+src/nodecg/generated/*.d.ts
