@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+            "segment": {
+                "type": "number",
+                "minimum": 0,
+                "default": 0
+            },
+            "lastSplit": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "hour": {
+                        "type": "number",
+                        "minimum": 0,
+                        "default": 0
+                    },
+                    "minute": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 59,
+                        "default": 0
+                    },
+                    "second": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 59,
+                        "default": 0
+                    }
+                },
+                "required": [
+                    "hour", "minute", "second"
+                ]
+            }
+        }
+    },
+    "required": [
+        "segment", "lastSplit"
+    ]
+}

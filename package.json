@@ -10,7 +10,8 @@
   },
   "scripts": {
     "postinstall": "include-nodecg postinstall",
-    "start": "include-nodecg start"
+    "start": "include-nodecg start",
+    "script:generate": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js"
   },
   "files": [
     "dashboard",
@@ -46,5 +47,10 @@
   "dependencies": {
     "include-nodecg": "0.0.1-6",
     "nodecg": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.4",
+    "json-schema-to-typescript": "^7.1.0",
+    "typescript": "^3.6.2"
   }
 }
