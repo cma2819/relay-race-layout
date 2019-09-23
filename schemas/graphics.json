@@ -9,7 +9,8 @@
                 "twitter",
                 "nico",
                 "twitch"
-            ]
+            ],
+            "default": "name"
         }
     },
     "required": [
