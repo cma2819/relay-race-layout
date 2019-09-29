@@ -14,6 +14,7 @@
     "start": "include-nodecg start",
     "script:generate-schema-ts": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js",
     "watch:dashboard": "parcel watch src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
+    "watch:graphics": "parcel watch src/browser/graphics/*.html --out-dir graphics --public-url ./",
     "build": "run-p build:dashboard build:graphics build:extension",
     "build:dashboard": "parcel build src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
     "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
