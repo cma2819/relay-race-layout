@@ -1,8 +1,20 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-
-    "type": "array",
-    "items": {
-        "$ref": "lib/run.json"
-    }
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "runs": {
+            "type": "array",
+            "items": {
+                "$ref": "lib/run.json"
+            }
+        }
+    },
+    "required": [
+        "name",
+        "runs"
+    ]
 }

@@ -35,8 +35,15 @@
     "dashboardPanels": [
       {
         "name": "config",
-        "title": "Config",
+        "title": "Config - 設定",
         "file": "config.html",
+        "fullbleed": true,
+        "headerColor": "#bcbcff"
+      },
+      {
+        "name": "progress",
+        "title": "Progress - 途中経過",
+        "file": "progress.html",
         "fullbleed": true,
         "headerColor": "#bcbcff"
       }

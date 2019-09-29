@@ -1,0 +1,62 @@
+<flat-button>
+    <style>
+        div.button-wrap {
+            width: 100%;
+            height: 100%;
+        }
+        button {
+            font-size: 100%;
+            border: none;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            transition: background-color 0.5s;
+            padding: 0;
+        }
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        button:active {
+            transition: background-color 0s;
+            background-color: rgba(255, 255, 255, 0);
+        }
+        button:disabled {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+    <div class="button-wrap">
+        <button onclick={props.onclick}>
+            <slot />
+        </button>
+    </div>
+
+    <script type="ts">
+        import {FlatButtonComponent} from './types'
+
+        class FlatButton implements FlatButtonComponent {
+
+            state: {
+                disabled: false
+            }
+
+            onMounted():void {
+                const buttonWrapDom = this.$('div.button-wrap');
+                const buttonDom = this.$('button');
+
+                if (this.props.buttonProps) {
+                    Object.keys(this.props.buttonProps).forEach(key => {
+                        buttonDom.setAttribute(key, this.props.buttonProps[key])
+                    })
+                    this.state.disabled = this.props.buttonProps.disabled ? true : false
+                }
+
+                if (this.props.colorSet && !this.state.disabled) {
+                    buttonWrapDom.setAttribute('style',  'background-color:' + this.props.colorSet.back + ';')
+                    buttonDom.setAttribute('style', 'color:' + this.props.colorSet.main + ';')
+                }
+            }
+        }
+
+        export default FlatButton
+    </script>
+</flat-button>

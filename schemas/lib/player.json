@@ -3,22 +3,20 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "game": {
+        "name": {
             "type": "string"
         },
-        "category": {
+        "twitch": {
             "type": "string"
         },
-        "segments": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
+        "nico": {
+            "type": "string"
+        },
+        "twitter": {
+            "type": "string"
         }
     },
     "required": [
-        "game",
-        "category",
-        "segments"
+        "name"
     ]
 }

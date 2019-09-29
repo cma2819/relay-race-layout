@@ -3,22 +3,18 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "game": {
+        "name": {
             "type": "string"
         },
-        "category": {
-            "type": "string"
-        },
-        "segments": {
+        "players": {
             "type": "array",
             "items": {
-                "type": "string"
+                "$ref": "player.json"
             }
         }
     },
     "required": [
-        "game",
-        "category",
-        "segments"
+        "name",
+        "players"
     ]
 }

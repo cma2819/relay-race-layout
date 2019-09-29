@@ -1,0 +1,54 @@
+<relay-info>
+    <style>
+        :host {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            height: 52px;
+        }
+
+        span.info {
+            margin-left: 10px;
+        }
+
+        flat-button.edit-button{
+            margin-right: 10px;
+            font-size: 16px;
+            width: 64px;
+            height: 36px;
+        }
+    </style>
+
+    <span class="info">イベント名：{state.relayName}</span>
+    <flat-button
+        class="edit-button"
+        color-set={colorSet.green}>編集</flat-button>
+    
+    <script type="ts">
+        import {RelayInfoComponent} from './types'
+        import FlatButton from '../lib/flat-button/flat-button.riot'
+        import {Relay as RelayType} from '../../../../nodecg/replicants'
+
+        const relayRep = nodecg.Replicant('relay')
+
+        class RelayInfo implements RelayInfoComponent{
+            state = {
+                relayName: ''
+            }
+            onMount() {
+                relayRep.on('change', this.relayChangeHandler)
+            }
+
+            private relayChangeHandler = (newVal: RelayType) => {
+                this.state.relayName = newVal.name;
+            }
+        }
+
+        RelayInfo.components = {
+            FlatButton
+        };
+
+        export default RelayInfo
+    </script>
+</relay-info>

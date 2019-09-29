@@ -3,10 +3,7 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "game": {
-            "type": "string"
-        },
-        "category": {
+        "name": {
             "type": "string"
         },
         "segments": {
@@ -17,8 +14,7 @@
         }
     },
     "required": [
-        "game",
-        "category",
+        "name",
         "segments"
     ]
 }
