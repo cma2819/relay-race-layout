@@ -1,19 +1,12 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "additionalProperties": false,
-    "properties": {
-        "playerInfoStatus": {
-            "enum": [
-                "name",
-                "twitter",
-                "nico",
-                "twitch"
-            ],
-            "default": "name"
-        }
-    },
-    "required": [
-        "playerInfoStatus"
-    ]
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "playerInfoStatus": {
+      "enum": ["name", "twitter", "nico", "twitch"],
+      "default": "name"
+    }
+  },
+  "required": ["playerInfoStatus"]
 }

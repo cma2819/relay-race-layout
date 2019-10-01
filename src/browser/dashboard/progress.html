@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Progress - Relay Race Layout</title>
+    <style>
+      :root {
+        --theme-color: #bcbcff;
+      }
 
-<head>
-  <meta charset="utf-8">
-  <title>Progress - Relay Race Layout</title>
-  <style>
-    :root {
-      --theme-color: #bcbcff;
-    }
+      body {
+        background-color: #f7f7f7;
+        font-family: "Roboto", "Open Sans", sans-serif;
+      }
 
-    body {
-      background-color: #f7f7f7;
-      font-family: 'Roboto', 'Open Sans', sans-serif;
-    }
+      #container {
+        display: grid;
+        column-gap: 10px;
+        row-gap: 10px;
+        grid-template-columns: 600px 600px;
+        grid-template-rows: 600px 82px;
+      }
 
-    #container {
-      display: grid;
-      column-gap: 10px;
-      row-gap: 10px;
-      grid-template-columns: 600px 600px;
-      grid-template-rows: 600px 82px; 
-    }
+      div.bordered {
+        border: 1px solid black;
+        color: black;
+        background-color: white;
+      }
 
-    div.bordered {
-      border: 1px solid black;
-      color: black;
-      background-color: white;
-    }
+      div.container-label {
+        color: white;
+        background-color: black;
+        text-align: center;
+      }
 
-    div.container-label {
-      color: white;
-      background-color: black;
-      text-align: center;
-    }
+      #container-timekeeper {
+        grid-column: 1;
+        grid-row: 1/3;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-    #container-timekeeper {
-      grid-column: 1;
-      grid-row: 1/3;
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <div id="container">
-    <div id="container-timekeeper" class="bordered">
-      <div class="container-label">
-        ストップウォッチ
+  <body>
+    <div id="container">
+      <div id="container-timekeeper" class="bordered">
+        <div class="container-label">
+          ストップウォッチ
+        </div>
+        <div id="timekeeper"></div>
       </div>
-      <div id="timekeeper"></div>
     </div>
-  </div>
-  <script src="./progress.ts"></script>
-</body>
-
+    <script src="./progress.ts"></script>
+  </body>
 </html>

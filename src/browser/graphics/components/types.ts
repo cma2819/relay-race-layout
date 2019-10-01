@@ -1,5 +1,3 @@
-import {RiotComponentExport} from 'riot'
+import { RiotComponentExport } from "riot";
 
-export interface AppComponent extends RiotComponentExport<{}, {}> {
-    
-}
+export interface AppComponent extends RiotComponentExport<{}, {}> {}

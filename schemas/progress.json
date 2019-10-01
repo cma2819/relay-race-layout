@@ -1,50 +1,43 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "array",
-    "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-            "segment": {
-                "type": "number",
-                "minimum": 0,
-                "default": 0
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "segment": {
+        "type": "number",
+        "minimum": 0,
+        "default": 0
+      },
+      "splits": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hour": {
+              "type": "number",
+              "minimum": 0,
+              "default": 0
             },
-            "splits": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "hour": {
-                            "type": "number",
-                            "minimum": 0,
-                            "default": 0
-                        },
-                        "minute": {
-                            "type": "number",
-                            "minimum": 0,
-                            "maximum": 59,
-                            "default": 0
-                        },
-                        "second": {
-                            "type": "number",
-                            "minimum": 0,
-                            "maximum": 59,
-                            "default": 0
-                        }
-                    },
-                    "required": [
-                        "hour",
-                        "minute",
-                        "second"
-                    ]
-                }
+            "minute": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 59,
+              "default": 0
+            },
+            "second": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 59,
+              "default": 0
             }
-        },
-        "required": [
-            "segment",
-            "splits"
-        ]
-    }
+          },
+          "required": ["hour", "minute", "second"]
+        }
+      }
+    },
+    "required": ["segment", "splits"]
+  }
 }

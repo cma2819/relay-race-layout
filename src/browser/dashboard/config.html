@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Config - Relay Race Layout</title>
+    <style>
+      :root {
+        --theme-color: #bcbcff;
+      }
 
-<head>
-  <meta charset="utf-8">
-  <title>Config - Relay Race Layout</title>
-  <style>
-    :root {
-      --theme-color: #bcbcff;
-    }
+      body {
+        background-color: #f7f7f7;
+        font-family: "Roboto", "Open Sans", sans-serif;
+      }
 
-    body {
-      background-color: #f7f7f7;
-      font-family: 'Roboto', 'Open Sans', sans-serif;
-    }
+      #container {
+        display: grid;
+        column-gap: 10px;
+        row-gap: 10px;
+        grid-template-columns: 600px 600px;
+        grid-template-rows: 82px 600px;
+      }
 
-    #container {
-      display: grid;
-      column-gap: 10px;
-      row-gap: 10px;
-      grid-template-columns: 600px 600px;
-      grid-template-rows: 82px 600px; 
-    }
+      div.bordered {
+        border: 1px solid black;
+        color: black;
+        background-color: white;
+      }
 
-    div.bordered {
-      border: 1px solid black;
-      color: black;
-      background-color: white;
-    }
+      div.container-label {
+        color: white;
+        background-color: black;
+        text-align: center;
+      }
 
-    div.container-label {
-      color: white;
-      background-color: black;
-      text-align: center;
-    }
+      #container-relay-info {
+        grid-column: 1/3;
+        grid-row: 1;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-    #container-relay-info {
-      grid-column: 1/3;
-      grid-row: 1;
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <div id="container">
-    <div id="container-relay-info" class="bordered">
-      <div class="container-label">
-        基本情報
+  <body>
+    <div id="container">
+      <div id="container-relay-info" class="bordered">
+        <div class="container-label">
+          基本情報
+        </div>
+        <div id="relay-info"></div>
       </div>
-      <div id="relay-info"></div>
     </div>
-  </div>
-  <script src="./config.ts"></script>
-</body>
-
+    <script src="./config.ts"></script>
+  </body>
 </html>

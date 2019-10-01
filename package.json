@@ -9,16 +9,19 @@
     "url": ""
   },
   "scripts": {
+    "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
+    "format": "prettier --write \"**/*.{ts,json,html,css,md}\"",
     "postinstall": "run-p postinstall:include-nodecg script:generate-schema-ts",
     "postinstall:include-nodecg": "include-nodecg postinstall",
     "start": "include-nodecg start",
     "script:generate-schema-ts": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js",
     "watch:dashboard": "parcel watch src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
     "watch:graphics": "parcel watch src/browser/graphics/*.html --out-dir graphics --public-url ./",
-    "build": "run-p build:dashboard build:graphics build:extension",
+    "build": "run-s build:dashboard build:graphics build:extension",
     "build:dashboard": "parcel build src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
     "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
-    "build:extension": "parcel build src/extension/index.ts --out-dir extension --public-url ./"
+    "build:extension": "parcel build src/extension/index.ts --out-dir extension --public-url ./",
+    "typecheck": "tsc -b src/browser src/extension"
   },
   "files": [
     "dashboard",
@@ -59,8 +62,10 @@
   "repository": "https://github.com/cma2819/relay-race-layout.git",
   "license": "MIT",
   "dependencies": {
+    "eslint": "^6.5.0",
     "include-nodecg": "0.0.1-6",
     "nodecg": "^1.4.1",
+    "prettier": "^1.18.2",
     "riot": "^4.6.2"
   },
   "devDependencies": {
@@ -70,7 +75,7 @@
     "@types/node": "^12.7.4",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
     "@typescript-eslint/parser": "^2.3.1",
-    "eslint": "^6.4.0",
+    "del-cli": "^3.0.0",
     "eslint-config-riot": "^3.0.0",
     "json-schema-to-typescript": "^7.1.0",
     "npm-run-all": "^4.1.5",

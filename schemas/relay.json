@@ -1,20 +1,17 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "additionalProperties": false,
-    "properties": {
-        "name": {
-            "type": "string"
-        },
-        "runs": {
-            "type": "array",
-            "items": {
-                "$ref": "lib/run.json"
-            }
-        }
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
     },
-    "required": [
-        "name",
-        "runs"
-    ]
+    "runs": {
+      "type": "array",
+      "items": {
+        "$ref": "lib/run.json"
+      }
+    }
+  },
+  "required": ["name", "runs"]
 }

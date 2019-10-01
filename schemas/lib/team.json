@@ -1,20 +1,17 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "additionalProperties": false,
-    "properties": {
-        "name": {
-            "type": "string"
-        },
-        "players": {
-            "type": "array",
-            "items": {
-                "$ref": "player.json"
-            }
-        }
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
     },
-    "required": [
-        "name",
-        "players"
-    ]
+    "players": {
+      "type": "array",
+      "items": {
+        "$ref": "player.json"
+      }
+    }
+  },
+  "required": ["name", "players"]
 }
