@@ -1,0 +1,51 @@
+<relay-info-edit>
+    <style>
+        :host {
+            font-size: 16px;
+        }
+
+        div.wrapper > * {
+            margin: 4px 0;
+        }
+
+        div.wrapper {
+            background-color: #f7f7f7;
+            padding: 64px;
+        }
+    </style>
+
+    <div class="modal-background" onclick={props.closeHandler}></div>
+    <div class="wrapper modal-content">
+        <span class="hero">イベント名設定</span>
+        <input class="input is-medium" type="text" name="title" value="いべんとめい" placeholder="イベント名" />
+        <div class="control level">
+            <div class="level-left"></div>
+            <div class="level-right">
+                <button
+                    class="button is-success level-item flat"
+                    onclick={submit}>設定</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="ts">
+        import {RelayInfoEditComponent} from './types'
+        import {Relay as RelayType} from '../../../../nodecg/replicants'
+
+        const relayRep:Relay = nodecg.Replicant('relay')
+
+        function RelayInfoEdit(): RelayInfoEditComponent {
+            return {
+                state: {
+                    visible: false
+                },
+                submit() {
+                    // relayRep.value.title = this.$('input[name="title"]').value;
+                    this.props.submitHandler();
+                }
+            }
+        }
+
+        export default RelayInfoEdit
+    </script>
+</relay-info-edit>

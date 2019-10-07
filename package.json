@@ -62,6 +62,7 @@
   "repository": "https://github.com/cma2819/relay-race-layout.git",
   "license": "MIT",
   "dependencies": {
+    "bulma": "^0.7.5",
     "eslint": "^6.5.0",
     "include-nodecg": "0.0.1-6",
     "nodecg": "^1.4.1",
@@ -69,6 +70,7 @@
     "riot": "^4.6.2"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "@riotjs/compiler": "^4.4.3",
     "@riotjs/hot-reload": "^4.0.0",
     "@riotjs/parcel-plugin-riot": "^4.0.1",
@@ -79,7 +81,7 @@
     "eslint-config-riot": "^3.0.0",
     "json-schema-to-typescript": "^7.1.0",
     "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.3",
+    "parcel-bundler": "^1.12.4",
     "strip-indent": "^3.0.0",
     "ts-nodecg": "^0.3.0",
     "typescript": "^3.6.2"

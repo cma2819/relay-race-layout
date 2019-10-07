@@ -1,60 +1,58 @@
 <timekeeper>
     <style>
         div#timer {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
             color: white;
             background-color: var(--theme-color);
         }
 
-        div.button-row {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-        }
-
-        flat-button{
+        button{
             font-size: 18px;
-            width: 160px;
-            height: 36px;
+            width: 100%;
         }
     </style>
 
-    <div id="timer">
-        <span id="timer-time" style="font-size:42px; font-weight: bold;">{state.time}</span>
-        <div class="timer-buttons">
-            <div class="button-row row1">
+    <div id="timer" class="columns">
+        <div class="column is-flex columns is-centered is-vcentered">
+            <span id="timer-time" style="font-size:42px; font-weight: bold;">{state.time}</span>
+        </div>
+        <div class="timer-buttons column is-gapless">
+            <div class="button-row row1 is-flex">
+                <button
+                    class="button is-success flat">
+                    <span class="icon"><i class="fas fa-play"></i></span>
+                    <span>開始</span>
+                </button>
 
-                <flat-button
-                    color-set={colorSet.green}>開始</flat-button>
-
-                <flat-button
-                    color-set={colorSet.yellow}
-                    button-props={{
-                        disabled: "disabled"
-                    }}>一時停止</flat-button>
+                <button
+                    class="button is-success flat" disabled="disabled">
+                    <span class="icon"><i class="fas fa-pause"></i></span>
+                    <span>一時停止</span>
+                </button>
             </div>
-            <div class="button-row row2">
-                <flat-button
-                    color-set={colorSet.red}>リセット</flat-button>
-                <flat-button
-                    color-set={colorSet.purple}>編集</flat-button>
+
+            <div class="button-row row2 is-flex">
+                <button
+                    class="button is-danger flat">
+                    <span class="icon"><i class="fas fa-eraser"></i></span>
+                    <span>リセット</span>
+                </button>
+                <button
+                    class="button is-info flat">
+                    <span class="icon"><i class="fas fa-pen"></i></span>
+                    <span>編集</span>
+                </button>
             </div>
         </div>
     </div>
 
     <script type="ts">
         import {TimekeeperComponent, TimeState} from './types'
-        import FlatButton from '../lib/flat-button/flat-button.riot'
 
         class Timekeeper implements TimekeeperComponent {
             state = {
                 time: '',
                 state: TimeState.Ready
             }
-
             onBeforeMount():void {
                 this.state = {
                     time: '99:99:99',
@@ -62,10 +60,6 @@
                 }
             }
         }
-        Timekeeper.components = {
-            FlatButton
-        }
-
         export default Timekeeper
     </script>
 </timekeeper>

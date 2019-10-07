@@ -1,0 +1,30 @@
+:root {
+  --theme-color: #bcbcff;
+}
+
+body {
+  background-color: #f7f7f7;
+  font-family: "Roboto", "Open Sans", sans-serif;
+}
+
+div.bordered {
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+}
+
+div.container-label {
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+.flat {
+  border: 0px;
+  border-radius: 0px;
+}
+
+.columns,
+.level {
+  margin: 0px;
+}
