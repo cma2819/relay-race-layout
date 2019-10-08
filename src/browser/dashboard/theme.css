@@ -9,6 +9,7 @@ body {
 
 div.bordered {
   border: 1px solid black;
+  margin: 0.5rem;
   color: black;
   background-color: white;
 }

@@ -1,0 +1,51 @@
+<countdown>
+
+    <div class="columns is-marginless">
+        <div class="column is-paddingless columns is-marginless is-vcentered is-centered">
+            <span>カウントダウン</span>
+        </div>
+        <div class="column is-paddingless columns is-marginless is-vcentered is-centered is-size-3">
+            10:00
+        </div>
+        <div class="column is-paddingless columns is-marginless is-vcentered is-centered">
+            <button type="button" class="button is-success flat">開始</button>
+            <button type="button" class="button is-success flat" disabled="disabled">停止</button>
+            <button type="button" class="button is-info flat" onclick="{editCountdownHandler}">編集</button>
+        </div>
+    </div>
+
+    <countdown-edit
+    class="modal {state.showEdit ? 'is-active' : ''}"
+    submitHandler={submitCountdownHandler}
+    closeHandler={closeCountdownHandler}></countdown-edit>
+
+    <script type="ts">
+        import {CountdownComponent} from './types'
+        import CountdownEdit from './edit.riot'
+
+        function Countdown(): CountdownComponent {
+            return {
+                status: {
+                    showEdit: true;
+                },
+                editCountdownHandler(e: Event) {
+                    this.state.showEdit = true
+                    this.update()
+                },
+                submitCountdownHandler(e: Event) {
+                    this.state.showEdit = false
+                    this.update()
+                },
+                closeCountdownHandler(e:Event) {
+                    this.state.showEdit = false
+                    this.update()
+                }
+            }
+        }
+
+        Countdown.components = {
+            CountdownEdit
+        }
+        export default Countdown
+    </script>
+</countdown>

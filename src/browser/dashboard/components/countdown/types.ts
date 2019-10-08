@@ -2,13 +2,10 @@ import { RiotComponentExport } from "riot";
 
 export interface Props {}
 
-export interface State {
-  relayName: string;
-  showEdit: boolean;
-}
+export interface Status {}
 
-export interface RelayInfoComponent extends RiotComponentExport<Props, State> {
-  state: State;
+export interface CountdownComponent extends RiotComponentExport<Props, Status> {
+  status: Status;
 }
 
 export interface EditProps {
@@ -18,7 +15,7 @@ export interface EditProps {
 
 export interface EditState {}
 
-export interface RelayInfoEditComponent
+export interface CountdownEditComponent
   extends RiotComponentExport<EditProps, EditState> {
   state: {};
 }

@@ -5,7 +5,7 @@
             border-top: 1px solid black;
         }
     </style>
-    <div class="container {state.idx % 2 == 1 ? 'has-background-white-ter':''}">
+    <div class="container {props.idx % 2 == 1 ? 'has-background-white-ter':''}">
         <div class="level is-marginless" style="border-bottom:dashed 1px black">
             <div class="level-left">
                 <div class="level-item is-italic">前区間：{state.prev.game} - {state.prev.segment}</div>
@@ -50,7 +50,6 @@
         function Runner(): RunnerComponent {
             return {
                 state: {
-                    idx: 0,
                     prev: {
                         game: '時のオカリナ',
                         category: 'GSR',

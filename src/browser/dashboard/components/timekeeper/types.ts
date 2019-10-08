@@ -17,11 +17,23 @@ export enum TimeState {
   Stop
 }
 
-export interface RunnerProps {}
+export interface RunnerProps {
+  idx: number;
+}
 
-export interface RunnerState {}
+export interface RunnerState {
+  prev: Segment;
+  current: Segment;
+  next: Segment;
+}
+
+export interface Segment {
+  game: string;
+  category: string;
+  segment: string;
+}
 
 export interface RunnerComponent
   extends RiotComponentExport<RunnerProps, RunnerState> {
-  state: {};
+  state: RunnerState;
 }
