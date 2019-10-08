@@ -1,0 +1,77 @@
+<runner>
+    <style>
+        .container {
+            padding: 0.2rem 0.5rem;
+            border-top: 1px solid black;
+        }
+    </style>
+    <div class="container {state.idx % 2 == 1 ? 'has-background-white-ter':''}">
+        <div class="level is-marginless" style="border-bottom:dashed 1px black">
+            <div class="level-left">
+                <div class="level-item is-italic">前区間：{state.prev.game} - {state.prev.segment}</div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">{state.splitTime}</div>
+            </div>
+        </div>
+    
+        <div class="columns is-marginless v-centered is-2 is-variable">
+            <div class="column is-narrow is-size-4 has-text-justified">
+                {state.player}
+            </div>
+            <div class="column columns is-multiline is-marginless is-italic">
+                <div class="column is-full is-paddingless has-text-right">{state.current.game}[{state.current.category}]</div>
+                <div class="column is-full is-paddingless has-text-right">{state.current.segment}</div>
+            </div>
+            <div class="column columns is-marginless is-vcentered is-centered is-narrow">
+                <div class="column is-paddingless">
+                    <button type="button" class="button is-success flat">
+                    <span class="icon"><i class="fas fa-flag-checkered"></i></span><span>ラップ</span></button>
+                </div>
+                <div class="column is-paddingless">
+                    <button type="button" class="button is-warning flat">
+                    <span class="icon"><i class="fas fa-undo-alt"></i></span><span>戻す</span></button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="level" style="border-top:dashed 1px black">
+            <div class="level-left">
+                <div class="level-item is-italic">次区間：{state.next.game} - {state.next.segment}</div>
+            </div>
+            <div class="level-right">
+                <div class="level-item">-</div>
+            </div>
+        </div>
+    </div>
+    <script type="ts">
+        import {RunnerComponent} from './types'
+
+        function Runner(): RunnerComponent {
+            return {
+                state: {
+                    idx: 0,
+                    prev: {
+                        game: '時のオカリナ',
+                        category: 'GSR',
+                        segment: 'マスターソード入手'
+                    },
+                    current: {
+                        game: '時のオカリナ',
+                        category: 'GSR',
+                        segment: '闇の神殿クリア'
+                    },
+                    next: {
+                        game: '時のオカリナ',
+                        category: 'GSR',
+                        segment: '魂の神殿クリア'
+                    },
+                    splitTime: '1:23:45',
+                    player: 'Cma'
+                }
+            }
+        }
+
+        export default Runner
+    </script>
+</runner>

@@ -11,7 +11,13 @@ export interface RelayInfoComponent extends RiotComponentExport<Props, State> {
   state: State;
 }
 
+export interface EditProps {
+  submitRelayInfoHandler: Function | null;
+}
+
+export interface EditState {}
+
 export interface RelayInfoEditComponent
-  extends RiotComponentExport<{ submitRelayInfoHandler: Function | null }, {}> {
+  extends RiotComponentExport<EditProps, EditState> {
   state: {};
 }

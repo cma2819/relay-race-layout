@@ -16,3 +16,12 @@ export enum TimeState {
   Running,
   Stop
 }
+
+export interface RunnerProps {}
+
+export interface RunnerState {}
+
+export interface RunnerComponent
+  extends RiotComponentExport<RunnerProps, RunnerState> {
+  state: {};
+}

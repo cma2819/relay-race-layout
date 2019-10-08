@@ -6,13 +6,12 @@
         }
 
         button{
-            font-size: 18px;
             width: 100%;
         }
     </style>
 
-    <div id="timer" class="columns">
-        <div class="column is-flex columns is-centered is-vcentered">
+    <div id="timer" class="columns is-marginless">
+        <div class="column is-flex columns is-centered is-vcentered is-marginless">
             <span id="timer-time" style="font-size:42px; font-weight: bold;">{state.time}</span>
         </div>
         <div class="timer-buttons column is-gapless">
@@ -44,22 +43,33 @@
             </div>
         </div>
     </div>
+    <runner></runner>
+    <runner></runner>
+    <runner></runner>
+    <runner></runner>
 
     <script type="ts">
         import {TimekeeperComponent, TimeState} from './types'
+        import Runner from './runner.riot'
 
-        class Timekeeper implements TimekeeperComponent {
-            state = {
-                time: '',
-                state: TimeState.Ready
-            }
-            onBeforeMount():void {
-                this.state = {
-                    time: '99:99:99',
+        function Timekeeper(): TimekeeperComponent {
+            return {
+                state: {
+                    time: '',
                     state: TimeState.Ready
+                },
+                onBeforeMount() {
+                    this.state = {
+                        time: '99:99:99',
+                        state: TimeState.Ready
+                    }
                 }
             }
         }
+        Timekeeper.components = {
+            Runner
+        }
+
         export default Timekeeper
     </script>
 </timekeeper>
