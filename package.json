@@ -2,26 +2,17 @@
   "name": "relay-race-layout",
   "version": "0.0.0",
   "description": "",
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
   "homepage": "",
+  "repository": "https://github.com/cma2819/relay-race-layout.git",
+  "license": "MIT",
   "author": {
     "name": "cma",
     "email": "chicchaima@gmail.com",
     "url": ""
-  },
-  "scripts": {
-    "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
-    "format": "prettier --write \"**/*.{ts,json,html,css,md}\"",
-    "postinstall": "run-p postinstall:include-nodecg script:generate-schema-ts",
-    "postinstall:include-nodecg": "include-nodecg postinstall",
-    "start": "include-nodecg start",
-    "script:generate-schema-ts": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js",
-    "watch:dashboard": "parcel watch src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
-    "watch:graphics": "parcel watch src/browser/graphics/*.html --out-dir graphics --public-url ./",
-    "build": "run-s build:dashboard build:graphics build:extension",
-    "build:dashboard": "parcel build src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
-    "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
-    "build:extension": "parcel build src/extension/index.ts --out-dir extension --public-url ./",
-    "typecheck": "tsc -b src/browser src/extension"
   },
   "files": [
     "dashboard",
@@ -29,10 +20,48 @@
     "extension.js",
     "extension"
   ],
-  "keywords": [
-    "",
-    "nodecg-bundle"
-  ],
+  "scripts": {
+    "build": "run-s build:dashboard build:graphics build:extension",
+    "build:dashboard": "parcel build src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
+    "build:extension": "parcel build src/extension/index.ts --out-dir extension --public-url ./",
+    "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
+    "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
+    "format": "prettier --write \"**/*.{ts,json,html,css,md}\" && sort-package-json",
+    "postinstall": "run-p postinstall:include-nodecg script:generate-schema-ts",
+    "postinstall:include-nodecg": "include-nodecg postinstall",
+    "script:generate-schema-ts": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js",
+    "start": "include-nodecg start",
+    "typecheck": "tsc -b src/browser src/extension",
+    "watch:dashboard": "parcel watch src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
+    "watch:graphics": "parcel watch src/browser/graphics/*.html --out-dir graphics --public-url ./"
+  },
+  "dependencies": {
+    "bulma": "^0.7.5",
+    "eslint": "^6.5.0",
+    "include-nodecg": "0.0.1-6",
+    "nodecg": "^1.4.1",
+    "prettier": "^1.18.2",
+    "riot": "^4.6.2"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@riotjs/compiler": "^4.4.3",
+    "@riotjs/hot-reload": "^4.0.0",
+    "@riotjs/parcel-plugin-riot": "^4.0.1",
+    "@types/node": "^12.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "del-cli": "^3.0.0",
+    "eslint-config-riot": "^3.0.0",
+    "husky": "^3.0.8",
+    "json-schema-to-typescript": "^7.1.0",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.4",
+    "sort-package-json": "^1.22.1",
+    "strip-indent": "^3.0.0",
+    "ts-nodecg": "^0.3.0",
+    "typescript": "^3.6.2"
+  },
   "nodecg": {
     "compatibleRange": "^1.1.1",
     "dashboardPanels": [
@@ -59,31 +88,9 @@
       }
     ]
   },
-  "repository": "https://github.com/cma2819/relay-race-layout.git",
-  "license": "MIT",
-  "dependencies": {
-    "bulma": "^0.7.5",
-    "eslint": "^6.5.0",
-    "include-nodecg": "0.0.1-6",
-    "nodecg": "^1.4.1",
-    "prettier": "^1.18.2",
-    "riot": "^4.6.2"
-  },
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2",
-    "@riotjs/compiler": "^4.4.3",
-    "@riotjs/hot-reload": "^4.0.0",
-    "@riotjs/parcel-plugin-riot": "^4.0.1",
-    "@types/node": "^12.7.4",
-    "@typescript-eslint/eslint-plugin": "^2.3.1",
-    "@typescript-eslint/parser": "^2.3.1",
-    "del-cli": "^3.0.0",
-    "eslint-config-riot": "^3.0.0",
-    "json-schema-to-typescript": "^7.1.0",
-    "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.4",
-    "strip-indent": "^3.0.0",
-    "ts-nodecg": "^0.3.0",
-    "typescript": "^3.6.2"
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s clean format"
+    }
   }
 }
