@@ -37,7 +37,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-s clean format typecheck && git add"
+      "pre-commit": "run-s clean format typecheck && git add ."
     }
   },
   "dependencies": {
