@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "state": {
+      "type": "string",
+      "enum": ["not_started", "running", "paused", "finished"],
+      "default": "not_started"
+    },
+    "time": {
+      "$ref": "lib/timeStruct.json"
+    }
+  },
+  "required": ["state", "time"]
+}

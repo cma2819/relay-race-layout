@@ -23,16 +23,19 @@
   "scripts": {
     "build": "run-s build:dashboard build:graphics build:extension",
     "build:dashboard": "parcel build src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
-    "build:extension": "parcel build src/extension/index.ts --out-dir extension --public-url ./",
+    "build:extension": "parcel build src/extension/index.ts --target node --bundle-node-modules --out-dir extension --public-url ./",
     "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
     "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
     "format": "prettier --write \"**/*.{ts,json,html,css,md}\" && sort-package-json",
-    "postinstall": "run-p postinstall:include-nodecg script:generate-schema-ts",
+    "generate-riot-ts:dashboard": "generate-riot-ts ./src/browser/dashboard/components",
+    "generate-schema-ts:config": "tsc script/generateConfigSchemaTs.ts && node script/generateConfigSchemaTs.js",
+    "generate-schema-ts:schemas": "tsc script/generateSchemaTs.ts && node script/generateSchemaTs.js ./schemas ./src/nodecg/generated",
+    "postinstall": "run-p postinstall:include-nodecg generate-schema-ts:schemas generate-schema-ts:config",
     "postinstall:include-nodecg": "include-nodecg postinstall",
-    "script:generate-schema-ts": "tsc script/generate-schema-ts.ts && node script/generate-schema-ts.js",
     "start": "include-nodecg start",
     "typecheck": "tsc -b src/browser src/extension",
     "watch:dashboard": "parcel watch src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
+    "watch:extension": "parcel watch src/browser/graphics/*.html --out-dir graphics --public-url ./",
     "watch:graphics": "parcel watch src/browser/graphics/*.html --out-dir graphics --public-url ./"
   },
   "husky": {
@@ -41,10 +44,15 @@
     }
   },
   "dependencies": {
+    "@types/milliseconds": "0.0.29",
+    "@types/parse-ms": "^2.1.2",
+    "animate.css": "^3.7.2",
     "bulma": "^0.7.5",
     "eslint": "^6.5.0",
     "include-nodecg": "0.0.1-6",
+    "milliseconds": "^1.0.3",
     "nodecg": "^1.4.1",
+    "parse-ms": "^2.1.0",
     "prettier": "^1.18.2",
     "riot": "^4.6.2"
   },
@@ -53,11 +61,12 @@
     "@riotjs/compiler": "^4.4.3",
     "@riotjs/hot-reload": "^4.0.0",
     "@riotjs/parcel-plugin-riot": "^4.0.1",
-    "@types/node": "^12.7.4",
+    "@types/node": "^12.11.2",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
     "@typescript-eslint/parser": "^2.3.1",
     "del-cli": "^3.0.0",
     "eslint-config-riot": "^3.0.0",
+    "generate-riot-ts": "^0.9.2",
     "husky": "^3.0.8",
     "json-schema-to-typescript": "^7.1.0",
     "npm-run-all": "^4.1.5",
@@ -69,6 +78,15 @@
     "typescript": "^3.6.2"
   },
   "nodecg": {
+    "assetCategories": [
+      {
+        "name": "initial-data",
+        "title": "イベント初期データ",
+        "allowedTypes": [
+          "json"
+        ]
+      }
+    ],
     "compatibleRange": "^1.1.1",
     "dashboardPanels": [
       {

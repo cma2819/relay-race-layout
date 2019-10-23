@@ -1,0 +1,60 @@
+<view-control>
+    <style>
+        /* Describe the style of this component here. */
+    </style>
+    
+    <div class="columns is-marginless">
+        <div class="column">
+            <nav class="panel">
+                <div class="panel-block">
+                <span>プレイヤー画面テキスト</span></div>
+                <div class="panel-block">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select>
+                                <option>自動切り換え</option>
+                                <option>名前</option>
+                                <option>ニコニコ</option>
+                                <option>Twitch</option>
+                                <option>Twitter</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div><div class="column">
+            <nav class="panel">
+                <div class="panel-block">
+                <span>プレイヤー画面テキスト</span></div>
+                <div class="panel-block">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select>
+                                <option>自動切り換え</option>
+                                <option>名前</option>
+                                <option>ニコニコ</option>
+                                <option>Twitch</option>
+                                <option>Twitter</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { ViewControlComponent } from './types'
+
+        function ViewControl(): ViewControlComponent {
+            return {
+                state:{}
+            }
+        }
+
+        export default ViewControl
+        
+    </script>
+</view-control>

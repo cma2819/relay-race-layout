@@ -4,7 +4,8 @@
   "compilerOptions": {
     "noEmit": true,
     "types": ["node"],
-    "module": "commonjs"
+    "module": "commonjs",
+    "resolveJsonModule": true
   },
   "include": ["**/*.ts", "../nodecg/**/*.ts"]
 }

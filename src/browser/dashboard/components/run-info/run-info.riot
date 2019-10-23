@@ -1,0 +1,148 @@
+<run-info>
+    <style>
+        /* Describe the style of this component here. */
+    </style>
+    
+    <div class="table-container" style="border-bottom: 1px dashed black; max-height: 640px; overflow-y: auto;" if={state.runs.length > 0}>
+        <table class="table is-striped is-fullwidth">
+            <tbody each={(run, idx) in state.runs} style="border-top: 1px solid black">
+                <tr>
+                    <th>{run.game} - {run.category}</th>
+                    <th class="has-text-centered">
+                        <div class="columns is-marginless">
+                            <div class="column is-paddingless">
+                                <button class="button is-info is-small" onclick={editRunInfoProvider(idx)}>
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </div>
+                            <div class="column is-paddingless">
+                                <button class="button is-danger is-small" onclick={removeRunInfoProvider(idx)}>
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr each={seg in run.segments}>
+                    <td colspan="2">{seg}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="columns is-marginless">
+        <div class="column has-text-right">
+            <button class="button is-primary" onclick={addRunInfoProvider()}>
+                <span class="icon"><i class="fas fa-plus"></i></span>
+                <span>ゲーム追加</span>
+            </button>
+        </div>
+    </div>
+    <div id="editor" class="modal {state.showEdit ? 'is-active' : ''}"></div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import * as riot from "riot";
+        import { RunInfoComponent } from './types'
+        import RunInfoEdit from './edit.riot'
+
+        const relayRep = nodecg.Replicant('relay')
+        const mountEditComponent = riot.component(RunInfoEdit)
+
+        function RunInfo(): RunInfoComponent {
+            return {
+                state:{
+                    runs: [],
+                    showEdit: false
+                },
+                setRunsState(runs) {
+                    const newRuns = []
+                    for (let i = 0; i < runs.length; i++) {
+                        const cloneRun = Object.assign({}, runs[i])
+                        cloneRun.segments = [...runs[i].segments]
+                        newRuns.push(cloneRun)
+                    }
+                    this.state.runs = newRuns
+                },
+                onMounted() {
+                    relayRep.on('change', (newVal) => {
+                        this.setRunsState(newVal.runs)
+                        this.update()
+                    })
+                },
+                addRunInfoProvider() {
+                    return () => {
+                        this.state.showEdit = true
+                        mountEditComponent(this.$('#editor'), {
+                            editRun: {},
+                            submitHandler: this.addRunInfoHandler,
+                            closeHandler: this.closeRunInfoHandler
+                        })
+                        this.update()
+                    }
+                },
+                editRunInfoProvider(idx: number) {
+                    return () => {
+                        this.state.showEdit = true  
+                        mountEditComponent(this.$('#editor'), {
+                            editRun: this.state.runs[idx],
+                            submitHandler: (run) => {
+                                this.editRunInfoHandler(idx, run)
+                            },
+                            closeHandler: this.closeRunInfoHandler
+                        })
+                        this.update()
+                    }
+                },
+                removeRunInfoProvider(idx: number) {
+                    return () => {
+                        this.removeRunInfoHandler(idx)
+                    }
+                },
+                addRunInfoHandler(run) {
+                    nodecg.sendMessage('addRun', run)
+                    .then(result => {
+                        this.notify(result, 'is-success')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                    this.state.showEdit = false
+                    this.update()
+                },
+                editRunInfoHandler(idx, run) {
+                    nodecg.sendMessage('editRun', {idx: idx, newRun: run})
+                    .then(result => {
+                        this.notify(result, 'is-success')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                    this.state.showEdit = false
+                    this.update()
+                },
+                removeRunInfoHandler(idx) {
+                    nodecg.sendMessage('removeRun', idx)
+                    .then(result => {
+                        this.notify(result, 'is-danger')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                    this.update()
+                },
+                closeRunInfoHandler() {
+                    this.state.showEdit = false
+                    this.update()
+                }
+            }
+        }
+
+        RunInfo.components = {
+            RunInfoEdit
+        }
+
+        export default RunInfo
+        
+    </script>
+</run-info>

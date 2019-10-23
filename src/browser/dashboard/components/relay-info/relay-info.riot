@@ -22,6 +22,7 @@
 
     <relay-info-edit
         class="modal {state.showEdit ? 'is-active' : ''}"
+        relayName="{state.relayName}"
         submitHandler={submitRelayInfoHandler}
         closeHandler={closeRelayInfoHandler}></relay-info-edit>
     
@@ -35,20 +36,21 @@
         function RelayInfo(): RelayInfoComponent {
             return {
                 state: {
-                    relayName: '',
                     showEdit: false
                 },
-                onMount() {
+                onMounted() {
                     relayRep.on('change', this.relayChangeHandler)
                 },
                 relayChangeHandler(newVal: RelayType) {
                     this.state.relayName = newVal.name;
+                    this.update();
                 },
                 editRelayInfoHandler(e: Event) {
                     this.state.showEdit = true
                     this.update()
                 },
-                submitRelayInfoHandler(e: Event) {
+                submitRelayInfoHandler(newRelayName: string) {
+                    nodecg.sendMessage('setRelayName', newRelayName);
                     this.state.showEdit = false
                     this.update()
                 },

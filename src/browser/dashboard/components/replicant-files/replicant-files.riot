@@ -1,0 +1,123 @@
+<replicant-files>
+    <style>
+        /* Describe the style of this component here. */
+    </style>
+    
+    <div class="columns is-marginless">
+        <div class="column"></div>
+        <div class="column field has-addons is-narrow">
+            <div class="control is-expanded">
+                <div class="select is-fullwidth">
+                    <select name="jsonSelect" disabled={state.jsonFiles.length === 0}>
+                        <option if={state.jsonFiles.length === 0}>初期データassetが設定されていません.</option>
+                        <option each={(json, idx) in state.jsonFiles} value={idx}>{json}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control">
+                <button class="button is-info" type="button" onclick={showImportDialog}>
+                    <span class="icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span>イベント情報をインポート</span>
+                </button>
+            </div>
+        </div>
+        <div class="modal {state.showDialog ? 'is-active' : ''}">
+        
+            <div class="modal-background" onclick={closeImportDialog}></div>
+            <div class="modal-content">
+                <article class="message is-warning">
+                    <div class="message-header">
+                        <p>イベント情報のインポート</p>
+                        <button class="delete" aria-label="delete" onclick={closeImportDialog}></button>
+                    </div>
+                    <div class="message-body">
+                        <p>ファイル「{state.importName}」をインポートします.</p>
+                        <p><strong>保存していない現在のイベント情報は破棄されます.</strong>よろしいですか.</p>
+                        <button type="button" class="button is-warning" onclick={importReplicantHandler}>OK</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="column file is-narrow">
+            <a id="download" class="is-hidden" download="rrl_replicants.json"></a>
+            <button class="button is-info" onclick={downloadHandler}>
+                <span class="icon">
+                    <i class="fas fa-upload"></i>
+                </span>
+                <span>イベント情報をエクスポート</span>
+            </button>
+        </div>
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { ReplicantFilesComponent } from './types'
+
+        const jsonAssetsRep = nodecg.Replicant('assets:initial-data')
+        function ReplicantFiles(): ReplicantFilesComponent {
+            return {
+                state:{
+                    jsonFiles: [],
+                    showDialog: false,
+                    importName: ''
+                },
+                onMounted() {
+                    jsonAssetsRep.on('change', newVal => {
+                        this.state.jsonFiles = newVal.map(val => val.name)
+                        this.update()
+                    })
+                },
+                showImportDialog() {
+                    const assetIdx = this.$('select[name="jsonSelect"]').value
+                    this.state.showDialog = true
+                    this.state.importName = this.state.jsonFiles[assetIdx]
+                    this.update()
+                },
+                closeImportDialog() {
+                    this.state.showDialog = false
+                    this.update()
+                }
+                importReplicantHandler(e: Event) {
+                    const assetIdx = this.$('select[name="jsonSelect"]').value
+                    nodecg.sendMessage('setInitialData', assetIdx)
+                    .then(result => {
+                        this.closeImportDialog()
+                        this.notify(result, 'is-success')
+                    })
+                },
+                downloadHandler(){
+                    this.state.isDownloading = true
+                    this.update()
+                    nodecg.sendMessage('getInitialData')
+                    .then(result => {
+                        const downloadContent = result
+                        const downloadBlob = new Blob([ JSON.stringify(downloadContent) ], {type: 'text/json'})
+                        const now = new Date();
+                        const dateNums = [
+                            now.getFullYear(),
+                            ('00' + (now.getMonth() + 1)).slice(-2),
+                            ('00' + now.getDate()).slice(-2),
+                            ('00' + now.getHours()).slice(-2),
+                            ('00' + now.getMinutes()).slice(-2),
+                            ('00' + now.getSeconds()).slice(-2),
+                        ]
+                        const filename = 'rrl_replicants_' + dateNums.join('') + '.json'
+                        this.$('#download').href = window.URL.createObjectURL(downloadBlob);
+                        this.$('#download').download = filename
+                        this.$('#download').click()
+                        this.update()
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                }
+            }
+        }
+
+        export default ReplicantFiles
+        
+    </script>
+</replicant-files>

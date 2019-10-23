@@ -8,6 +8,10 @@
       rel="stylesheet"
     />
     <link
+      href="../../../node_modules/animate.css/animate.min.css"
+      rel="stylesheet"
+    />
+    <link
       href="../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
       rel="stylesheet"
     />
@@ -24,6 +28,25 @@
         <div id="relay-info"></div>
       </div>
     </div>
+    <div class="columns is-marginless">
+      <div class="column is-one-third">
+        <div id="container-run-info" class="bordered">
+          <div class="container-label">ゲーム設定</div>
+          <div id="run-info"></div>
+        </div>
+      </div>
+      <div class="column is-two-thirds">
+        <div id="container-team-info" class="bordered">
+          <div class="container-label">チーム設定</div>
+          <div id="team-info"></div>
+        </div>
+        <div id="container-replicant-files" class="bordered">
+          <div class="container-label">ファイル入出力</div>
+          <div id="replicant-files"></div>
+        </div>
+      </div>
+    </div>
+    <div id="notification"></div>
     <script src="./config.ts"></script>
   </body>
 </html>

@@ -1,0 +1,89 @@
+<team-info-edit>
+    <style>
+        :host {
+            font-size: 16px;
+        }
+
+        div.wrapper > * {
+            margin: 4px 0;
+        }
+
+        div.wrapper {
+            background-color: #f7f7f7;
+            padding: 64px;
+        }
+    </style>
+
+    <div class="modal-background" onclick={closeModal}></div>
+    <div class="wrapper modal-content">
+        <span class="hero">チーム編集</span>
+        <label class="label">チーム名</label>
+        <div class="field">
+            <div class="control">
+                <input class="input" name="name" type="text" value={state.name || ''} placeholder="チーム名" />
+            </div>
+        </div>
+        <label class="hero">プレイヤー</label>
+        <div each={ (run, idx) in (state.runs || [''])}>
+            <label class="label">{run.game} - {run.category}</label>
+            <div class="field">
+                <div class="control is-expanded">
+                    <input class="input" name="player" type="text" value={idx < state.players.length ? state.players[idx].name : ''} placeholder="プレイヤー名" />
+                </div>
+            </div>
+        </div>
+        <div class="control level">
+            <div class="level-left"></div>
+            <div class="level-right">
+                <button
+                    class="button is-success level-item flat"
+                    onclick={submit}>設定</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="ts">
+        import { TeamInfoEditComponent } from './types'
+
+        function TeamInfoEdit(): RunInfoEditComponent {
+            return {
+                state: {
+                    runs: [],
+                    name: '',
+                    players: []
+                },
+                onBeforeMount(props, state) {
+                    this.state = {
+                        runs: props.runs ? [...props.runs] : [],
+                        name: props.name || '',
+                        players: props.players ? [...props.players]: []
+                    }
+                },
+                submit() {
+                    const name = this.$('input[name="name"]').value
+                    const players = []
+                    const playerElements = this.$$('input[name="player"]')
+                    for (let i = 0; i < playerElements.length; i++) {
+                        players.push({
+                            name: playerElements[i].value
+                        })
+                    }
+                    const newTeam = {
+                        name: name,
+                        players: players
+                    }
+                    this.props.submitHandler(newTeam)
+                    this.unmount(true)
+                },
+                closeModal() {
+                    this.props.closeHandler()
+                    this.unmount(true)
+                }
+            }
+        }
+
+        export default TeamInfoEdit
+
+    </script>
+
+</team-info-edit>

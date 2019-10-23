@@ -1,0 +1,43 @@
+<notify-dialog>
+    <style>
+        :host {
+            position: fixed;
+            right: 0%;
+            bottom: 0%;
+            margin: 10px;
+        }
+    </style>
+    
+    <div class="notification {props.type} {state.animateClass}">
+        <button class="delete" onclick={deleteNotification}></button>
+        {props.message}
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { NotifyDialogComponent } from './types'
+
+        function NotifyDialog(): NotifyDialogComponent {
+            return {
+                state:{
+                    animateClass: 'animated fadeInUp'
+                },
+                onMounted(){
+                    setTimeout(this.deleteNotification, 10000)
+                },
+                deleteNotification() {
+                    this.state.animateClass = 'animated fadeOutDown'
+                    this.update()
+                    setTimeout(
+                        () => {
+                            this.unmount(true)
+                        },1000)
+                }
+            }
+        }
+
+        export default NotifyDialog
+        
+    </script>
+</notify-dialog>

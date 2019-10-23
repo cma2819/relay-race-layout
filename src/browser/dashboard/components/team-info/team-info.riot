@@ -1,0 +1,169 @@
+<team-info>
+    <style>
+        /* Describe the style of this component here. */
+    </style>
+    
+    <div class="columns is-marginless" style="width: 100%; overflow-x: auto;">
+        <div class="column is-narrow" each={(team, idx) in state.teams}>
+            <nav class="panel">
+                <div class="panel-block table-container">
+                    <table class="table is-striped is-fullwidth has-text-centered">
+                        <thead>
+                            <tr>
+                                <th>{team.name}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr each={player in team.players}>
+                                <td>{player.name}</td>
+                            </tr>
+                            <tr>
+                                <th class="has-text-centered">
+                                    <div class="columns is-marginless">
+                                        <div class="column is-paddingless">
+                                            <button
+                                                class="button is-info is-small"
+                                                onclick={editTeamInfoProvider(idx)}>
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                        </div>
+                                        <div class="column is-paddingless">
+                                            <button
+                                                class="button is-danger is-small"
+                                                onclick={removeTeamInfoProvider(idx)}>
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="columns is-marginless">
+        <div class="column has-text-right">
+            <button class="button is-primary" onclick={addTeamInfoProvider()}>
+                <span class="icon"><i class="fas fa-plus"></i></span>
+                <span>チーム追加</span>
+            </button>
+        </div>
+    </div>
+    <div id="editor" class="modal {state.showEdit ? 'is-active' : ''}"></div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import * as riot from "riot";
+        import { TeamInfoComponent } from './types'
+        import TeamInfoEdit from './edit.riot'
+
+        const relayRep = nodecg.Replicant('relay')
+        const teamListRep = nodecg.Replicant('team-list')
+
+        const mountEditComponent = riot.component(TeamInfoEdit)
+        function TeamInfo(): TeamInfoComponent {
+            return {
+                state:{
+                    teams: [],
+                    showEdit: false
+                },
+                setTeamsState(teams) {
+                    const newTeams = []
+                    for (let i = 0; i < teams.length; i++) {
+                        const cloneTeam = Object.assign({}, teams[i])
+                        newTeams.push(cloneTeam)
+                    }
+                    this.state.teams = newTeams
+                },
+                onMounted() {
+                    teamListRep.on('change', (newVal) => {
+                        this.setTeamsState(newVal)
+                        this.update()
+                    })
+                },
+                addTeamInfoProvider() {
+                    return () => {
+                        this.state.showEdit = true
+                        mountEditComponent(this.$('#editor'), {
+                                runs: relayRep.value.runs,
+                                name: '',
+                                players: [],
+                                submitHandler: this.addTeamInfoHandler,
+                                closeHandler: this.closeTeamInfoHandler
+                        })
+                        this.update()
+                    }
+                },
+                editTeamInfoProvider(idx) {
+                    return () => {
+                        this.state.showEdit = true
+                        mountEditComponent(this.$('#editor'), {
+                                runs: relayRep.value.runs,
+                                name: this.state.teams[idx].name,
+                                players: this.state.teams[idx].players,
+                                submitHandler: (team) => {
+                                    this.editTeamInfoHandler(idx, team)
+                                },
+                                closeHandler: this.closeTeamInfoHandler
+                        })
+                        this.update()
+                    }
+                },
+                removeTeamInfoProvider(idx: number) {
+                    return () => {
+                        this.removeTeamInfoHandler(idx)
+                    }
+                }
+                addTeamInfoHandler(team) {
+                    nodecg.sendMessage('addTeam', team)
+                    .then(result => {
+                        this.notify(result, 'is-success')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                    this.state.showEdit = false
+                    this.update()
+                },
+                editTeamInfoHandler(idx:number, newTeam) {
+                    nodecg.sendMessage('editTeam', {
+                        idx: idx,
+                        newTeam: newTeam
+                    })
+                    .then(result => {
+                        this.notify(result, 'is-success')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                    this.state.showEdit = false
+                    this.update()
+                },
+                removeTeamInfoHandler(idx: number) {
+                    nodecg.sendMessage('removeTeam', idx)
+                    .then(result => {
+                        this.notify(result, 'is-danger')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                    this.update()
+                },
+                closeTeamInfoHandler() {
+                    this.state.showEdit = false
+                    this.update()
+                }
+            }
+        }
+
+        TeamInfo.components = {
+            TeamInfoEdit
+        }
+
+        export default TeamInfo
+        
+    </script>
+</team-info>

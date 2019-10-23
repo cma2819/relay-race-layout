@@ -3,12 +3,9 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "time": {
-      "$ref": "lib/timeStruct.json"
-    },
-    "running": {
-      "type": "boolean",
-      "default": false
+    "maxTeamCount": {
+      "type": "number",
+      "default": 4
     }
   }
 }

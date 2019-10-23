@@ -1,0 +1,122 @@
+<run-info-edit>
+    <style>
+        :host {
+            font-size: 16px;
+        }
+
+        div.wrapper > * {
+            margin: 4px 0;
+        }
+
+        div.wrapper {
+            background-color: #f7f7f7;
+            padding: 64px;
+        }
+    </style>
+
+    <div class="modal-background" onclick={closeModal}></div>
+    <div class="wrapper modal-content">
+        <span class="hero">ゲーム編集</span>
+        <label class="label">ゲーム名</label>
+        <div class="field">
+            <div class="control">
+                <input class="input" name="game" type="text" value={state.game || ''} placeholder="ゲーム名" />
+            </div>
+        </div>
+        <label class="label">カテゴリ名</label>
+        <div class="field">
+            <div class="control">
+                <input class="input" name="category" type="text" value={state.category || ''} placeholder="カテゴリ名" />
+            </div>
+        </div>
+        <label class="label">区間名</label>
+        <div class="field has-addons" each={ (seg, idx) in (state.segments || [''])}>
+            <div class="control is-expanded">
+                <input class="input" name="segment" type="text" value="{seg}" placeholder="区間名" />
+            </div>
+            <div class="control">
+                <button class="button" onclick={removeSegmentInputProvider(idx)}>
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="control">
+            <button
+                class="button is-fullwidth is-outlined is-info"
+                onclick={addSegmentInput}>
+                <span class="icon is-small">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>区間追加</span>
+            </button>
+        </div>
+        <div class="control level">
+            <div class="level-left"></div>
+            <div class="level-right">
+                <button
+                    class="button is-success level-item flat"
+                    onclick={submit}>設定</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="ts">
+        import { RunInfoEditComponent } from './types'
+
+        function RunInfoEdit(): RunInfoEditComponent {
+            return {
+                state: {
+                    game: '',
+                    category: '',
+                    segments: ['']
+                },
+                onBeforeMount(props, state) {
+                    this.state = {
+                        game: props.editRun.game || '',
+                        category: props.editRun.category || '',
+                        segments: props.editRun.segments ? [...props.editRun.segments]: ['']
+                    }
+                },
+                addSegmentInput() {
+                    this.state.segments.push('')
+                    this.update()
+                },
+                removeSegmentInput(idx: number) {
+                    if (this.state.segments.length !== 1) {
+                        this.state.segments.splice(idx, 1)
+                        this.update()
+                    }
+                },
+                removeSegmentInputProvider(idx: number) {
+                    return () => {
+                        this.removeSegmentInput(idx);
+                    }
+                },
+                submit() {
+                    const game = this.$('input[name="game"]').value
+                    const category = this.$('input[name="category"]').value
+                    const segments = []
+                    const segmentElements = this.$$('input[name="segment"]')
+                    for (let i = 0; i < segmentElements.length; i++) {
+                        segments.push(segmentElements[i].value)
+                    }
+                    const newRun = {
+                        game: game,
+                        category: category,
+                        segments: segments
+                    }
+                    this.props.submitHandler(newRun)
+                    this.unmount(true)
+                },
+                closeModal() {
+                    this.props.closeHandler()
+                    this.unmount(true)
+                }
+            }
+        }
+
+        export default RunInfoEdit
+
+    </script>
+
+</run-info-edit>

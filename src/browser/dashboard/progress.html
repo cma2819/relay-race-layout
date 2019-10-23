@@ -16,18 +16,34 @@
   </head>
 
   <body>
-    <div class="columns is-marginless">
-      <div id="container-countdown" class="column is-paddingless is-4">
-        <div id="countdown" class="bordered"></div>
-      </div>
-      <div
-        id="container-timekeeper"
-        class="bordered column is-paddingless is-4"
-      >
-        <div class="container-label">
-          ストップウォッチ
+    <div class="columns is-marginless is-variable is-2">
+      <div class="column is-one-third">
+        <div id="container-countdown" class="bordered">
+          <div id="countdown"></div>
         </div>
-        <div id="timekeeper"></div>
+      </div>
+      <div class="column is-one-third">
+        <div id="container-timekeeper" class="bordered">
+          <div class="container-label">
+            ストップウォッチ
+          </div>
+          <div id="timekeeper"></div>
+        </div>
+        <div id="container-view-control" class="bordered">
+          <div class="container-label">
+            画面表示操作
+          </div>
+          <div id="view-control"></div>
+        </div>
+      </div>
+
+      <div class="column is-one-third">
+        <div id="container-split-list" class="bordered">
+          <div class="container-label">
+            区間タイム
+          </div>
+          <div id="split-list"></div>
+        </div>
       </div>
     </div>
     <script src="./progress.ts"></script>

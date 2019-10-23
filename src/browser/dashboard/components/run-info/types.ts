@@ -1,13 +1,16 @@
 import { RiotComponentExport } from "riot";
+import { Run } from "../../../../nodecg/run";
 
+// Props of this component
 export interface Props {}
 
+// State of this component
 export interface State {
-  relayName: string;
-  showEdit: boolean;
+  runs: Run[];
 }
 
-export interface RelayInfoComponent extends RiotComponentExport<Props, State> {
+// Interface of this component
+export interface RunInfoComponent extends RiotComponentExport<Props, State> {
   state: State;
 }
 
@@ -17,10 +20,10 @@ export interface EditProps {
 }
 
 export interface EditState {
-  relayName: string;
+  run: Run;
 }
 
-export interface RelayInfoEditComponent
+export interface RunInfoEditComponent
   extends RiotComponentExport<EditProps, EditState> {
   state: EditState;
 }
