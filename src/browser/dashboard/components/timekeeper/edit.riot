@@ -1,0 +1,45 @@
+<time-edit>
+    <style>
+        :host {
+            font-size: 16px;
+        }
+
+        div.wrapper > * {
+            margin: 4px 0;
+        }
+
+        div.wrapper {
+            background-color: #f7f7f7;
+            padding: 64px;
+        }
+    </style>
+
+    <div class="modal-background" onclick={props.closeHandler}></div>
+    <div class="wrapper modal-content">
+        <span class="hero">タイム設定</span>
+        <input class="input is-medium" type="text" name="time" placeholder="hh:mm:ss" />
+        <div class="control level">
+            <div class="level-left"></div>
+            <div class="level-right">
+                <button
+                    class="button is-success level-item flat"
+                    onclick={submit}>設定</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="ts">
+        import {TimeEditComponent} from './types'
+
+        function TimeEdit(): TimeEditComponent {
+            return {
+                state: {},
+                submit() {
+                    this.props.submitHandler(this.$('input[name="time"]').value);
+                }
+            }
+        }
+
+        export default TimeEdit
+    </script>
+</time-edit>

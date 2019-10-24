@@ -73,4 +73,15 @@ export type MessageMap = {
   getInitialData: {
     result: object;
   };
+
+  startTimer: {
+    data: boolean;
+  };
+  stopTimer: {};
+  resetTimer: {};
+  editTimer: {
+    data: string;
+    result: string;
+    err: string;
+  };
 };

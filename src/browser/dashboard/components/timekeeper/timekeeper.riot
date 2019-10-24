@@ -17,13 +17,13 @@
         <div class="timer-buttons column is-gapless">
             <div class="button-row row1 is-flex">
                 <button
-                    class="button is-success flat">
+                    class="button is-success flat" onclick={startTimer} disabled={state.state === 'Running'}>
                     <span class="icon"><i class="fas fa-play"></i></span>
                     <span>開始</span>
                 </button>
 
                 <button
-                    class="button is-success flat" disabled="disabled">
+                    class="button is-success flat" disabled={state.state !== 'Running'} onclick={stopTimer}>
                     <span class="icon"><i class="fas fa-pause"></i></span>
                     <span>一時停止</span>
                 </button>
@@ -31,12 +31,12 @@
 
             <div class="button-row row2 is-flex">
                 <button
-                    class="button is-danger flat">
+                    class="button is-danger flat" onclick={resetTimer} disabled={state.state === 'Running'}>
                     <span class="icon"><i class="fas fa-eraser"></i></span>
                     <span>リセット</span>
                 </button>
                 <button
-                    class="button is-info flat">
+                    class="button is-info flat" onclick={editTimeHandler}>
                     <span class="icon"><i class="fas fa-pen"></i></span>
                     <span>編集</span>
                 </button>
@@ -48,26 +48,69 @@
     <runner idx="2"></runner>
     <runner idx="3"></runner>
 
+    <div class="modal {state.showEdit ? 'is-active' : ''}">
+        <time-edit
+            submitHandler={editSubmitHandler}
+            closeHandler={editCloseHandler}></time-edit>
+    </div>
+
     <script type="ts">
         import {TimekeeperComponent, TimeState} from './types'
         import Runner from './runner.riot'
+        import TimeEdit from './edit.riot'
+
+        const stopwatchRep = nodecg.Replicant('stopwatch')
 
         function Timekeeper(): TimekeeperComponent {
             return {
                 state: {
                     time: '',
-                    state: TimeState.Ready
+                    state: TimeState.Ready,
+                    showEdit: false
                 },
-                onBeforeMount() {
-                    this.state = {
-                        time: '99:99:99',
-                        state: TimeState.Ready
-                    }
+                onMounted() {
+                    stopwatchRep.on('change', (newVal) => {
+                        this.state.time = newVal.time.formatted
+                        this.state.state = newVal.state === 'running' ? TimeState.Running : TimeState.Ready
+                        this.update()
+                    })
+                },
+                startTimer() {
+                    nodecg.sendMessage('startTimer')
+                    this.update()
+                },
+                stopTimer() {
+                    nodecg.sendMessage('stopTimer')
+                    this.update()
+                },
+                resetTimer() {
+                    nodecg.sendMessage('resetTimer')
+                    this.update()
+                },
+                editTimeHandler() {
+                    this.state.showEdit = true
+                    this.update()
+                },
+                editSubmitHandler(formatted: string) {
+                    nodecg.sendMessage('editTimer', formatted)
+                    .then(result => {
+                        this.notify(result, 'is-success')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
+                    this.state.showEdit = false
+                    this.update()
+                },
+                editCloseHandler() {
+                    this.state.showEdit = false
+                    this.update()
                 }
             }
         }
         Timekeeper.components = {
-            Runner
+            Runner,
+            TimeEdit
         }
 
         export default Timekeeper

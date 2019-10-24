@@ -12,9 +12,9 @@ export interface TimekeeperComponent extends RiotComponentExport<Props, State> {
 }
 
 export enum TimeState {
-  Ready,
-  Running,
-  Stop
+  Ready = "Ready",
+  Running = "Running",
+  Stop = "Stop"
 }
 
 export interface RunnerProps {
@@ -36,4 +36,16 @@ export interface Segment {
 export interface RunnerComponent
   extends RiotComponentExport<RunnerProps, RunnerState> {
   state: RunnerState;
+}
+
+export interface EditProps {
+  submitRelayInfoHandler: Function | null;
+  closeRelayInfoHandler: Function | null;
+}
+
+export interface EditState {}
+
+export interface TimeEditComponent
+  extends RiotComponentExport<EditProps, EditState> {
+  state: EditState;
 }

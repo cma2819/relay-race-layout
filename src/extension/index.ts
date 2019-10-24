@@ -4,6 +4,7 @@ import { progress } from "./progress";
 import { relay } from "./relay";
 import { team } from "./team";
 import { replicantInit } from "./replicantInit";
+import { timekeeping } from "./timekeeping";
 
 export = (nodecg: NodeCG) => {
   countdown(nodecg);
@@ -11,4 +12,5 @@ export = (nodecg: NodeCG) => {
   relay(nodecg);
   team(nodecg);
   replicantInit(nodecg);
+  timekeeping(nodecg);
 };
