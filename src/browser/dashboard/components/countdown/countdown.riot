@@ -1,15 +1,12 @@
 <countdown>
 
     <div class="columns is-marginless">
-        <div class="column is-paddingless columns is-marginless is-vcentered is-centered">
-            <span>カウントダウン</span>
-        </div>
         <div class="column is-paddingless columns is-marginless is-vcentered is-centered is-size-3">
-            10:00
+            {state.restTime}
         </div>
         <div class="column is-paddingless columns is-marginless is-vcentered is-centered">
-            <button type="button" class="button is-success flat">開始</button>
-            <button type="button" class="button is-success flat" disabled="disabled">停止</button>
+            <button type="button" class="button is-success flat" if={!state.running} onclick={startCountdown}>開始</button>
+            <button type="button" class="button is-success flat" if={state.running} onclick={stopCountdown}>停止</button>
             <button type="button" class="button is-info flat" onclick="{editCountdownHandler}">編集</button>
         </div>
     </div>
@@ -23,16 +20,40 @@
         import {CountdownComponent} from './types'
         import CountdownEdit from './edit.riot'
 
+        const countdownRep = nodecg.Replicant('countdown')
+
         function Countdown(): CountdownComponent {
             return {
                 status: {
-                    showEdit: true;
+                    showEdit: true,
+                    restTime: '',
+                    running: false
                 },
+                onMounted() {
+                    countdownRep.on('change', newVal => {
+                        this.state.restTime = newVal.time.formatted.split('.')[0]
+                        this.state.running = newVal.running
+                        this.update()
+                    })
+                },
+                startCountdown() {
+                    nodecg.sendMessage('startCountdown')
+                },
+                stopCountdown() {
+                    nodecg.sendMessage('stopCountdown')
+                }
                 editCountdownHandler(e: Event) {
                     this.state.showEdit = true
                     this.update()
                 },
-                submitCountdownHandler(e: Event) {
+                submitCountdownHandler(time: string) {
+                    nodecg.sendMessage('editCountdown', time)
+                    .then(result => {
+                        this.notify(result, 'is-success')
+                    })
+                    .catch(err => {
+                        this.notify(err, 'is-warning')
+                    })
                     this.state.showEdit = false
                     this.update()
                 },

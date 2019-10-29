@@ -44,8 +44,6 @@
     }
   },
   "dependencies": {
-    "@types/milliseconds": "0.0.29",
-    "@types/parse-ms": "^2.1.2",
     "animate.css": "^3.7.2",
     "bulma": "^0.7.5",
     "eslint": "^6.5.0",
@@ -62,7 +60,9 @@
     "@riotjs/compiler": "^4.4.3",
     "@riotjs/hot-reload": "^4.0.0",
     "@riotjs/parcel-plugin-riot": "^4.0.1",
+    "@types/milliseconds": "0.0.29",
     "@types/node": "^12.11.2",
+    "@types/parse-ms": "^2.1.2",
     "@typescript-eslint/eslint-plugin": "^2.3.1",
     "@typescript-eslint/parser": "^2.3.1",
     "del-cli": "^3.0.0",

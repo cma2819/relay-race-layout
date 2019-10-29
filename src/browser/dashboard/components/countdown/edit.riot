@@ -17,7 +17,7 @@
     <div class="modal-background" onclick={props.closeHandler}></div>
     <div class="wrapper modal-content">
         <span class="hero">カウントダウン時間設定</span>
-        <input class="input is-medium" type="text" name="time" value="00:00" placeholder="mm:ss" />
+        <input class="input is-medium" type="text" name="time" value="" placeholder="hh:mm:ss" />
         <div class="control level">
             <div class="level-left"></div>
             <div class="level-right">
@@ -32,16 +32,11 @@
         import {CountdownEditComponent} from './types'
         import {Countdown as CountdownType} from '../../../../nodecg/replicants'
 
-        const countdownRep:Countdown = nodecg.Replicant('countdown')
-
         function CountdownEdit(): CountdownEditComponent {
             return {
-                state: {
-                    //formatted: countdownRep.value.formatted
-                },
+                state: {},
                 submit() {
-                    // countdownRep.value.title = this.$('input[name="title"]').value;
-                    this.props.submitHandler();
+                    this.props.submitHandler(this.$('input[name="time"]').value);
                 }
             }
         }

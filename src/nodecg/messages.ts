@@ -1,11 +1,15 @@
 import { Run } from "./run";
 import { Team } from "./team";
+import { PlayerInfoStatus } from "../extension/graphics";
 
 export type MessageMap = {
-  startCountdown: {
-    data: string;
-  };
+  startCountdown: {};
   stopCountdown: {};
+  editCountdown: {
+    data: string;
+    result: string;
+    error: string;
+  };
 
   split: {
     data: number;
@@ -16,14 +20,13 @@ export type MessageMap = {
   editSplit: {
     data: {
       idx: number;
-      seg: number;
-      time: {
-        hour: number;
-        minute: number;
-        second: number;
-      };
+      runIndex: number;
+      segIndex: number;
+      time: string;
     };
+    error: string;
   };
+  resetSplit: {};
 
   setRelayName: {
     data: string;
@@ -83,5 +86,12 @@ export type MessageMap = {
     data: string;
     result: string;
     err: string;
+  };
+
+  "graphics:playerInfoStatus": {
+    data: PlayerInfoStatus;
+  };
+  "graphics:soundIndex": {
+    data: number;
   };
 };

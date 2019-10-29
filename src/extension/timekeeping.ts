@@ -88,10 +88,10 @@ export const timekeeping = (nodecg: NodeCG) => {
 
   const edit = (formatted: string, cb: any): void => {
     try {
+      reset();
       stopwatch.value.time = TimeUtils.createTimeStruct(
         TimeUtils.parseTimeString(formatted)
       );
-      pause();
       cb(null, "タイムを編集しました.");
     } catch (err) {
       cb("文字列をタイムに変換できません.");

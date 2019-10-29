@@ -5,39 +5,56 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-      "segment": {
-        "type": "number",
-        "minimum": 0,
-        "default": 0
+      "segments": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "prev": {
+            "oneOf": [
+              {
+                "$ref": "lib/segment.json"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current": {
+            "$ref": "lib/segment.json"
+          },
+          "next": {
+            "oneOf": [
+              {
+                "$ref": "lib/segment.json"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": ["prev", "current", "next"]
       },
       "splits": {
         "type": "array",
         "items": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "hour": {
-              "type": "number",
-              "minimum": 0,
-              "default": 0
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "total": {
+                "$ref": "lib/timeStruct.json"
+              },
+              "run": {
+                "$ref": "lib/timeStruct.json"
+              }
             },
-            "minute": {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 59,
-              "default": 0
-            },
-            "second": {
-              "type": "number",
-              "minimum": 0,
-              "maximum": 59,
-              "default": 0
-            }
-          },
-          "required": ["hour", "minute", "second"]
+            "required": ["total", "run"]
+          }
         }
       }
     },
-    "required": ["segment", "splits"]
+    "required": ["segments", "splits"]
   }
 }

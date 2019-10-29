@@ -14,10 +14,10 @@
         }
     </style>
 
-    <div class="modal-background" onclick={props.closeHandler}></div>
+    <div class="modal-background" onclick={this.close}></div>
     <div class="wrapper modal-content">
-        <span class="hero">区間タイム編集</span>
-        <input class="input is-medium" type="text" name="time" value="00:00" placeholder="hh:mm:ss" />
+        <span class="hero">区間タイム（総合タイム）編集</span>
+        <input class="input is-medium" type="text" name="time" value="" placeholder="hh:mm:ss" />
         <div class="control level">
             <div class="level-left"></div>
             <div class="level-right">
@@ -34,11 +34,17 @@
         function SplitEdit(): SplitEditComponent {
             return {
                 state: {
-                    //formatted: countdownRep.value.formatted
+                },
+                onMounted() {
+                    console.log(this.props.submitHandler)
                 },
                 submit() {
-                    // countdownRep.value.title = this.$('input[name="title"]').value;
-                    this.props.submitHandler();
+                    this.props.submitHandler(this.$('input[name="time"]').value)
+                    this.unmount(true)
+                },
+                close() {
+                    this.props.closeHandler()
+                    this.unmount(true)
                 }
             }
         }

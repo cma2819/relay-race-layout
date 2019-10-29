@@ -6,7 +6,10 @@
     "playerInfoStatus": {
       "enum": ["name", "twitter", "nico", "twitch"],
       "default": "name"
+    },
+    "soundEnableIndex": {
+      "type": "number"
     }
   },
-  "required": ["playerInfoStatus"]
+  "required": ["playerInfoStatus", "soundEnableIndex"]
 }

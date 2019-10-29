@@ -7,21 +7,19 @@
         <div class="column">
             <nav class="panel">
                 <div class="panel-block">
-                <span>プレイヤー画面テキスト</span></div>
+                <span>音声ON表示</span></div>
                 <div class="panel-block">
                     <div class="control">
                         <div class="select is-fullwidth">
-                            <select>
-                                <option>自動切り換え</option>
-                                <option>名前</option>
-                                <option>ニコニコ</option>
-                                <option>Twitch</option>
-                                <option>Twitter</option>
+                            <select onchange={changeSoundEnable}>
+                                <option value="-1" selected={state.selected.soundEnable < 0}>-</option>
+                                <option each={(team, idx) in state.teamList} value={idx} selected={state.selected.soundEnable === idx}>{team.name}</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </nav>
+            <!--
         </div><div class="column">
             <nav class="panel">
                 <div class="panel-block">
@@ -41,6 +39,7 @@
                 </div>
             </nav>
         </div>
+        -->
     </div>
 
     <script type="ts">
@@ -48,9 +47,31 @@
         
         import { ViewControlComponent } from './types'
 
+        const teamListRep = nodecg.Replicant('team-list')
+        const graphicsRep = nodecg.Replicant('graphics')
+
         function ViewControl(): ViewControlComponent {
             return {
-                state:{}
+                state:{
+                    teamList: [],
+                    selected: {
+                        soundEnable: -1
+                    }
+                },
+                onMounted() {
+                    teamListRep.on('change', (newVal) => {
+                        this.state.teamList = newVal
+                        this.update()
+                    })
+                    graphicsRep.on('change', (newVal) => {
+                        this.state.selected.soundEnable = newVal.soundEnableIndex
+                        this.update()
+                    })
+                },
+                changeSoundEnable(e) {
+                    const idx: number = parseInt(e.target.value)
+                    nodecg.sendMessage('graphics:soundIndex', idx)
+                }
             }
         }
 

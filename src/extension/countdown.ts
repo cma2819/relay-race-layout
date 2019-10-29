@@ -11,27 +11,25 @@ export const countdown = (nodecg: NodeCG) => {
     }
   });
 
-  const start = (startTime: string) => {
-    if (countdownRep.value.running) {
-      return;
-    }
-    const durationMs = parseTimeString(startTime);
-    if (durationMs <= 0) {
+  const logger = new nodecg.Logger("Countdown");
+
+  const start = () => {
+    if (countdownRep.value.running || !countdownRep.value.time) {
       return;
     }
     countdownRep.value.running = true;
-    countdownRep.value.time = createTimeStruct(durationMs);
     if (countdownTimer) {
       countdownTimer.stop();
       countdownTimer.removeAllListeners();
     }
-    countdownTimer = new CountdownTimer(Date.now() + durationMs);
+    countdownTimer = new CountdownTimer(
+      Date.now() + countdownRep.value.time.raw
+    );
     countdownTimer.on("tick", remainingTimeStruct => {
       countdownRep.value.time = remainingTimeStruct;
     });
+    logger.info("start");
   };
-
-  nodecg.listenFor("startCountdown", start);
 
   const stop = (): void => {
     if (!countdownRep.value.running) {
@@ -41,7 +39,23 @@ export const countdown = (nodecg: NodeCG) => {
     if (countdownTimer) {
       countdownTimer.stop();
     }
+    logger.info("stop");
   };
 
+  const edit = (editTime: string, cb: any): void => {
+    try {
+      const durationMs = parseTimeString(editTime);
+      stop();
+      countdownRep.value.time = createTimeStruct(durationMs);
+      cb(null, "タイムを編集しました.");
+      logger.info("edit to " + editTime);
+    } catch {
+      cb("文字列をタイムに変換できません.");
+      return;
+    }
+  };
+
+  nodecg.listenFor("startCountdown", start);
   nodecg.listenFor("stopCountdown", stop);
+  nodecg.listenFor("editCountdown", edit);
 };

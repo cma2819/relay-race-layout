@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="control">
-                <button class="button is-info" type="button" onclick={showImportDialog}>
+                <button class="button is-info" type="button" onclick={showImportDialog} disabled={state.jsonFiles.length === 0}>
                     <span class="icon">
                         <i class="fas fa-upload"></i>
                     </span>

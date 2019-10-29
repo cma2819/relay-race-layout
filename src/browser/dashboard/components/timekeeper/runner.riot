@@ -16,33 +16,34 @@
     </style>
     <div class="columns is-marginless runner-container">
         <div class="column is-1 has-text-centered" style="background-color: #bcbcff;">
-        <span class="team-label">1</label>
+        <span class="team-label">{props.idx + 1}</label>
         </div>
-        <div class="column container {props.idx % 2 == 1 ? 'has-background-white-ter':''}">
+        <div class="column container {props.data.idx % 2 == 1 ? 'has-background-white-ter':''}">
             <div class="level is-marginless" style="border-bottom:dashed 1px black">
                 <div class="level-left">
-                    <div class="level-item is-italic">前区間：{state.prev.game} - {state.prev.segment}</div>
+                    <div class="level-item is-italic">前区間：
+                        <span if={props.data.prev}>{props.data.prev.game} - {props.data.prev.segment}</span></div>
                 </div>
                 <div class="level-right">
-                    <div class="level-item">{state.splitTime}</div>
+                    <div class="level-item">{props.data.splitTime}</div>
                 </div>
             </div>
         
             <div class="columns is-marginless v-centered is-2 is-variable">
                 <div class="column is-narrow is-size-4 has-text-justified">
-                    {state.player}
+                    {props.data.player}
                 </div>
                 <div class="column columns is-multiline is-marginless is-italic">
-                    <div class="column is-full is-paddingless has-text-right">{state.current.game}[{state.current.category}]</div>
-                    <div class="column is-full is-paddingless has-text-right">{state.current.segment}</div>
+                    <div class="column is-full is-paddingless has-text-right">{props.data.current.game}[{props.data.current.category}]</div>
+                    <div class="column is-full is-paddingless has-text-right">{props.data.current.segment}</div>
                 </div>
                 <div class="column columns is-marginless is-vcentered is-centered is-narrow">
                     <div class="column is-paddingless">
-                        <button type="button" class="button is-success flat">
+                        <button type="button" class="button is-success flat" onclick={split}>
                         <span class="icon"><i class="fas fa-flag-checkered"></i></span><span>ラップ</span></button>
                     </div>
                     <div class="column is-paddingless">
-                        <button type="button" class="button is-warning flat">
+                        <button type="button" class="button is-warning flat" onclick={resume}>
                         <span class="icon"><i class="fas fa-undo-alt"></i></span><span>戻す</span></button>
                     </div>
                 </div>
@@ -50,10 +51,9 @@
         
             <div class="level" style="border-top:dashed 1px black">
                 <div class="level-left">
-                    <div class="level-item is-italic">次区間：{state.next.game} - {state.next.segment}</div>
-                </div>
-                <div class="level-right">
-                    <div class="level-item">-</div>
+                    <div class="level-item is-italic">次区間：
+                        <span if={props.data.next}>{props.data.next.game} - {props.data.next.segment}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,24 +63,12 @@
 
         function Runner(): RunnerComponent {
             return {
-                state: {
-                    prev: {
-                        game: '時のオカリナ',
-                        category: 'GSR',
-                        segment: 'マスターソード入手'
-                    },
-                    current: {
-                        game: '時のオカリナ',
-                        category: 'GSR',
-                        segment: '闇の神殿クリア'
-                    },
-                    next: {
-                        game: '時のオカリナ',
-                        category: 'GSR',
-                        segment: '魂の神殿クリア'
-                    },
-                    splitTime: '1:23:45',
-                    player: 'Cma'
+                state: {},
+                split() {
+                    nodecg.sendMessage('split', this.props.idx)
+                },
+                resume() {
+                    nodecg.sendMessage('resumeSplit', this.props.idx)
                 }
             }
         }

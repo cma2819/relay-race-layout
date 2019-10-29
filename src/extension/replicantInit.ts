@@ -16,7 +16,6 @@ export const replicantInit = (nodecg: NodeCG) => {
       path.join(nodecgRoot, jsonAssetsRep.value[assetIdx].url)
     );
     const jsonReplicant = JSON.parse(jsonFile.toString()).replicants;
-    nodecg.log.info(jsonFile.toString());
 
     const defaultRelay: Relay = {
       name: "",

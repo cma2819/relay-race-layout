@@ -59,7 +59,7 @@ export class CountdownTimer extends EventEmitter {
   interval!: NodeJS.Timeout;
   constructor(endTime: number, tickRate: number = 100) {
     super();
-    setInterval(() => {
+    this.interval = setInterval(() => {
       const currentTime = Date.now();
       const timeRemaining = Math.max(endTime - currentTime, 0);
       this.emit("tick", createTimeStruct(timeRemaining));

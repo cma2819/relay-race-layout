@@ -17,13 +17,13 @@
         <div class="timer-buttons column is-gapless">
             <div class="button-row row1 is-flex">
                 <button
-                    class="button is-success flat" onclick={startTimer} disabled={state.state === 'Running'}>
+                    class="button is-success flat" onclick={startTimer} if={state.state !== 'Running'}>
                     <span class="icon"><i class="fas fa-play"></i></span>
                     <span>開始</span>
                 </button>
 
                 <button
-                    class="button is-success flat" disabled={state.state !== 'Running'} onclick={stopTimer}>
+                    class="button is-success flat" if={state.state === 'Running'} onclick={stopTimer}>
                     <span class="icon"><i class="fas fa-pause"></i></span>
                     <span>一時停止</span>
                 </button>
@@ -31,7 +31,7 @@
 
             <div class="button-row row2 is-flex">
                 <button
-                    class="button is-danger flat" onclick={resetTimer} disabled={state.state === 'Running'}>
+                    class="button is-danger flat" onclick={resetTimer}>
                     <span class="icon"><i class="fas fa-eraser"></i></span>
                     <span>リセット</span>
                 </button>
@@ -43,10 +43,7 @@
             </div>
         </div>
     </div>
-    <runner idx="0"></runner>
-    <runner idx="1"></runner>
-    <runner idx="2"></runner>
-    <runner idx="3"></runner>
+    <runner each={(runr, idx) in state.runners} idx={idx} data={runr}></runner>
 
     <div class="modal {state.showEdit ? 'is-active' : ''}">
         <time-edit
@@ -59,22 +56,99 @@
         import Runner from './runner.riot'
         import TimeEdit from './edit.riot'
 
+        const relayRep = nodecg.Replicant('relay')
         const stopwatchRep = nodecg.Replicant('stopwatch')
+        const progressRep = nodecg.Replicant('progress')
+        const teamListRep = nodecg.Replicant('team-list')
 
         function Timekeeper(): TimekeeperComponent {
             return {
                 state: {
                     time: '',
+                    runners: [],
                     state: TimeState.Ready,
-                    showEdit: false
+                    showEdit: false,
+                    relay: {},
+                    progress: [],
+                    teamList: []
                 },
                 onMounted() {
                     stopwatchRep.on('change', (newVal) => {
                         this.state.time = newVal.time.formatted
                         this.state.state = newVal.state === 'running' ? TimeState.Running : TimeState.Ready
                         this.update()
+                    }),
+                    relayRep.on('change', (newVal) => {
+                        this.state.relay = newVal
+                        this.makeRunners()
+                        this.update()
+                    }),
+                    teamListRep.on('change', (newVal) => {
+                        this.state.teamList = newVal
+                        this.makeRunners()
+                        this.update()
+                    }),
+                    progressRep.on('change', (newVal) => {
+                        this.state.progress = newVal
+                        this.makeRunners()
+                        this.update()
                     })
                 },
+                makeRunners() {
+                    this.state.runners = []
+                    for (let i = 0; i < this.state.progress.length; i++) {
+                        if (!this.state.teamList || !this.state.teamList[i]) {
+                            break;
+                        }
+
+                        // Make Current runner
+                        const current = Object.assign({},{
+                            game: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].game,
+                            category: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].category,
+                            segment: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].segments[this.state.progress[i].segments.current.segIndex]
+                        })
+                        let player = '(走者情報なし)';
+                        if (this.state.progress[i].segments.current.runIndex < teamListRep.value[i].players.length) {
+                            player = teamListRep.value[i].players[this.state.progress[i].segments.current.runIndex].name;
+                        }
+
+                        // Make Previous runner
+                        let prev
+                        let prevSplit
+                        if (this.state.progress[i].segments.prev) {
+                            prev = Object.assign({},{
+                                game: relayRep.value.runs[this.state.progress[i].segments.prev.runIndex].game,
+                                category: relayRep.value.runs[this.state.progress[i].segments.prev.runIndex].category,
+                                segment: relayRep.value.runs[this.state.progress[i].segments.prev.runIndex].segments[this.state.progress[i].segments.prev.segIndex]
+                            })
+                            prevSplit = this.state.progress[i].splits[this.state.progress[i].segments.prev.runIndex][this.state.progress[i].segments.prev.segIndex].total.formatted
+                        } else {
+                            prev = null
+                            prevSplit = null
+                        }
+
+                        // Make Next runner
+                        let next
+                        if (this.state.progress[i].segments.next) {
+                            next = Object.assign({},{
+                                game: relayRep.value.runs[this.state.progress[i].segments.next.runIndex].game,
+                                category: relayRep.value.runs[this.state.progress[i].segments.next.runIndex].category,
+                                segment: relayRep.value.runs[this.state.progress[i].segments.next.runIndex].segments[this.state.progress[i].segments.next.segIndex]
+                            })  
+                        } else {
+                            next = null
+                        }
+
+                        // Push to runners array
+                        this.state.runners.push({
+                            prev: prev,
+                            current: current,
+                            next: next,
+                            splitTime: prevSplit,
+                            player: player
+                        })
+                    }
+                }
                 startTimer() {
                     nodecg.sendMessage('startTimer')
                     this.update()
@@ -85,6 +159,7 @@
                 },
                 resetTimer() {
                     nodecg.sendMessage('resetTimer')
+                    nodecg.sendMessage('resetSplit')
                     this.update()
                 },
                 editTimeHandler() {
