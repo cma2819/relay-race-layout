@@ -23,7 +23,7 @@
   "scripts": {
     "build": "run-s build:dashboard build:graphics build:extension",
     "build:dashboard": "parcel build src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
-    "build:extension": "parcel build src/extension/index.ts --target node --bundle-node-modules --out-dir extension --public-url ./",
+    "build:extension": "parcel build src/extension/index.ts --target node --out-dir extension --public-url ./",
     "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
     "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
     "format": "prettier --write \"**/*.{ts,json,html,css,md}\" && sort-package-json",
