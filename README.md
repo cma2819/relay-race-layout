@@ -29,7 +29,7 @@ $ npm run build
 
 **Windows の場合, 管理者として実行したコマンドプロンプト上で実行してください.**
 
-- Run NodeCG
+## Run NodeCG
 
 ```
 $ npm start
