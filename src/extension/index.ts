@@ -9,9 +9,9 @@ import { graphics } from "./graphics";
 
 export = (nodecg: NodeCG) => {
   countdown(nodecg);
-  progress(nodecg);
   relay(nodecg);
   team(nodecg);
+  progress(nodecg);
   replicantInit(nodecg);
   timekeeping(nodecg);
   graphics(nodecg);
