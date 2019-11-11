@@ -8,7 +8,7 @@ NodeCG common bundle for speedrun relay race event
 
 ## Installation
 
-- Clone
+### Clone
 
 ```
 $ git clone https://github.com/cma2819/relay-race-layout.git
@@ -17,7 +17,7 @@ $ git clone https://github.com/cma2819/relay-race-layout.git
 - `relay-race-layout`というフォルダが作成されます. 本 NodeCG レイアウトの本体です.
 - `include-nodecg`というライブラリを使っているため, NodeCG を別途インストールして`bundles`に配置等は不要です.
 
-- install
+### install
 
 ```
 # git clone直後の状態から下記コマンドを実行してください.
