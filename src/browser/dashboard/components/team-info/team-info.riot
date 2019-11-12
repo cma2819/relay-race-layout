@@ -10,15 +10,18 @@
                     <table class="table is-striped is-fullwidth has-text-centered">
                         <thead>
                             <tr>
-                                <th>{team.name}</th>
+                                <th colspan="4">{team.name}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr each={player in team.players}>
                                 <td>{player.name}</td>
+                                <td class="is-narrow"><i class="fab fa-twitch" if={player.twitch}></i></td>
+                                <td class="is-narrow"><i class="far fa-smile" if={player.nico}></i></td>
+                                <td class="is-narrow"><i class="fab fa-twitter" if={player.twitter}></i></td>
                             </tr>
                             <tr>
-                                <th class="has-text-centered">
+                                <th class="has-text-centered" colspan="4">
                                     <div class="columns is-marginless">
                                         <div class="column is-paddingless">
                                             <button
@@ -45,7 +48,7 @@
     </div>
     <div class="columns is-marginless">
         <div class="column has-text-right">
-            <button class="button is-primary" onclick={addTeamInfoProvider()}>
+            <button class="button is-primary" onclick={addTeamInfoProvider()} data-tooltip="test">
                 <span class="icon"><i class="fas fa-plus"></i></span>
                 <span>チーム追加</span>
             </button>

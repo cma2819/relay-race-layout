@@ -24,11 +24,54 @@
             </div>
         </div>
         <label class="hero">プレイヤー</label>
-        <div each={ (run, idx) in (state.runs || [''])}>
+        <div class="box" each={ (run, idx) in (state.runs || [''])}>
             <label class="label">{run.game} - {run.category}</label>
-            <div class="field">
-                <div class="control is-expanded">
-                    <input class="input" name="player" type="text" value={idx < state.players.length ? state.players[idx].name : ''} placeholder="プレイヤー名" />
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">名前</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" name="player" type="text" value={idx < state.players.length ? state.players[idx].name : ''} placeholder="プレイヤー名" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Twitch</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" name="twitch" type="text" value={idx < state.players.length ? state.players[idx].twitch : ''} placeholder="Twitch ID" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">ニコニコ</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" name="nico" type="text" value={idx < state.players.length ? state.players[idx].nico : ''} placeholder="コミュニティID（co....）" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Twitter</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" name="twitter" type="text" value={idx < state.players.length ? state.players[idx].twitter : ''} placeholder="Twitter ID（@不要）" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,9 +106,15 @@
                     const name = this.$('input[name="name"]').value
                     const players = []
                     const playerElements = this.$$('input[name="player"]')
+                    const twitchElements = this.$$('input[name="twitch"]')
+                    const nicoElements = this.$$('input[name="nico"]')
+                    const twitterElements = this.$$('input[name="twitter"]')
                     for (let i = 0; i < playerElements.length; i++) {
                         players.push({
                             name: playerElements[i].value
+                            twitch: twitchElements[i].value
+                            nico: nicoElements[i].value
+                            twitter: twitterElements[i].value
                         })
                     }
                     const newTeam = {

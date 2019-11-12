@@ -50,21 +50,71 @@
       {
         "name": "お金とSwitchと女の子と光回線とコミュ力欲しい！！！！！",
         "players": [
-          { "name": "ダイソー" },
-          { "name": "ベル" },
-          { "name": "みりい" },
-          { "name": "桜んぼ" },
-          { "name": "しばづけ" }
+          {
+            "name": "ダイソー",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "ベル",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "みりい",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "桜んぼ",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "しばづけ",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          }
         ]
       },
       {
         "name": "エキデンぜるだ with B team",
         "players": [
-          { "name": "代走" },
-          { "name": "たみふる" },
-          { "name": "とらっしー" },
-          { "name": "HiST" },
-          { "name": "バン" }
+          {
+            "name": "代走",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "たみふる",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "とらっしー",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "HiST",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          },
+          {
+            "name": "バン",
+            "twitch": "",
+            "nico": "",
+            "twitter": ""
+          }
         ]
       }
     ]

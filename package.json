@@ -46,6 +46,7 @@
   "dependencies": {
     "animate.css": "^3.7.2",
     "bulma": "^0.7.5",
+    "bulma-extensions": "^6.2.7",
     "eslint": "^6.5.0",
     "include-nodecg": "0.0.1-6",
     "livesplit-core": "^0.10.2",
