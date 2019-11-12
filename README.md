@@ -29,6 +29,14 @@ $ npm run build
 
 **Windows の場合, 管理者として実行したコマンドプロンプト上で実行してください.**
 
+## Update
+
+- `relay-race-layout`フォルダ直下で以下のコマンドを実行することで, 最新のソースに更新することができます.
+
+```
+$ git pull origin master
+```
+
 ## Run NodeCG
 
 ```
