@@ -1,0 +1,93 @@
+<omni-bar>
+    <style>
+        :host {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        .timer {
+            background-color: rgba(255, 255, 255, 0.9);
+            line-height: 100vh;
+            font-size: 50vh;
+            font-weight: bold;
+        }
+        .timer span {
+            padding: 0 0.5rem;
+        }
+        .logo {
+            background-color: rgba(255, 255, 255, 0.9);
+            height: 100vh;
+        }
+        .omni .box {
+            margin: 0.2rem 0;
+            font-weight: bold;
+        }
+        .omni .title {
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 50vh;
+        }
+        img {
+            width: auto;
+            height: 100%;
+        }
+    </style>
+    
+    <div class="columns is-marginless">
+        <div class="column is-narrow is-paddingless" if={state.logo != null && state.logo != ''}>
+            <figure class="image logo is-72x72">
+                <img src={state.logo || '../statics/logo-png.png'} />
+            </figure>
+        </div>
+        <div class="column is-paddingless omni has-background-dark">
+            <div class="is-flex title is-5 has-text-centered">
+                <div class="has-text-white">{state.eventTitle}</div>
+            </div>
+        </div>
+        <div class="column is-narrow is-paddingless timer">
+            <span class="
+                {state.timeState == 'not_started' ? 'has-text-dark' : ''}
+                {state.timeState == 'running' ? 'has-text-black' : ''}
+                {state.timeState == 'finished' ? 'has-text-success' : ''}">{ state.time }</span>
+        </div>
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { OmniBarComponent } from './types'
+
+        const relayRep = nodecg.Replicant('relay')
+        const timeRep = nodecg.Replicant('stopwatch')
+        const graphicRep = nodecg.Replicant('graphics')
+
+        function OmniBar(): OmniBarComponent {
+            return {
+                state:{
+                    eventTitle: '',
+                    time: '0:00:00',
+                    timeState: 'not_started',
+                    logo: null
+                },
+                onMounted() {
+                    relayRep.on('change', (newVal) => {
+                        this.state.eventTitle = newVal.name
+                        this.update()
+                    })
+                    timeRep.on('change', (newVal) => {
+                        this.state.time = newVal.time.formatted
+                        this.state.timeState = newVal.state
+                        this.update()
+                    })
+                    graphicRep.on('change', (newVal) => {
+                        this.state.logo = newVal.logoUrl
+                        this.update()
+                    } )
+                }
+            }
+        }
+
+        export default OmniBar
+        
+    </script>
+</omni-bar>

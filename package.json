@@ -28,6 +28,7 @@
     "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
     "format": "prettier --write \"**/*.{ts,json,html,css,md}\" && sort-package-json",
     "generate-riot-ts:dashboard": "generate-riot-ts ./src/browser/dashboard/components",
+    "generate-riot-ts:graphics": "generate-riot-ts ./src/browser/graphics/components",
     "generate-schema-ts:config": "tsc script/generateConfigSchemaTs.ts && node script/generateConfigSchemaTs.js",
     "generate-schema-ts:schemas": "tsc script/generateSchemaTs.ts && node script/generateSchemaTs.js ./schemas ./src/nodecg/generated",
     "postinstall": "run-p postinstall:include-nodecg generate-schema-ts:schemas generate-schema-ts:config",
@@ -87,6 +88,16 @@
         "allowedTypes": [
           "json"
         ]
+      },
+      {
+        "name": "logo",
+        "title": "イベントロゴ",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
       }
     ],
     "compatibleRange": "^1.1.1",
@@ -108,9 +119,25 @@
     ],
     "graphics": [
       {
-        "file": "standard.html",
+        "file": "team3-4.html",
         "width": 1280,
-        "height": 720
+        "height": 800
+      },
+      {
+        "file": "omnibar.html",
+        "width": 1280,
+        "height": 72
+      },
+      {
+        "file": "checkpoint.html",
+        "width": 220,
+        "height": 650
+      }
+    ],
+    "mount": [
+      {
+        "directory": "statics",
+        "endpoint": "statics"
       }
     ]
   }

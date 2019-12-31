@@ -102,14 +102,19 @@
                         }
 
                         // Make Current runner
-                        const current = Object.assign({},{
-                            game: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].game,
-                            category: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].category,
-                            segment: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].segments[this.state.progress[i].segments.current.segIndex]
-                        })
-                        let player = '(走者情報なし)';
-                        if (this.state.progress[i].segments.current.runIndex < teamListRep.value[i].players.length) {
-                            player = teamListRep.value[i].players[this.state.progress[i].segments.current.runIndex].name;
+                        let current
+                        if (this.state.progress[i].segments.current) {
+                            current = Object.assign({},{
+                                game: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].game,
+                                category: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].category,
+                                segment: this.state.relay.runs[this.state.progress[i].segments.current.runIndex].segments[this.state.progress[i].segments.current.segIndex]
+                            })
+                            let player = '(走者情報なし)'
+                            if (this.state.progress[i].segments.current.runIndex < teamListRep.value[i].players.length) {
+                                player = teamListRep.value[i].players[this.state.progress[i].segments.current.runIndex].name
+                            }
+                        } else {
+                            current = null
                         }
 
                         // Make Previous runner

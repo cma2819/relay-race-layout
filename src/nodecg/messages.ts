@@ -94,4 +94,9 @@ export type MessageMap = {
   "graphics:soundIndex": {
     data: number;
   };
+  "graphics:logoUrl": {
+    data: string;
+  };
+  "graphics:prevCp": {};
+  "graphics:nextCp": {};
 };

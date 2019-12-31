@@ -1,0 +1,101 @@
+<checkpoint>
+    <style>
+        .hero-body {
+            padding: 1.5rem 1.5rem;
+        }
+        .flag {
+            margin: 0 0.2rem;
+            font-size: 24px;
+        }
+        .not-last-segment {
+            border-right: 1px solid white;
+        }
+    </style>
+    
+    <div class="container">
+        <section class="hero has-background-light">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title is-5">
+                        チェックポイント
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <div class="columns is-marginless is-mobile has-text-white has-background-dark">
+            <div each={(teamIdx, idx) in state.teamIdxs}
+                 class="column has-text-centered {idx < state.teamIdxs.length - 1 ? 'not-last-segment' : ''}">
+                {teamIdx}
+            </div>
+        </div>
+        <div each={(run, runIdx) in state.runs}>
+        <div class="columns is-marginless is-mobile has-text-white has-background-primary has-text-weight-bold" if='{runIdx >= state.minCpIdxs.run}'>
+            <div class="column has-text-centered">
+                {run.game}
+            </div>
+        </div>
+            <segment each={(segment, idx) in run.segments} segment={segment} runIdx={runIdx} segIdx={idx}
+                if='{runIdx > state.minCpIdxs.run || (runIdx == state.minCpIdxs.run && idx >= state.minCpIdxs.seg)}'></segment> 
+        </div>
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { CheckpointComponent } from './types'
+        import Segment from './segment.riot'
+
+        const relayRep = nodecg.Replicant('relay')
+        const graphicsRep = nodecg.Replicant('graphics')
+        const teamListRep = nodecg.Replicant('team-list')
+
+        function Checkpoint(): CheckpointComponent {
+            return {
+                state:{
+                    runs: [],
+                    checkpointIndex: 0,
+                    minCpIdxs: {
+                        run: 0,
+                        seg: 0
+                    },
+                    teamIdxs: [],
+                },
+                onMounted() {
+                    relayRep.on('change', (newVal) => {
+                        this.state.runs = newVal.runs
+                        this.calcCheckpointIndex();
+                        this.update()
+                    })
+                    graphicsRep.on('change', (newVal) => {
+                        this.state.checkpointIndex = newVal.checkpointIndex
+                        this.calcCheckpointIndex();
+                        this.update()
+                    })
+                    teamListRep.on('change', (newVal) => {
+                        this.state.teamIdxs = newVal.map((team) => {
+                            return team.name[0]
+                        })
+                        this.update()
+                    })
+                },
+                calcCheckpointIndex() {
+                    let totalSegmentCount = 0;
+                    for (let i = 0; i < this.state.runs.length; i++) {
+                        this.state.minCpIdxs.run = i;
+                        if (this.state.checkpointIndex < (totalSegmentCount + this.state.runs[i].segments.length)) {
+                            break;
+                        }
+                        totalSegmentCount += this.state.runs[i].segments.length
+                    }
+                    this.state.minCpIdxs.seg = this.state.checkpointIndex - totalSegmentCount
+                }
+            }
+        }
+
+        Checkpoint.components = {
+            Segment
+        }
+        export default Checkpoint
+        
+    </script>
+</checkpoint>

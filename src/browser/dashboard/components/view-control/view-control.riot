@@ -3,7 +3,7 @@
         /* Describe the style of this component here. */
     </style>
     
-    <div class="columns is-marginless">
+    <div class="columns is-marginless is-multiline">
         <div class="column">
             <nav class="panel">
                 <div class="panel-block">
@@ -19,8 +19,25 @@
                     </div>
                 </div>
             </nav>
-            <!--
-        </div><div class="column">
+        </div>
+        <div class="column">
+            <nav class="panel">
+                <div class="panel-block">
+                <span>表示ロゴ</span></div>
+                <div class="panel-block">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select onchange={changeLogoUrl}>
+                                <option value="" selected={state.selected.soundEnable < 0}>-</option>
+                                <option each={(logo, idx) in state.logoList} value={logo.url} selected={state.selected.logo === logo.url}>{logo.name}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!--
+        <div class="column">
             <nav class="panel">
                 <div class="panel-block">
                 <span>プレイヤー画面テキスト</span></div>
@@ -41,6 +58,28 @@
         </div>
         -->
     </div>
+        <div class="has-text-centered has-text-white has-background-black">チェックポイント表示基準区間</div>
+    <div class="box">
+        <div class="columns is-marginless is-vcentered">
+            <div class="column is-narrow">
+                <button class="button is-medium is-success" onclick={prevCheckpoint} disabled={state.nowSegment.idx == 0}>
+                    <span class="icon is-small">
+                    <i class="fas fa-sort-up"></i>
+                    </span>
+                </button>
+            </div>
+            <div class="column has-text-centered">
+                {state.nowSegment.idx + 1} : {state.nowSegment.name}
+            </div>
+            <div class="column is-narrow">
+                <button class="button is-medium is-success" onclick={nextCheckpoint} disabled={state.nowSegment.idx == state.segmentList.length - 1}>
+                    <span class="icon is-small">
+                    <i class="fas fa-sort-down"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script type="ts">
         // Define logics about this component here.
@@ -48,14 +87,23 @@
         import { ViewControlComponent } from './types'
 
         const teamListRep = nodecg.Replicant('team-list')
+        const relayRep = nodecg.Replicant('relay')
         const graphicsRep = nodecg.Replicant('graphics')
+        const logoAsset = nodecg.Replicant('assets:logo')
 
         function ViewControl(): ViewControlComponent {
             return {
                 state:{
                     teamList: [],
+                    logoList: [],
                     selected: {
                         soundEnable: -1
+                        logo: -1
+                    },
+                    segmentList: []
+                    nowSegment: {
+                        idx: 0,
+                        name: ''
                     }
                 },
                 onMounted() {
@@ -65,12 +113,44 @@
                     })
                     graphicsRep.on('change', (newVal) => {
                         this.state.selected.soundEnable = newVal.soundEnableIndex
+                        this.state.selected.logo = newVal.logoUrl
+                        if (newVal.checkpointIndex < this.state.segmentList.length) {
+                            this.state.nowSegment.idx = newVal.checkpointIndex
+                            this.state.nowSegment.name = this.state.segmentList[newVal.checkpointIndex]
+                        } else {
+                            this.state.nowSegment.idx = newVal.checkpointIndex
+                            this.state.nowSegment.name = '-'
+                        }
                         this.update()
                     })
+                    relayRep.on('change', (newVal) => {
+                        this.state.segmentList = [];
+                        for (let i = 0; i < newVal.runs.length; i++) {
+                            const run = newVal.runs[i]
+                            run.segments.forEach((segment) => {
+                                this.state.segmentList.push(segment)
+                            })
+                        }
+                    })
+                    logoAsset.on('change', (newVal) => {
+                        this.state.logoList = newVal
+                        this.update()
+                    })
+
                 },
                 changeSoundEnable(e) {
                     const idx: number = parseInt(e.target.value)
                     nodecg.sendMessage('graphics:soundIndex', idx)
+                },
+                changeLogoUrl(e) {
+                    const url: string = e.target.value
+                    nodecg.sendMessage('graphics:logoUrl', url)
+                },
+                prevCheckpoint() {
+                    nodecg.sendMessage('graphics:prevCp')
+                },
+                nextCheckpoint() {
+                    nodecg.sendMessage('graphics:nextCp')
                 }
             }
         }

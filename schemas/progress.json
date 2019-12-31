@@ -20,7 +20,14 @@
             ]
           },
           "current": {
-            "$ref": "lib/segment.json"
+            "oneOf": [
+              {
+                "$ref": "lib/segment.json"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "next": {
             "oneOf": [

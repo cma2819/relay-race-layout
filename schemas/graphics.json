@@ -9,7 +9,26 @@
     },
     "soundEnableIndex": {
       "type": "number"
+    },
+    "logoUrl": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "checkpointIndex": {
+      "type": "number",
+      "minimum": 0
     }
   },
-  "required": ["playerInfoStatus", "soundEnableIndex"]
+  "required": [
+    "playerInfoStatus",
+    "soundEnableIndex",
+    "logoUrl",
+    "checkpointIndex"
+  ]
 }

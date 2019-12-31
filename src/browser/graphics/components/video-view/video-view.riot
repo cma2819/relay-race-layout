@@ -1,0 +1,45 @@
+<video-view>
+    <style>
+        div.panel-container {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <div class="columns is-marginless is-multiline panel-container">
+        <video-panel class="column is-paddingless is-half top"
+                    each={(team,idx) in state.teamList} idx={idx} team={team}></video-panel>
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { VideoViewComponent } from './types'
+        import VideoPanel from './video-panel.riot'
+
+        function VideoView(): VideoViewComponent {
+
+            const teamListRep = nodecg.Replicant('team-list')
+
+            return {
+                state:{
+                    teamList: []
+                },
+                onMounted() {
+                    teamListRep.on('change', (newVal) => {
+                        this.state.teamList = newVal
+                        this.update()
+                    })
+                }
+            }
+        }
+
+        VideoView.components = {
+            VideoPanel
+        }
+
+        export default VideoView
+        
+    </script>
+</video-view>

@@ -17,31 +17,37 @@ export const progress = (nodecg: NodeCG) => {
 
     const beforeNext: Segment | null =
       progressRep.value[idx].segments.next || null;
-    if (beforeNext === null) {
+    const currentSegments = beforeNext;
+    const beforeCurrent: Segment | null =
+      progressRep.value[idx].segments.current;
+    if (beforeCurrent === null) {
       return;
     }
-    const currentSegments = beforeNext;
-    const beforeCurrent: Segment = progressRep.value[idx].segments.current;
     const prevSegments = beforeCurrent;
 
-    const nextRun = relayRep.value.runs[beforeNext.runIndex];
-
     let nextSegments: Segment | null;
-    if (beforeNext.segIndex + 1 < nextRun.segments.length) {
-      nextSegments = {
-        runIndex: beforeNext.runIndex,
-        segIndex: beforeNext.segIndex + 1
-      };
+    if (beforeNext === null) {
+      nextSegments = null;
     } else {
-      if (beforeNext.runIndex + 1 < relayRep.value.runs.length) {
+      const nextRun = relayRep.value.runs[beforeNext.runIndex];
+
+      if (beforeNext.segIndex + 1 < nextRun.segments.length) {
         nextSegments = {
-          runIndex: beforeNext.runIndex + 1,
-          segIndex: 0
+          runIndex: beforeNext.runIndex,
+          segIndex: beforeNext.segIndex + 1
         };
       } else {
-        nextSegments = null;
+        if (beforeNext.runIndex + 1 < relayRep.value.runs.length) {
+          nextSegments = {
+            runIndex: beforeNext.runIndex + 1,
+            segIndex: 0
+          };
+        } else {
+          nextSegments = null;
+        }
       }
     }
+
     progressRep.value[idx].segments = {
       prev: prevSegments,
       current: currentSegments,
@@ -87,7 +93,8 @@ export const progress = (nodecg: NodeCG) => {
       return;
     }
     const currentSegments = beforePrev;
-    const beforeCurrent: Segment = progressRep.value[idx].segments.current;
+    const beforeCurrent: Segment | null =
+      progressRep.value[idx].segments.current;
     const nextSegments = beforeCurrent;
 
     let prevSegments: Segment | null;

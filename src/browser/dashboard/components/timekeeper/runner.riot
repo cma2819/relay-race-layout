@@ -34,8 +34,8 @@
                     {props.data.player}
                 </div>
                 <div class="column columns is-multiline is-marginless is-italic">
-                    <div class="column is-full is-paddingless has-text-right">{props.data.current.game}[{props.data.current.category}]</div>
-                    <div class="column is-full is-paddingless has-text-right">{props.data.current.segment}</div>
+                    <div if={props.data.current} class="column is-full is-paddingless has-text-right">{props.data.current.game}[{props.data.current.category}]</div>
+                    <div if={props.data.current} class="column is-full is-paddingless has-text-right">{props.data.current.segment}</div>
                 </div>
                 <div class="column columns is-marginless is-vcentered is-centered is-narrow">
                     <div class="column is-paddingless">

@@ -104,9 +104,19 @@
                     })
                 },
                 setSelectedRow() {
-                    this.state.selectedRow = {
-                        runIdx: this.state.progress[this.state.idx].segments.current.runIndex,
-                        segIdx: this.state.progress[this.state.idx].segments.current.segIndex
+                    if (this.state.progress[this.state.idx].segments.current === null) {
+                        this.state.selectedRow = {
+                            runIdx: -1,
+                            segIdx: -1
+                        }
+                        return;
+                    }
+                    
+                    if (this.state.idx < this.state.progress.length) {
+                        this.state.selectedRow = {
+                            runIdx: this.state.progress[this.state.idx].segments.current.runIndex,
+                            segIdx: this.state.progress[this.state.idx].segments.current.segIndex
+                        }
                     }
                 },
                 nextTeam() {
