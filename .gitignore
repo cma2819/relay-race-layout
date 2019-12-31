@@ -17,3 +17,6 @@ node_modules
 
 # generated d.ts files
 /src/nodecg/generated/*.d.ts
+
+# statics
+/statics
