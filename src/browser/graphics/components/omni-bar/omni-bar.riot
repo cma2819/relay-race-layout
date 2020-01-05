@@ -16,10 +16,6 @@
             background-color: rgba(255, 255, 255, 0.9);
             height: 100vh;
         }
-        .omni .box {
-            margin: 0.2rem 0;
-            font-weight: bold;
-        }
         .omni .title {
             height: 100vh;
             align-items: center;
@@ -33,15 +29,16 @@
         }
     </style>
     
-    <div class="columns is-marginless">
+    <div class="columns is-marginless has-background-dark is-vcentered">
         <div class="column is-narrow is-paddingless" if={state.logo != null && state.logo != ''}>
             <figure class="image logo is-72x72">
                 <img src={state.logo || '../statics/logo-png.png'} />
             </figure>
         </div>
-        <div class="column is-paddingless omni has-background-dark">
-            <div class="is-flex title is-5 has-text-centered">
-                <div class="has-text-white">{state.eventTitle}</div>
+        <div class="column is-paddingless omni">
+            <checkpoint-detail></checkpoint-detail>
+            <div class="is-flex">
+                <!--  <div class="has-text-white title is-5">{state.eventTitle}</div>  -->
             </div>
         </div>
         <div class="column is-narrow is-paddingless timer">
@@ -56,6 +53,7 @@
         // Define logics about this component here.
         
         import { OmniBarComponent } from './types'
+        import CheckpointDetail from '../checkpoint-detail/checkpoint-detail.riot'
 
         const relayRep = nodecg.Replicant('relay')
         const timeRep = nodecg.Replicant('stopwatch')
@@ -75,7 +73,7 @@
                         this.update()
                     })
                     timeRep.on('change', (newVal) => {
-                        this.state.time = newVal.time.formatted
+                        this.state.time = newVal.time.formatted.split('.')[0]
                         this.state.timeState = newVal.state
                         this.update()
                     })
@@ -85,6 +83,10 @@
                     } )
                 }
             }
+        }
+
+        OmniBar.components = {
+            CheckpointDetail
         }
 
         export default OmniBar

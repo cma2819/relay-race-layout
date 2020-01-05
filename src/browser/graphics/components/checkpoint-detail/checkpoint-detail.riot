@@ -1,0 +1,117 @@
+<checkpoint-detail>
+    <style>
+        .top {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .detail {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+        }
+    </style>
+
+    <div class="top columns is-marginless is-vcentered">
+        <div class="column is-2 is-paddingless is-narrow animated { state.existing ? 'slideOutLeft' : 'slideInLeft'}" style="font-size:0.75rem; margin-right: 0.5rem;">
+            <div class="columns is-marginless is-multiline has-background-light is-vcentered" style="height:100vh;">
+                <div class="column is-paddingless is-full">チェックポイント通過タイム</div>
+                <div class="column is-paddingless is-full has-text-weight-bold	">
+                    { state.segments[state.segIndexes.runIndex] ? 
+                      state.segments[state.segIndexes.runIndex][state.segIndexes.segIndex] || '-' : '-' }
+                </div>
+            </div>
+        </div>
+        <div class="detail column is-paddingless is-vcentered is-narrow animated { state.existing ? 'fadeOutRight' : 'fadeInRight' }" each="{(detail, idx) in state.details}">
+            <div class="columns is-marginless is-vcentered box is-paddingless">
+                <div class="column is-narrow" style="border-right: 1px dashed black; font-size:25vh;">
+                    { idx + 1 }
+                </div>
+                <div class="column columns is-multiline">
+                    <div class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;">{ state.teams[detail.teamIdx] || '-' }</div>
+                    <div class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;">{ detail.time.formatted }</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { CheckpointDetailComponent } from './types'
+
+        const progressRep = nodecg.Replicant('progress')
+        const teamRep = nodecg.Replicant('team-list')
+        const relayRep = nodecg.Replicant('relay')
+
+        function CheckpointDetail(): CheckpointDetailComponent {
+            return {
+                state:{
+                    details: [],
+                    teams: [],
+                    segments: []
+                    segIndexes: {
+                        runIndex: 0,
+                        segIndex: 0
+                    },
+                    existing: false
+                },
+                onMounted() {
+                    setTimeout(() => {this.state.existing = true}, 10000)
+                    progressRep.on('change', (newVal) => {
+                        this.state.details = [];
+                        const minIdxs = {
+                            runIndex: Infinity,
+                            segIndex: Infinity
+                        };
+                        for (let i = 0; i < newVal.length; i++) {
+                            const segments = newVal[i].segments
+                            if (segments.prev) {
+                                if (segments.prev.runIndex < minIdxs.runIndex) {
+                                    minIdxs.runIndex = segments.prev.runIndex
+                                    minIdxs.segIndex = segments.prev.segIndex
+                                } else if (segments.prev.runIndex === minIdxs.runIndex) {
+                                    minIdxs.segIndex = Math.min(minIdxs.segIndex, segments.prev.segIndex)
+                                }
+                            }
+                        }
+                        for (let i = 0; i < newVal.length; i++) {
+                            if (newVal[i].splits.length <= minIdxs.runIndex
+                            || newVal[i].splits[minIdxs.runIndex].length <= minIdxs.segIndex) {
+                                continue;
+                            }
+                            const split = newVal[i].splits[minIdxs.runIndex][minIdxs.segIndex]
+                            this.state.details.push({
+                                teamIdx: i,
+                                time: {
+                                    formatted: split.total.formatted.split('.')[0],
+                                    raw: split.total.raw
+                                }
+                            })
+                            this.state.details.sort((a, b) => {
+                                return a.time.raw - b.time.raw
+                            })
+                        }
+                        this.state.segIndexes = minIdxs
+                        this.update()
+                    })
+
+                    teamRep.on('change', (newVal) => {
+                        this.state.teams = newVal.map((team) => team.name)
+                        this.update()
+                    })
+
+                    relayRep.on('change', (newVal) => {
+                        this.state.segments = []
+                        for (let i = 0; i < newVal.runs.length; i++) {
+                            this.state.segments.push(newVal.runs[i].segments)
+                        }
+                        this.update()
+                    })
+                }
+            }
+        }
+
+        export default CheckpointDetail
+        
+    </script>
+</checkpoint-detail>
