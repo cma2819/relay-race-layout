@@ -12,10 +12,11 @@
     </style>
 
     <div class="top columns is-marginless is-vcentered">
-        <div class="column is-2 is-paddingless is-narrow animated { state.existing ? 'slideOutLeft' : 'slideInLeft'}" style="font-size:0.75rem; margin-right: 0.5rem;">
-            <div class="columns is-marginless is-multiline has-background-light is-vcentered" style="height:100vh;">
-                <div class="column is-paddingless is-full">チェックポイント通過タイム</div>
-                <div class="column is-paddingless is-full has-text-weight-bold	">
+        <div class="column is-3 is-paddingless is-narrow has-text-white animated { state.existing ? 'slideOutLeft' : 'slideInLeft'}"
+             style="margin-right: 0.5rem;">
+            <div class="columns is-marginless is-multiline is-vcentered" style="height:100vh;padding:0 0.5rem;">
+                <div class="column is-paddingless is-full is-size-7">チェックポイント通過タイム</div>
+                <div class="column is-paddingless is-full has-text-weight-bold">
                     { state.segments[state.segIndexes.runIndex] ? 
                       state.segments[state.segIndexes.runIndex][state.segIndexes.segIndex] || '-' : '-' }
                 </div>
@@ -32,6 +33,7 @@
                 </div>
             </div>
         </div>
+        <div class="column"></div>
     </div>
 
     <script type="ts">
@@ -56,7 +58,12 @@
                     existing: false
                 },
                 onMounted() {
-                    setTimeout(() => {this.state.existing = true}, 10000)
+                    
+                    setTimeout(() => {
+                        this.state.existing = true
+                        this.update()
+                    }, 18000)
+
                     progressRep.on('change', (newVal) => {
                         this.state.details = [];
                         const minIdxs = {

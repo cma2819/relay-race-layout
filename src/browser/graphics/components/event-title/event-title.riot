@@ -1,0 +1,33 @@
+<event-title>
+    <style>
+        .title {
+            font-weight: bold;
+            font-size: 50vh;
+        }
+    </style>
+    
+    <div class="has-text-white title has-text-centered animated {state.existing ? 'fadeOutLeft' : 'fadeInRight'}">{props.title}</div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { EventTitleComponent } from './types'
+
+        function EventTitle(): EventTitleComponent {
+            return {
+                state:{
+                    existing: false
+                },
+                onMounted() {
+                    setTimeout(() => {
+                        this.state.existing = true
+                        this.update()
+                    }, 18000)
+                }
+            }
+        }
+
+        export default EventTitle
+        
+    </script>
+</event-title>

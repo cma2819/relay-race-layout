@@ -13,15 +13,11 @@
             padding: 0 0.5rem;
         }
         .logo {
-            background-color: rgba(255, 255, 255, 0.9);
+            /* background-color: rgba(255, 255, 255, 0.9); */
             height: 100vh;
         }
-        .omni .title {
-            height: 100vh;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 50vh;
+        .omni {
+            overflow: hidden;
         }
         img {
             width: auto;
@@ -29,17 +25,15 @@
         }
     </style>
     
-    <div class="columns is-marginless has-background-dark is-vcentered">
+    <div class="columns is-marginless has-background-black-ter is-vcentered">
         <div class="column is-narrow is-paddingless" if={state.logo != null && state.logo != ''}>
             <figure class="image logo is-72x72">
                 <img src={state.logo || '../statics/logo-png.png'} />
             </figure>
         </div>
-        <div class="column is-paddingless omni">
-            <checkpoint-detail></checkpoint-detail>
-            <div class="is-flex">
-                <!--  <div class="has-text-white title is-5">{state.eventTitle}</div>  -->
-            </div>
+        <div class="column is-paddingless omni is-vcentered">
+            <event-title if={state.showInfo === 0} title={state.eventTitle}></event-title>
+            <checkpoint-detail if={state.showInfo === 1}></checkpoint-detail>
         </div>
         <div class="column is-narrow is-paddingless timer">
             <span class="
@@ -54,6 +48,7 @@
         
         import { OmniBarComponent } from './types'
         import CheckpointDetail from '../checkpoint-detail/checkpoint-detail.riot'
+        import EventTitle from '../event-title/event-title.riot'
 
         const relayRep = nodecg.Replicant('relay')
         const timeRep = nodecg.Replicant('stopwatch')
@@ -65,7 +60,9 @@
                     eventTitle: '',
                     time: '0:00:00',
                     timeState: 'not_started',
-                    logo: null
+                    logo: null,
+
+                    showInfo: 0
                 },
                 onMounted() {
                     relayRep.on('change', (newVal) => {
@@ -80,12 +77,17 @@
                     graphicRep.on('change', (newVal) => {
                         this.state.logo = newVal.logoUrl
                         this.update()
-                    } )
+                    })
+                    setInterval(() => {
+                        this.state.showInfo = (this.state.showInfo + 1) % 2
+                        this.update()
+                    }, 20000)
                 }
             }
         }
 
         OmniBar.components = {
+            EventTitle,
             CheckpointDetail
         }
 
