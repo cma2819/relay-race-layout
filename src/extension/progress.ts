@@ -80,6 +80,15 @@ export const progress = (nodecg: NodeCG) => {
       total: totalTime,
       run: runTime
     };
+
+    nodecg.sendMessage("event:showSplit", {
+      teamIdx: idx,
+      segment:
+        relayRep.value.runs[beforeCurrent.runIndex].segments[
+          beforeCurrent.segIndex
+        ],
+      time: runTime.formatted
+    });
   };
 
   const resume = (idx: number): void => {

@@ -99,4 +99,13 @@ export type MessageMap = {
   };
   "graphics:prevCp": {};
   "graphics:nextCp": {};
+
+  /** Send to Graphics from Extension */
+  "event:showSplit": {
+    data: {
+      teamIdx: number;
+      segment: string;
+      time: string;
+    };
+  };
 };
