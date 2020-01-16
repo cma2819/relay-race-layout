@@ -49,10 +49,10 @@
     "bulma": "^0.7.5",
     "bulma-extensions": "^6.2.7",
     "eslint": "^6.5.0",
-    "include-nodecg": "0.0.1-6",
+    "include-nodecg": "0.0.3",
     "livesplit-core": "^0.10.2",
     "milliseconds": "^1.0.3",
-    "nodecg": "^1.4.1",
+    "nodecg": "^1.5.0",
     "parse-ms": "^2.1.0",
     "prettier": "^1.18.2",
     "riot": "^4.6.2"
