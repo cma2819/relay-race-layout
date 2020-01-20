@@ -76,7 +76,13 @@ export const timekeeping = (nodecg: NodeCG) => {
     }
   };
 
+  const config = nodecg.bundleConfig;
+
   const reset = (): void => {
+    // Disable reset when config set
+    if (config.resetDisabled) {
+      return;
+    }
     if (timer) {
       logger.info("reset");
       pause();

@@ -6,6 +6,10 @@
     "maxTeamCount": {
       "type": "number",
       "default": 4
+    },
+    "resetDisabled": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

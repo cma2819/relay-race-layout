@@ -17,11 +17,13 @@ export const formatMilliseconds = (inputMs: number) => {
     inputMs
   );
   let str = "";
+  let dayHours = 0;
   if (days) {
-    str += `${days}d `;
+    // str += `${days}d `;
+    dayHours = days * 24;
   }
-  if (hours) {
-    str += `${hours}:`;
+  if (hours + dayHours) {
+    str += `${hours + dayHours}:`;
   }
   const paddedMinutes = String(minutes).padStart(2, "0");
   const paddedSeconds = String(seconds).padStart(2, "0");

@@ -172,7 +172,14 @@ export const progress = (nodecg: NodeCG) => {
     }
   };
 
+  const config = nodecg.bundleConfig;
+
   const reset = () => {
+    // Disable reset when config set
+    if (config.resetDisabled) {
+      return;
+    }
+
     if (!relayRep.value || !teamListRep.value) {
       return;
     }
