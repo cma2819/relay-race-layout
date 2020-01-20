@@ -23,9 +23,10 @@
             </div>
         </section>
         <div class="columns is-marginless is-mobile has-text-white has-background-dark">
-            <div each={(teamIdx, idx) in state.teamIdxs}
-                 class="column has-text-centered {idx < state.teamIdxs.length - 1 ? 'not-last-segment' : ''}">
-                {teamIdx}
+            <div each={(team, idx) in state.teams}
+                 class="column has-text-centered {idx < state.teams.length - 1 ? 'not-last-segment' : ''} {teamColorIsLight(team) ? 'has-text-dark' : 'has-text-light'}"
+                 style="background-color: {team.color}">
+                {team.name[0]}
             </div>
         </div>
         <div each={(run, runIdx) in state.runs}>
@@ -45,6 +46,8 @@
         import { CheckpointComponent } from './types'
         import Segment from './segment.riot'
 
+        import Color from 'color'
+
         const relayRep = nodecg.Replicant('relay')
         const graphicsRep = nodecg.Replicant('graphics')
         const teamListRep = nodecg.Replicant('team-list')
@@ -60,6 +63,9 @@
                     },
                     teamIdxs: [],
                 },
+                teamColorIsLight(team) {
+                    return Color(team.color).isLight()
+                }
                 onMounted() {
                     relayRep.on('change', (newVal) => {
                         this.state.runs = newVal.runs
@@ -72,9 +78,7 @@
                         this.update()
                     })
                     teamListRep.on('change', (newVal) => {
-                        this.state.teamIdxs = newVal.map((team) => {
-                            return team.name[0]
-                        })
+                        this.state.teams = newVal
                         this.update()
                     })
                 },

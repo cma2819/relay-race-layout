@@ -35,7 +35,7 @@
             <event-title if={state.showInfo === 0} title={state.eventTitle}></event-title>
             <checkpoint-detail if={state.showInfo === 1}></checkpoint-detail>
         </div>
-        <div class="column is-narrow is-paddingless timer">
+        <div class="column is-narrow is-paddingless timer has-text-dark is-background-light">
             <span class="
                 {state.timeState == 'not_started' ? 'has-text-dark' : ''}
                 {state.timeState == 'running' ? 'has-text-black' : ''}
