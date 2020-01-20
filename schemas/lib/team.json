@@ -11,7 +11,10 @@
       "items": {
         "$ref": "player.json"
       }
+    },
+    "color": {
+      "type": "string"
     }
   },
-  "required": ["name", "players"]
+  "required": ["name", "players", "color"]
 }

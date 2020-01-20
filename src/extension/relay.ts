@@ -1,3 +1,4 @@
+import * as Color from "color";
 import { NodeCG } from "./nodecg";
 import { Run } from "../nodecg/run";
 
@@ -7,12 +8,24 @@ export const relay = (nodecg: NodeCG) => {
   const relayRep = nodecg.Replicant("relay", {
     defaultValue: {
       name: "",
-      runs: []
+      runs: [],
+      color: "#bcbcff"
     }
   });
 
-  const setRelayName = (name: string): void => {
-    relayRep.value.name = name;
+  const setRelayInfo = (
+    info: { name: string; color: string },
+    cb: any
+  ): void => {
+    try {
+      Color(info.color);
+    } catch (e) {
+      cb("設定されたテーマカラーが不正です.");
+      return;
+    }
+    relayRep.value.name = info.name;
+    relayRep.value.color = info.color;
+    cb(null, "リレー情報を設定しました.");
   };
 
   const addRun = (run: Run, cb: any): void => {
@@ -76,7 +89,7 @@ export const relay = (nodecg: NodeCG) => {
     return true;
   };
 
-  nodecg.listenFor("setRelayName", setRelayName);
+  nodecg.listenFor("setRelayInfo", setRelayInfo);
   nodecg.listenFor("addRun", addRun);
   nodecg.listenFor("removeRun", removeRun);
   nodecg.listenFor("editRun", editRun);

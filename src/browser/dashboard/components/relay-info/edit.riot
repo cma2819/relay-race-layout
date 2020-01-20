@@ -16,8 +16,11 @@
 
     <div class="modal-background" onclick={props.closeHandler}></div>
     <div class="wrapper modal-content">
-        <span class="hero">イベント名設定</span>
+        <span class="hero">イベント情報設定</span>
+        <label class="label">イベント名</label>
         <input class="input is-medium" type="text" name="title" value="{props.relayName}" placeholder="イベント名" />
+        <label class="label">イベントテーマカラー</label>
+        <input class="input is-medium" type="color" name="color" value="{props.relayColor}" placeholder="テーマカラー" />
         <div class="control level">
             <div class="level-left"></div>
             <div class="level-right">
@@ -39,7 +42,7 @@
             return {
                 state: {},
                 submit() {
-                    this.props.submitHandler(this.$('input[name="title"]').value);
+                    this.props.submitHandler(this.$('input[name="title"]').value, this.$('input[name="color"]').value);
                 }
             }
         }

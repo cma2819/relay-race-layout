@@ -6,6 +6,9 @@
     "name": {
       "type": "string"
     },
+    "color": {
+      "type": "string"
+    },
     "runs": {
       "type": "array",
       "items": {
@@ -13,5 +16,5 @@
       }
     }
   },
-  "required": ["name", "runs"]
+  "required": ["name", "color", "runs"]
 }

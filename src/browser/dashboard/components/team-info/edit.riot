@@ -23,6 +23,12 @@
                 <input class="input" name="name" type="text" value={state.name || ''} placeholder="チーム名" />
             </div>
         </div>
+        <label class="label">チームカラー</label>
+        <div class="field">
+            <div class="control">
+                <input class="input" name="color" type="color" value={state.color || '#ffffff'} placeholder="チームカラー" />
+            </div>
+        </div>
         <label class="hero">プレイヤー</label>
         <div class="box" each={ (run, idx) in (state.runs || [''])}>
             <label class="label">{run.game} - {run.category}</label>
@@ -93,17 +99,20 @@
                 state: {
                     runs: [],
                     name: '',
+                    color: '',
                     players: []
                 },
                 onBeforeMount(props, state) {
                     this.state = {
                         runs: props.runs ? [...props.runs] : [],
                         name: props.name || '',
+                        color: props.color || '',
                         players: props.players ? [...props.players]: []
                     }
                 },
                 submit() {
                     const name = this.$('input[name="name"]').value
+                    const color = this.$('input[name="color"]').value
                     const players = []
                     const playerElements = this.$$('input[name="player"]')
                     const twitchElements = this.$$('input[name="twitch"]')
@@ -119,6 +128,7 @@
                     }
                     const newTeam = {
                         name: name,
+                        color: color,
                         players: players
                     }
                     this.props.submitHandler(newTeam)

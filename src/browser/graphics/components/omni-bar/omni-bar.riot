@@ -1,7 +1,7 @@
 <omni-bar>
     <style>
         :host {
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            /* border: 2px solid rgba(255, 255, 255, 0.8); */
         }
         .timer {
             background-color: rgba(255, 255, 255, 0.9);
@@ -25,7 +25,7 @@
         }
     </style>
     
-    <div class="columns is-marginless has-background-black-ter is-vcentered">
+    <div class="columns is-marginless is-vcentered { themeColorIsLight() ? 'has-text-black' : 'has-text-white'}" style="background-color: {state.themeColor};">
         <div class="column is-narrow is-paddingless" if={state.logo != null && state.logo != ''}>
             <figure class="image logo is-72x72">
                 <img src={state.logo || '../statics/logo-png.png'} />
@@ -50,6 +50,8 @@
         import CheckpointDetail from '../checkpoint-detail/checkpoint-detail.riot'
         import EventTitle from '../event-title/event-title.riot'
 
+        import Color from 'color'
+
         const relayRep = nodecg.Replicant('relay')
         const timeRep = nodecg.Replicant('stopwatch')
         const graphicRep = nodecg.Replicant('graphics')
@@ -58,15 +60,24 @@
             return {
                 state:{
                     eventTitle: '',
+                    themeColor: '#dddddd',
                     time: '0:00:00',
                     timeState: 'not_started',
                     logo: null,
 
                     showInfo: 0
                 },
+                themeColorIsLight() {
+                    try {
+                        return Color(this.state.themeColor).isLight()
+                    } catch {
+                        return false
+                    }
+                },
                 onMounted() {
                     relayRep.on('change', (newVal) => {
                         this.state.eventTitle = newVal.name
+                        this.state.themeColor = newVal.color
                         this.update()
                     })
                     timeRep.on('change', (newVal) => {

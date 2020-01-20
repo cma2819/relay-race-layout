@@ -6,4 +6,5 @@ export interface Team {
     nico?: string;
     twitter?: string;
   }[];
+  color: string;
 }

@@ -28,8 +28,13 @@ export type MessageMap = {
   };
   resetSplit: {};
 
-  setRelayName: {
-    data: string;
+  setRelayInfo: {
+    data: {
+      name: string;
+      color: string;
+    };
+    result: string;
+    error: string;
   };
   addRun: {
     data: Run;

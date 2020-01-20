@@ -23,6 +23,7 @@
     <relay-info-edit
         class="modal {state.showEdit ? 'is-active' : ''}"
         relayName="{state.relayName}"
+        relayColor="{state.relayColor}"
         submitHandler={submitRelayInfoHandler}
         closeHandler={closeRelayInfoHandler}></relay-info-edit>
     
@@ -36,21 +37,27 @@
         function RelayInfo(): RelayInfoComponent {
             return {
                 state: {
-                    showEdit: false
+                    showEdit: false,
+                    relayName: '',
+                    relayColor: ''
                 },
                 onMounted() {
                     relayRep.on('change', this.relayChangeHandler)
                 },
                 relayChangeHandler(newVal: RelayType) {
                     this.state.relayName = newVal.name;
+                    this.state.relayColor = newVal.color;
                     this.update();
                 },
                 editRelayInfoHandler(e: Event) {
                     this.state.showEdit = true
                     this.update()
                 },
-                submitRelayInfoHandler(newRelayName: string) {
-                    nodecg.sendMessage('setRelayName', newRelayName);
+                submitRelayInfoHandler(newRelayName: string, newRelayColor: string) {
+                    nodecg.sendMessage('setRelayInfo', {
+                        name: newRelayName,
+                        color: newRelayColor
+                    }).then(result => { this.notify(result, 'is-success') }).catch(err => { this.notify(err, 'is-warning' )});
                     this.state.showEdit = false
                     this.update()
                 },

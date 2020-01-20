@@ -6,7 +6,7 @@
     <div class="columns is-marginless" style="width: 100%; overflow-x: auto;">
         <div class="column is-narrow" each={(team, idx) in state.teams}>
             <nav class="panel">
-                <div class="panel-block table-container">
+                <div class="panel-block table-container" style="background-color: { colorToBackground(team.color) };">
                     <table class="table is-striped is-fullwidth has-text-centered">
                         <thead>
                             <tr>
@@ -63,6 +63,8 @@
         import { TeamInfoComponent } from './types'
         import TeamInfoEdit from './edit.riot'
 
+        import Color from "color";
+
         const relayRep = nodecg.Replicant('relay')
         const teamListRep = nodecg.Replicant('team-list')
 
@@ -80,6 +82,15 @@
                         newTeams.push(cloneTeam)
                     }
                     this.state.teams = newTeams
+                },
+                colorToBackground(colorString: string) {
+                    try {
+                        const colorObj = new Color(colorString.toUpperCase())
+                        return colorObj.opaquer(0.5).string()
+                    } catch (err) {
+                        console.error(err)
+                        return '#ffffff'
+                    }
                 },
                 onMounted() {
                     teamListRep.on('change', (newVal) => {
@@ -106,6 +117,7 @@
                         mountEditComponent(this.$('#editor'), {
                                 runs: relayRep.value.runs,
                                 name: this.state.teams[idx].name,
+                                color: this.state.teams[idx].color,
                                 players: this.state.teams[idx].players,
                                 submitHandler: (team) => {
                                     this.editTeamInfoHandler(idx, team)

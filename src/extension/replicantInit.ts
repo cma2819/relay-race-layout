@@ -19,7 +19,8 @@ export const replicantInit = (nodecg: NodeCG) => {
 
     const defaultRelay: Relay = {
       name: "",
-      runs: []
+      runs: [],
+      color: ""
     };
     const defaultTeamList: TeamList = [];
     relayRep.value = jsonReplicant["relay"] || defaultRelay;
