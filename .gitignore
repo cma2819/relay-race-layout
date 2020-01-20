@@ -16,8 +16,5 @@ node_modules
 # all script js files
 /script/*.js
 
-# generated d.ts files
-/src/nodecg/generated/*.d.ts
-
 # statics
 /statics
