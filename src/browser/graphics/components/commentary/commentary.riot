@@ -26,10 +26,10 @@
             <div class="is-flex speaker" each={speaker in state.speakers}>
                 <div>
                     <figure class="image is-48x48">
-                        <img class="is-rounded" src="{speaker.avator}">
+                        <img class="is-rounded" src="{speaker.member.user.avatarURL}">
                     </figure>
                 </div>
-                <div class="is-size-4 has-text-white" style="margin: 0 0.5rem;">{speaker.member.nickname} || {speaker.member.user.username}</div>
+                <div class="is-size-4 has-text-white" style="margin: 0 0.5rem;">{speaker.member.nickname || speaker.member.user.username}</div>
             </div>
             <article class="message is-warning" if={!state.enableDiscordBundle}>
                 <div class="message-body">
