@@ -1,0 +1,76 @@
+<commentary>
+    <style>
+    .title-label {
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        padding: 0.5rem;
+    }
+
+    .speaker {
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        margin: 0.25rem;
+        margin-top: 0;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+    </style>
+    
+    <div class="columns is-multiline">
+        <div class="column is-full has-text-centered">
+            <h1 class="title is-4 title-label has-text-white" style="border-color: { state.themeColor }">
+                解説・聞き手
+            </h1>
+        </div>
+        <div class="column is-flex" style="justify-content: space-around; flex-wrap: wrap;">
+            <div class="is-flex speaker" each={speaker in state.speakers}>
+                <div>
+                    <figure class="image is-48x48">
+                        <img class="is-rounded" src="{speaker.avator}">
+                    </figure>
+                </div>
+                <div class="is-size-4 has-text-white" style="margin: 0 0.5rem;">{speaker.member.nickname} || {speaker.member.user.username}</div>
+            </div>
+            <article class="message is-warning" if={!state.enableDiscordBundle}>
+                <div class="message-body">
+                    This graphic needs 'nodecg-discord-widget' bundle!!
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { CommentaryComponent } from './types'
+
+        const relayRep = nodecg.Replicant('relay')
+        const speakersRep = nodecg.Replicant('speakers', 'nodecg-discord-widget')
+
+        function Commentary(): CommentaryComponent {
+            return {
+                state:{
+                    themeColor: '#bcbcff',
+                    speakers: [],
+                    enableDiscordBundle: false
+                },
+                onMounted() {
+                    relayRep.on('change', newVal => {
+                        this.state.themeColor = newVal.color
+                        this.update()
+                    })
+                    if (speakersRep) {
+                        speakersRep.on('change', newVal => {
+                            this.state.speakers = newVal
+                            this.state.enableDiscordBundle = true
+                            this.update()
+                        })
+                    }
+                }
+            }
+        }
+
+        export default Commentary
+        
+    </script>
+</commentary>

@@ -133,6 +133,11 @@
         "file": "checkpoint.html",
         "width": 220,
         "height": 650
+      },
+      {
+        "file": "commentary.html",
+        "width": 640,
+        "height": 480
       }
     ],
     "mount": [
