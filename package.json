@@ -99,6 +99,16 @@
           "png",
           "gif"
         ]
+      },
+      {
+        "name": "game-image",
+        "title": "ゲーム用イメージ",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
       }
     ],
     "compatibleRange": "^1.1.1",

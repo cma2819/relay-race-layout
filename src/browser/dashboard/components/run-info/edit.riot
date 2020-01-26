@@ -29,6 +29,16 @@
                 <input class="input" name="category" type="text" value={state.category || ''} placeholder="カテゴリ名" />
             </div>
         </div>
+        <label class="label">背景イメージ</label>
+        <div class="field">
+            <div class="control">
+                <div class="select">
+                    <select>
+                        <option each={ image in state.imageList } value={ image.url }>{ image.name }</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <label class="label">区間名</label>
         <div class="field has-addons" each={ (seg, idx) in (state.segments || [''])}>
             <div class="control is-expanded">
@@ -63,12 +73,16 @@
     <script type="ts">
         import { RunInfoEditComponent } from './types'
 
+        const imageListAssets = nodecg.Replicant('assets:game-image')
+
         function RunInfoEdit(): RunInfoEditComponent {
             return {
                 state: {
                     game: '',
                     category: '',
-                    segments: ['']
+                    segments: [''],
+                    image: '',
+                    imageList: []
                 },
                 onBeforeMount(props, state) {
                     this.state = {
@@ -76,6 +90,18 @@
                         category: props.editRun.category || '',
                         segments: props.editRun.segments ? [...props.editRun.segments]: ['']
                     }
+                },
+                onMounted(){
+                    imageListAssets.on('change', (newVal) => {
+                        console.log(newVal)
+                        this.state.imageList = newVal.map((asset) => {
+                            return {
+                                name: asset.name,
+                                url: asset.url
+                            }
+                        })
+                        this.update()
+                    })
                 },
                 addSegmentInput() {
                     this.state.segments.push('')

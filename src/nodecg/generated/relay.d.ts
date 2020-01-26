@@ -12,5 +12,6 @@ export interface Relay {
     game: string;
     category: string;
     segments: string[];
+    image?: string;
   }[];
 }
