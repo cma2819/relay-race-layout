@@ -28,7 +28,7 @@
                     <div class="control">
                         <div class="select is-fullwidth">
                             <select onchange={changeLogoUrl}>
-                                <option value="" selected={state.selected.soundEnable < 0}>-</option>
+                                <option value="" selected={state.selected.logo === ''}>-</option>
                                 <option each={(logo, idx) in state.logoList} value={logo.url} selected={state.selected.logo === logo.url}>{logo.name}</option>
                             </select>
                         </div>
@@ -58,7 +58,41 @@
         </div>
         -->
     </div>
-        <div class="has-text-centered has-text-white has-background-black">チェックポイント表示基準区間</div>
+    <div class="columns is-marginless is-multiline">
+        <div class="column">
+            <nav class="panel">
+                <div class="panel-block">
+                <span>進捗アイコン（トップ）</span></div>
+                <div class="panel-block">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select onchange={changeIconTop}>
+                                <option value="" selected={state.selected.checkpointTop === ''}>-</option>
+                                <option each={(icon, idx) in state.checkpointIconList} value={icon.url} selected={state.selected.checkpointTop === icon.url}>{icon.name}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="column">
+            <nav class="panel">
+                <div class="panel-block">
+                <span>進捗アイコン（その他）</span></div>
+                <div class="panel-block">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select onchange={changeIconOther}>
+                                <option value="" selected={state.selected.checkpointOther === ''}>-</option>
+                                <option each={(icon, idx) in state.checkpointIconList} value={icon.url} selected={state.selected.checkpointOther === icon.url}>{icon.name}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="has-text-centered has-text-white has-background-black">チェックポイント表示基準区間</div>
     <div class="box">
         <div class="columns is-marginless is-vcentered">
             <div class="column is-narrow">
@@ -90,6 +124,7 @@
         const relayRep = nodecg.Replicant('relay')
         const graphicsRep = nodecg.Replicant('graphics')
         const logoAsset = nodecg.Replicant('assets:logo')
+        const cpIconAsset = nodecg.Replicant('assets:checkpoint-icon')
 
         function ViewControl(): ViewControlComponent {
             return {
@@ -98,13 +133,16 @@
                     logoList: [],
                     selected: {
                         soundEnable: -1
-                        logo: -1
+                        logo: '',
+                        checkpointTop: '',
+                        checkpointOther: ''
                     },
                     segmentList: []
                     nowSegment: {
                         idx: 0,
                         name: ''
-                    }
+                    },
+                    checkpointIconList: []
                 },
                 onMounted() {
                     teamListRep.on('change', (newVal) => {
@@ -136,7 +174,10 @@
                         this.state.logoList = newVal
                         this.update()
                     })
-
+                    cpIconAsset.on('change', (newVal) => {
+                        this.state.checkpointIconList = newVal
+                        this.update()
+                    })
                 },
                 changeSoundEnable(e) {
                     const idx: number = parseInt(e.target.value)
@@ -151,6 +192,14 @@
                 },
                 nextCheckpoint() {
                     nodecg.sendMessage('graphics:nextCp')
+                },
+                changeIconTop(e) {
+                    const url: string = e.target.value
+                    nodecg.sendMessage('graphics:cpIconTop', url)
+                },
+                changeIconOther(e) {
+                    const url: string = e.target.value
+                    nodecg.sendMessage('graphics:cpIconOther', url)
                 }
             }
         }

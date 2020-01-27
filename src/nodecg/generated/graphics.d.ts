@@ -10,4 +10,8 @@ export interface Graphics {
   soundEnableIndex: number;
   logoUrl: string | null;
   checkpointIndex: number;
+  checkpointIcons: {
+    top?: string | null;
+    other?: string | null;
+  };
 }

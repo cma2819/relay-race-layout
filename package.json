@@ -109,6 +109,16 @@
           "png",
           "gif"
         ]
+      },
+      {
+        "name": "checkpoint-icon",
+        "title": "進捗アイコン",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "gif"
+        ]
       }
     ],
     "compatibleRange": "^1.1.1",

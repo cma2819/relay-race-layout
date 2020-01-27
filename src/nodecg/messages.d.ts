@@ -104,6 +104,12 @@ export type MessageMap = {
   };
   "graphics:prevCp": {};
   "graphics:nextCp": {};
+  "graphics:cpIconTop": {
+    data: string;
+  };
+  "graphics:cpIconOther": {
+    data: string;
+  };
 
   /** Send to Graphics from Extension */
   "event:showSplit": {

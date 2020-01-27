@@ -13,7 +13,11 @@ export const graphics = (nodecg: NodeCG) => {
       playerInfoStatus: "name",
       soundEnableIndex: -1,
       logoUrl: null,
-      checkpointIndex: 0
+      checkpointIndex: 0,
+      checkpointIcons: {
+        top: null,
+        other: null
+      }
     }
   });
 
@@ -55,9 +59,19 @@ export const graphics = (nodecg: NodeCG) => {
     graphicRep.value.checkpointIndex++;
   };
 
+  const setCpIconTop = (url: string) => {
+    graphicRep.value.checkpointIcons.top = url;
+  };
+
+  const setCpIconOther = (url: string) => {
+    graphicRep.value.checkpointIcons.other = url;
+  };
+
   nodecg.listenFor("graphics:playerInfoStatus", setPlayerInfoStatus);
   nodecg.listenFor("graphics:soundIndex", setSoundEnableIndex);
   nodecg.listenFor("graphics:logoUrl", setLogoUrl);
   nodecg.listenFor("graphics:prevCp", prevCheckpoint);
   nodecg.listenFor("graphics:nextCp", nextCheckpoint);
+  nodecg.listenFor("graphics:cpIconTop", setCpIconTop);
+  nodecg.listenFor("graphics:cpIconOther", setCpIconOther);
 };

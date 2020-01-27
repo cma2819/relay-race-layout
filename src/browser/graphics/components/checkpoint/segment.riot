@@ -9,17 +9,26 @@
         .not-last-segment {
             border-right: 1px solid white;
         }
+        .flag {
+            margin-right: auto;
+            margin-left: auto;
+            font-size: 24px;
+        }
     </style>
 
     <div class="columns is-vcentered is-marginless is-mobile is-multiline top">
         <div each={(current, idx) in state.currentSegments}
              class="column is-paddingless has-text-centered has-text-info
                     {(current != null && current.runIndex < props.runIdx) ? 'no-reached' : ''}
-                    {(current != null && current.runIndex == props.runIdx && current.segIndex < props.segIdx) ? 'no-reached' : ''}
+                    {(current != null && current.runIndex == props.runIdx && current.segIndex <= props.segIdx) ? 'no-reached' : ''}
                     {idx < state.currentSegments.length - 1 ? 'not-last-segment' : ''}">
-            <figure class="image is-18x18 flag">           
+                
+            <figure class="image is-48x48 flag" if={idx === state.topIndex ? state.icons.top !== '' : state.icons.other !== ''}>
+                <img src="{idx === state.topIndex ? state.icons.top : state.icons.other}" if={current != null && current.runIndex == props.runIdx && current.segIndex == props.segIdx}></img>
+            </figure>
+            <figure class="image flag" if={idx === state.topIndex ? state.icons.top === '' : state.icons.other === ''}>
                 <span class="icon">
-                <i if={current != null && current.runIndex == props.runIdx && current.segIndex == props.segIdx} class="fas fa-flag"></i>
+                    <i if={current != null && current.runIndex == props.runIdx && current.segIndex == props.segIdx} class="fas fa-flag"></i>
                 </span>
             </figure>
         </div>
@@ -33,19 +42,56 @@
         
         import { SegmentComponent } from './types'
         const progressRep = nodecg.Replicant('progress')
+        const graphicsRep = nodecg.Replicant('graphics')
 
         function Segment(): SegmentComponent {
             return {
                 state:{
-                    currentSegments: []
+                    currentSegments: [],
+                    icons: {
+                        top: '',
+                        other: ''
+                    },
+                    topIndex: -1
                 },
                 onMounted() {
                     progressRep.on('change', (newVal) => {
                         this.state.currentSegments = newVal.map((progress) => {
                             return progress.segments.current
                         })
+                        this.calcTopTeam(this.state.currentSegments)
                         this.update()
                     })
+                    graphicsRep.on('change', (newVal) => {
+                        this.state.icons = newVal.checkpointIcons
+                        this.update()
+                    })
+                },
+                calcTopTeam(currentSegs) {
+                    let topIndex = -1
+                    const topSegment = {
+                        run: -1,
+                        seg: -1
+                    }
+                    for (let i = 0; i < currentSegs.length; i++) {
+                        if (!currentSegs[i]) {
+                            topIndex = i
+                            break
+                        }
+                        if (currentSegs[i].runIndex > topSegment.run) {
+                            topIndex = i
+                            topSegment.run = currentSegs[i].runIndex
+                            topSegment.seg = currentSegs[i].segIndex
+                        } else if (
+                            currentSegs[i].runIndex === topSegment.run &&
+                            currentSegs[i].segIndex > topSegment.seg) {
+                            topIndex = i
+                            topSegment.run = currentSegs[i].runIndex
+                            topSegment.seg = currentSegs[i].segIndex
+                        }
+                    }
+                    this.state.topIndex = topIndex
+                    console.log(topIndex)
                 }
             }
         }

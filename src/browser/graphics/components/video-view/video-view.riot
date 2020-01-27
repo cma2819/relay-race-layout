@@ -9,7 +9,7 @@
 
     <div class="columns is-marginless is-multiline panel-container">
         <video-panel class="column is-paddingless is-half top"
-                    each={(team,idx) in state.teamList} idx={idx} team={team}></video-panel>
+                    each={(team,idx) in state.teamList} idx={idx} team={team} soundEnable={state.soundEnableIndex === idx}></video-panel>
     </div>
 
     <script type="ts">
@@ -21,14 +21,20 @@
         function VideoView(): VideoViewComponent {
 
             const teamListRep = nodecg.Replicant('team-list')
+            const graphicsRep = nodecg.Replicant('graphics')
 
             return {
                 state:{
-                    teamList: []
+                    teamList: [],
+                    soundEnableIndex: -1
                 },
                 onMounted() {
                     teamListRep.on('change', (newVal) => {
                         this.state.teamList = newVal
+                        this.update()
+                    })
+                    graphicsRep.on('change', (newVal) => {
+                        this.state.soundEnableIndex = newVal.soundEnableIndex
                         this.update()
                     })
                 }

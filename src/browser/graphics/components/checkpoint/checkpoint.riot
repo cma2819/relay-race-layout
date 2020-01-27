@@ -3,10 +3,6 @@
         .hero-body {
             padding: 1.5rem 1.5rem;
         }
-        .flag {
-            margin: 0 0.2rem;
-            font-size: 24px;
-        }
         .not-last-segment {
             border-right: 1px solid white;
         }
@@ -64,12 +60,13 @@
             return {
                 state:{
                     runs: [],
+                    progress: [],
                     checkpointIndex: 0,
                     minCpIdxs: {
                         run: 0,
                         seg: 0
                     },
-                    teamIdxs: [],
+                    teamIdxs: []
                 },
                 teamColorIsLight(team) {
                     return Color(team.color).isLight()
@@ -77,12 +74,12 @@
                 onMounted() {
                     relayRep.on('change', (newVal) => {
                         this.state.runs = newVal.runs
-                        this.calcCheckpointIndex();
+                        this.calcCheckpointIndex()
                         this.update()
                     })
                     graphicsRep.on('change', (newVal) => {
                         this.state.checkpointIndex = newVal.checkpointIndex
-                        this.calcCheckpointIndex();
+                        this.calcCheckpointIndex()
                         this.update()
                     })
                     teamListRep.on('change', (newVal) => {

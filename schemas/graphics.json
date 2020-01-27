@@ -23,12 +23,39 @@
     "checkpointIndex": {
       "type": "number",
       "minimum": 0
+    },
+    "checkpointIcons": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "top": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "other": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
     }
   },
   "required": [
     "playerInfoStatus",
     "soundEnableIndex",
     "logoUrl",
-    "checkpointIndex"
+    "checkpointIndex",
+    "checkpointIcons"
   ]
 }
