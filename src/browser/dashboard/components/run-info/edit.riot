@@ -33,8 +33,9 @@
         <div class="field">
             <div class="control">
                 <div class="select">
-                    <select>
-                        <option each={ image in state.imageList } value={ image.url }>{ image.name }</option>
+                    <select name="image">
+                        <option value="">背景イメージなし</option>
+                        <option each={ (image, idx) in state.imageList } value={ image.url } selected={ idx === state.selectedImage }>{ image.name }</option>
                     </select>
                 </div>
             </div>
@@ -82,7 +83,8 @@
                     category: '',
                     segments: [''],
                     image: '',
-                    imageList: []
+                    imageList: [],
+                    selectedImage: -1
                 },
                 onBeforeMount(props, state) {
                     this.state = {
@@ -91,15 +93,18 @@
                         segments: props.editRun.segments ? [...props.editRun.segments]: ['']
                     }
                 },
+                findSelectedImage(imageUrl) {
+                    return this.state.imageList.findIndex(image => image.url === imageUrl)
+                },
                 onMounted(){
                     imageListAssets.on('change', (newVal) => {
-                        console.log(newVal)
                         this.state.imageList = newVal.map((asset) => {
                             return {
                                 name: asset.name,
                                 url: asset.url
                             }
                         })
+                        this.state.selectedImage = this.findSelectedImage(this.props.editRun.image)
                         this.update()
                     })
                 },
@@ -126,10 +131,12 @@
                     for (let i = 0; i < segmentElements.length; i++) {
                         segments.push(segmentElements[i].value)
                     }
+                    const image = this.$('select[name="image"]').value
                     const newRun = {
                         game: game,
                         category: category,
-                        segments: segments
+                        segments: segments,
+                        image: image
                     }
                     this.props.submitHandler(newRun)
                     this.unmount(true)

@@ -10,6 +10,13 @@
         .not-last-segment {
             border-right: 1px solid white;
         }
+        .game-imaged {
+            background-position: center;
+            background-size: cover;
+        }
+        .game-imaged > div {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
     </style>
     
     <div class="container">
@@ -30,9 +37,10 @@
             </div>
         </div>
         <div each={(run, runIdx) in state.runs}>
-        <div class="columns is-marginless is-mobile has-text-white has-background-primary has-text-weight-bold" if='{runIdx >= state.minCpIdxs.run}'>
+        <div class="columns is-marginless is-mobile has-text-white has-text-weight-bold {run.image ? 'game-imaged' : 'has-background-primary'}" if='{runIdx >= state.minCpIdxs.run}'
+             style="background-image: url('{run.image}')">
             <div class="column has-text-centered">
-                {run.game}
+                <div>{run.game}</div>
             </div>
         </div>
             <segment each={(segment, idx) in run.segments} segment={segment} runIdx={runIdx} segIdx={idx}
