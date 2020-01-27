@@ -26,7 +26,7 @@
     "build:extension": "tsc -b src/extension/",
     "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
     "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
-    "format": "prettier --write \"**/*.{ts,json,html,css,md}\" && sort-package-json",
+    "format": "prettier --write \"src/**/*.{ts,json,html,css,md}\" && sort-package-json",
     "generate-riot-ts:dashboard": "generate-riot-ts ./src/browser/dashboard/components",
     "generate-riot-ts:graphics": "generate-riot-ts ./src/browser/graphics/components",
     "generate-schema-ts:config": "tsc script/generateConfigSchemaTs.ts && node script/generateConfigSchemaTs.js",
@@ -52,7 +52,7 @@
     "include-nodecg": "0.0.3",
     "livesplit-core": "^0.10.2",
     "milliseconds": "^1.0.3",
-    "nodecg": "^1.5.0",
+    "nodecg": "^1.4.1",
     "parse-ms": "^2.1.0",
     "prettier": "^1.18.2",
     "riot": "^4.6.2"

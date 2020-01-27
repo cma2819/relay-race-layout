@@ -104,7 +104,7 @@
                     })
                 },
                 setSelectedRow() {
-                    if (this.state.progress[this.state.idx].segments.current === null) {
+                    if (!this.state.progress[this.state.idx] || this.state.progress[this.state.idx].segments.current === null) {
                         this.state.selectedRow = {
                             runIdx: -1,
                             segIdx: -1
