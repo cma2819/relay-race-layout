@@ -8,4 +8,8 @@
 export interface Configschema {
   maxTeamCount?: number;
   resetDisabled?: boolean;
+  gas?: {
+    uri?: string;
+    token?: string;
+  };
 }

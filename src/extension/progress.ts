@@ -89,6 +89,28 @@ export const progress = (nodecg: NodeCG) => {
         ],
       time: runTime.formatted
     });
+    const timestampDate = new Date(runTime.timestamp);
+    nodecg.sendMessage("gas:split", {
+      teamId: idx + 1,
+      runId: beforeCurrent.runIndex + 1,
+      segmentId: beforeCurrent.segIndex + 1,
+      formatted: runTime.formatted,
+      raw: runTime.raw,
+      timestamp:
+        timestampDate.getFullYear() +
+        "-" +
+        (timestampDate.getMonth() + 1) +
+        "-" +
+        timestampDate.getDate() +
+        " " +
+        timestampDate.getHours() +
+        ":" +
+        timestampDate.getMinutes() +
+        ":" +
+        timestampDate.getSeconds() +
+        "." +
+        timestampDate.getMilliseconds()
+    });
   };
 
   const resume = (idx: number): void => {

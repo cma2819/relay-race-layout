@@ -1,6 +1,7 @@
 import { Run } from "./run";
 import { Team } from "./team";
 import { PlayerInfoStatus } from "../extension/graphics";
+import { SplitParameter } from "../extension/lib/gas";
 
 export type MessageMap = {
   startCountdown: {};
@@ -118,5 +119,10 @@ export type MessageMap = {
       segment: string;
       time: string;
     };
+  };
+
+  /** Post split data to Google Spreadsheet with GAS web application. */
+  "gas:split": {
+    data: SplitParameter;
   };
 };

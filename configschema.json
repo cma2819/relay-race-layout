@@ -10,6 +10,18 @@
     "resetDisabled": {
       "type": "boolean",
       "default": false
+    },
+    "gas": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "type":"string"
+        },
+        "token": {
+          "type":"string"
+        }
+      }
     }
   }
 }

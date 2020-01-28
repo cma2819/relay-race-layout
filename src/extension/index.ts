@@ -6,6 +6,7 @@ import { team } from "./team";
 import { replicantInit } from "./replicantInit";
 import { timekeeping } from "./timekeeping";
 import { graphics } from "./graphics";
+import { gas } from "./gas";
 
 export = (nodecg: NodeCG) => {
   countdown(nodecg);
@@ -15,4 +16,5 @@ export = (nodecg: NodeCG) => {
   replicantInit(nodecg);
   timekeeping(nodecg);
   graphics(nodecg);
+  gas(nodecg);
 };
