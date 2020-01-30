@@ -25,7 +25,7 @@
     "build:dashboard": "parcel build src/browser/dashboard/*.html --out-dir dashboard --public-url ./",
     "build:extension": "tsc -b src/extension/",
     "build:graphics": "parcel build src/browser/graphics/*.html --out-dir graphics --public-url ./",
-    "clean": "del-cli bundle-analyzer dashboard extension graphics .cache",
+    "clean": "del-cli .cache",
     "dev:postinstall": "include-nodecg postinstall",
     "format": "prettier --write \"src/**/*.{ts,json,html,css,md}\" && sort-package-json",
     "generate-riot-ts:dashboard": "generate-riot-ts ./src/browser/dashboard/components",
