@@ -4,46 +4,49 @@ NodeCG common bundle for speedrun relay race event
 
 ## Requirements
 
-- Node.js 10 and later
+- Node.js 10 or later
+- NodeCG 1.4.1 or later
 
 ## Installation
 
-### Clone
+### With NodeCG CLI
+
+`nodecg-cli`がインストールされている環境の場合
 
 ```
+$ nodecg install cma2819/relay-race-layout
+```
+
+### Without NodeCG CLI
+
+`nodecg-cli`がインストールされていない環境の場合
+
+```
+# nodecgがインストールされているディレクトリ上で実行してください
+$ cd bundles
 $ git clone https://github.com/cma2819/relay-race-layout.git
-```
-
-- `relay-race-layout`というフォルダが作成されます. 本 NodeCG レイアウトの本体です.
-- `include-nodecg`というライブラリを使っているため, NodeCG を別途インストールして`bundles`に配置等は不要です.
-
-### install
-
-```
-# git clone直後の状態から下記コマンドを実行してください.
-
 $ cd relay-race-layout
-$ npm install
-$ npm run build
-```
-
-**Windows の場合, 管理者として実行したコマンドプロンプト上で実行してください.**
-
-## Update
-
-- `relay-race-layout`フォルダ直下で以下のコマンドを実行することで, 最新のソースに更新することができます.
-
-```
-$ git pull origin master
+$ npm install --only=production
 ```
 
 ## Run NodeCG
 
 ```
-$ npm start
+$ nodecg start
+```
+
+or
+
+```
+# nodecgがインストールされているディレクトリ上で実行してください
+$ node .
 ```
 
 - Open NodeCG dashboard on `localhost:9090`
+
+## Example
+
+![Graphicsイメージ](./doc/example.png)
 
 ## Tutorials
 

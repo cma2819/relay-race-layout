@@ -1,122 +1,86 @@
 {
-  "replicants": {
-    "relay": {
-      "name": "第10回 ゼルダの伝説RTA駅伝対決",
-      "runs": [
-        {
-          "game": "時のオカリナ",
-          "category": "No IM/WW",
-          "segments": ["闇の神殿終了", "魂の神殿終了", "ガノン撃破"]
+    "replicants": {
+        "relay": {
+            "name": "第11回ゼルダの伝説 駅伝大会",
+            "runs": [
+                {
+                    "game": "大地の汽笛",
+                    "category": "Any%",
+                    "segments": [
+                        "区間１",
+                        "区間２",
+                        "区間３"
+                    ],
+                    "image": ""
+                },
+                {
+                    "game": "時のオカリナ",
+                    "category": "GSR",
+                    "segments": [
+                        "闇の神殿クリア",
+                        "魂の神殿クリア",
+                        "ガノン撃破"
+                    ],
+                    "image": ""
+                }
+            ],
+            "color": "#bcbcff"
         },
-        {
-          "game": "神々のトライフォース",
-          "category": "No Major Glitches",
-          "segments": ["アグニム撃破", "ガモース撃破", "ガノン撃破"]
-        },
-        {
-          "game": "風のタクト",
-          "category": "バグ制限 聖剣抜き",
-          "segments": [
-            "ボコブリン撃破",
-            "ゴーマ撃破",
-            "カーレ・デモス撃破",
-            "神の塔出現",
-            "マスターソード",
-            "氷の矢＆炎の矢入手",
-            "ジャイハーラ撃破",
-            "モルドゲイラ撃破"
-          ]
-        },
-        {
-          "game": "夢をみる島DX",
-          "category": "No S+Q/WW/OoB",
-          "segments": ["デグゾル撃破", "マットフェイス撃破", "シャドー撃破"]
-        },
-        {
-          "game": "ムジュラの仮面",
-          "category": "バグ制限",
-          "segments": [
-            "時のオカリナ奪還",
-            "ゴロンのララバイ入手",
-            "エポナの歌入手",
-            "ミラーシールド入手",
-            "グヨーグ撃破",
-            "ムジュラの魔人撃破"
-          ]
-        }
-      ]
-    },
-    "team-list": [
-      {
-        "name": "お金とSwitchと女の子と光回線とコミュ力欲しい！！！！！",
-        "players": [
-          {
-            "name": "ダイソー",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "ベル",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "みりい",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "桜んぼ",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "しばづけ",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          }
+        "team-list": [
+            {
+                "name": "Aチーム",
+                "color": "#dbebc4",
+                "players": [
+                    {
+                        "name": "もす",
+                        "twitch": "",
+                        "nico": "",
+                        "twitter": ""
+                    },
+                    {
+                        "name": "ゆーでー",
+                        "twitch": "",
+                        "nico": "",
+                        "twitter": ""
+                    }
+                ]
+            },
+            {
+                "name": "Bチーム",
+                "color": "#00ced1",
+                "players": [
+                    {
+                        "name": "as",
+                        "twitch": "",
+                        "nico": "",
+                        "twitter": ""
+                    },
+                    {
+                        "name": "つりゃ",
+                        "twitch": "",
+                        "nico": "",
+                        "twitter": ""
+                    }
+                ]
+            },
+            {
+                "name": "Cチーム",
+                "color": "#fcc800",
+                "players": [
+                    {
+                        "name": "あおガエル",
+                        "twitch": "",
+                        "nico": "",
+                        "twitter": ""
+                    },
+                    {
+                        "name": "たーぼー",
+                        "twitch": "",
+                        "nico": "",
+                        "twitter": ""
+                    }
+                ]
+            }
         ]
-      },
-      {
-        "name": "エキデンぜるだ with B team",
-        "players": [
-          {
-            "name": "代走",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "たみふる",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "とらっしー",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "HiST",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          },
-          {
-            "name": "バン",
-            "twitch": "",
-            "nico": "",
-            "twitter": ""
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
