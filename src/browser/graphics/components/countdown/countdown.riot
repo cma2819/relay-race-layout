@@ -1,0 +1,43 @@
+<countdown>
+    <style>
+    :host {
+        padding: 0 0.5rem;
+        color: white;
+        font-size: 50vh;
+    }
+    </style>
+    
+    <!-- Markup this component here. -->
+    <div class="has-text-right is-italic">
+        { state.formatted.split('.')[0] }
+    </div>
+    <progress class="progress is-small" value="{ state.progress }" max="{180 * 1000}"></progress>
+
+    <script type="ts">
+        // Define logics about this component here.
+        
+        import { CountdownComponent } from './types'
+
+        const countdownRep = nodecg.Replicant('countdown');
+
+        function Countdown(): CountdownComponent {
+            return {
+                state:{
+                    formatted: '',
+                    raw: 0,
+                    progress: 0
+                },
+                onMounted() {
+                    countdownRep.on('change', (newVal) => {
+                        this.state.formatted = newVal.time.formatted
+                        this.state.progress = (newVal.time.raw - (180 * 1000)) * -1
+                        this.update()
+                    })
+                }
+            }
+        }
+
+        export default Countdown
+        
+    </script>
+</countdown>

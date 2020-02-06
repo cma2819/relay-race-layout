@@ -4,6 +4,9 @@
 
 $block-spacing: 0.5rem;
 $box-padding: 0.5rem;
+$progress-bar-background-color: rgba(0, 0, 0, 0);
+$progress-value-background-color: white;
+$progress-border-radius: 0px;
 
 @import "../../../node_modules/bulma/bulma.sass";
 @import "../../../node_modules/bulma-extensions/bulma-tooltip/src/sass/index.sass";
