@@ -2909,9 +2909,9 @@ var _default = {
   'css': "countdown,[is=\"countdown\"]{ padding: 0 0.5rem; color: white; font-size: 50vh; }",
   'exports': Countdown,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr20="expr20" class="has-text-right is-italic"> </div><progress expr21="expr21" class="progress is-small"></progress>', [{
-      'redundantAttribute': 'expr20',
-      'selector': '[expr20]',
+    return _template('<div expr5="expr5" class="has-text-right is-italic"> </div><progress expr6="expr6" class="progress is-small"></progress>', [{
+      'redundantAttribute': 'expr5',
+      'selector': '[expr5]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -2920,8 +2920,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr21',
-      'selector': '[expr21]',
+      'redundantAttribute': 'expr6',
+      'selector': '[expr6]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'value',
@@ -2984,7 +2984,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63187" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

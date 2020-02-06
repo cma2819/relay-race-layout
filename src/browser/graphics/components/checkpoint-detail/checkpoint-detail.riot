@@ -6,17 +6,17 @@
             display: flex;
         }
         .detail {
-            padding: 0.5rem;
-            margin-right: 0.5rem;
+            padding: 0.5rem 0 0.5rem 0.5rem;
+            margin-right: 0.25rem;
         }
     </style>
 
     <div class="top columns is-marginless is-vcentered">
-        <div class="column is-3 is-paddingless is-narrow animated { state.existing ? 'slideOutLeft' : 'slideInLeft'}"
+        <div class="column is-2 is-paddingless is-narrow animated { state.existing ? 'slideOutLeft' : 'slideInLeft'}"
              style="margin-right: 0.5rem;">
             <div class="columns is-marginless is-multiline is-vcentered" style="height:100vh;padding:0 0.5rem;">
-                <div class="column is-paddingless is-full is-size-7">チェックポイント通過タイム</div>
-                <div class="column is-paddingless is-full has-text-weight-bold">
+                <div class="column is-paddingless is-full is-size-7">チェックポイント</div>
+                <div class="column is-paddingless is-full has-text-weight-bold is-size-7">
                     { state.segments[state.segIndexes.runIndex] ? 
                       state.segments[state.segIndexes.runIndex][state.segIndexes.segIndex] || '-' : '-' }
                 </div>
@@ -24,11 +24,11 @@
         </div>
         <div class="detail column is-paddingless is-vcentered is-narrow animated { state.existing ? 'fadeOutRight' : 'fadeInRight' }" each="{(detail, idx) in state.details}">
             <div class="columns is-marginless is-vcentered box is-paddingless">
-                <div class="column is-narrow" style="border-right: 1px dashed black; font-size:25vh;">
+                <div class="column is-narrow is-size-7" style="border-right: 1px dashed black; font-size:25vh;">
                     { idx + 1 }
                 </div>
                 <div class="column columns is-multiline">
-                    <div class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;">{ state.teams[detail.teamIdx] || '-' }</div>
+                    <div class="column is-paddingless is-full is-size-7" style="margin-left: 0.5rem; font-size:25vh;">{ state.teams[detail.teamIdx] || '-' }</div>
                     <div class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;">{ detail.time.formatted }</div>
                 </div>
             </div>

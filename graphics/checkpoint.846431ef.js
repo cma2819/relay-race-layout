@@ -2948,11 +2948,11 @@ var _default = {
   'css': "segment .top,[is=\"segment\"] .top{ background-color: rgba(255, 255, 255, 0.8); } segment .no-reached,[is=\"segment\"] .no-reached{ background-color: rgba(0, 0, 0, 0.8); } segment .not-last-segment,[is=\"segment\"] .not-last-segment{ border-right: 1px solid white; } segment .flag,[is=\"segment\"] .flag{ margin-right: auto; margin-left: auto; font-size: 24px; }",
   'exports': Segment,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="columns is-vcentered is-marginless is-mobile is-multiline top"><div expr13="expr13"></div><div expr18="expr18" class="column is-full has-background-dark has-text-white"> </div></div>', [{
+    return _template('<div class="columns is-vcentered is-marginless is-mobile is-multiline top"><div expr11="expr11"></div><div expr16="expr16" class="column is-full has-background-dark has-text-white"> </div></div>', [{
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
-      'template': _template('<figure expr14="expr14" class="image is-48x48 flag"></figure><figure expr16="expr16" class="image flag"></figure>', [{
+      'template': _template('<figure expr12="expr12" class="image is-48x48 flag"></figure><figure expr14="expr14" class="image flag"></figure>', [{
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'class',
@@ -2965,15 +2965,15 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.idx === scope.state.topIndex ? scope.state.icons.top !== '' : scope.state.icons.other !== '';
         },
-        'redundantAttribute': 'expr14',
-        'selector': '[expr14]',
-        'template': _template('<img expr15="expr15"/>', [{
+        'redundantAttribute': 'expr12',
+        'selector': '[expr12]',
+        'template': _template('<img expr13="expr13"/>', [{
           'type': bindingTypes.IF,
           'evaluate': function evaluate(scope) {
             return scope.current != null && scope.current.runIndex == scope.props.runIdx && scope.current.segIndex == scope.props.segIdx;
           },
-          'redundantAttribute': 'expr15',
-          'selector': '[expr15]',
+          'redundantAttribute': 'expr13',
+          'selector': '[expr13]',
           'template': _template(null, [{
             'expressions': [{
               'type': expressionTypes.ATTRIBUTE,
@@ -2989,28 +2989,28 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.idx === scope.state.topIndex ? scope.state.icons.top === '' : scope.state.icons.other === '';
         },
-        'redundantAttribute': 'expr16',
-        'selector': '[expr16]',
-        'template': _template('<span class="icon"><i expr17="expr17" class="fas fa-flag"></i></span>', [{
+        'redundantAttribute': 'expr14',
+        'selector': '[expr14]',
+        'template': _template('<span class="icon"><i expr15="expr15" class="fas fa-flag"></i></span>', [{
           'type': bindingTypes.IF,
           'evaluate': function evaluate(scope) {
             return scope.current != null && scope.current.runIndex == scope.props.runIdx && scope.current.segIndex == scope.props.segIdx;
           },
-          'redundantAttribute': 'expr17',
-          'selector': '[expr17]',
+          'redundantAttribute': 'expr15',
+          'selector': '[expr15]',
           'template': _template(null, [])
         }])
       }]),
-      'redundantAttribute': 'expr13',
-      'selector': '[expr13]',
+      'redundantAttribute': 'expr11',
+      'selector': '[expr11]',
       'itemName': 'current',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
         return scope.state.currentSegments;
       }
     }, {
-      'redundantAttribute': 'expr18',
-      'selector': '[expr18]',
+      'redundantAttribute': 'expr16',
+      'selector': '[expr16]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -5235,7 +5235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63187" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

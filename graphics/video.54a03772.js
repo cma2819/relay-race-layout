@@ -4913,9 +4913,9 @@ var _default = {
   'css': "video-panel,[is=\"video-panel\"]{ border: 2px solid rgba(255, 255, 255, 0.9); position: relative; } video-panel div.label-container,[is=\"video-panel\"] div.label-container{ font-weight: bold; font-size: 24px; padding: 0.1rem 0.5rem; position: absolute; height: 10%; width: 100%; background-color: white; } video-panel div.is-top,[is=\"video-panel\"] div.is-top{ top: 0%; } video-panel div.split,[is=\"video-panel\"] div.split{ position: absolute; width: 100%; padding: 0.5rem 1rem; } video-panel div.is-top.split,[is=\"video-panel\"] div.is-top.split{ top: 10%; } video-panel div.is-bottom,[is=\"video-panel\"] div.is-bottom{ bottom: 0%; } video-panel div.is-bottom.split,[is=\"video-panel\"] div.is-bottom.split{ bottom: 10%; }",
   'exports': VideoPanel,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr7="expr7" class="border-tr"></div><div expr8="expr8" class="border-bl"></div><div expr9="expr9"><div class="columns is-marginless label-content"><div expr10="expr10" class="column is-paddingless has-text-centered"> <span expr11="expr11" class="icon" style="margin: 0 0.5rem;"></span></div></div></div><div expr12="expr12"></div>', [{
-      'redundantAttribute': 'expr7',
-      'selector': '[expr7]',
+    return _template('<div expr24="expr24" class="border-tr"></div><div expr25="expr25" class="border-bl"></div><div expr26="expr26"><div class="columns is-marginless label-content"><div expr27="expr27" class="column is-paddingless has-text-centered"> <span expr28="expr28" class="icon" style="margin: 0 0.5rem;"></span></div></div></div><div expr29="expr29"></div>', [{
+      'redundantAttribute': 'expr24',
+      'selector': '[expr24]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'style',
@@ -4924,8 +4924,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr8',
-      'selector': '[expr8]',
+      'redundantAttribute': 'expr25',
+      'selector': '[expr25]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'style',
@@ -4934,8 +4934,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr9',
-      'selector': '[expr9]',
+      'redundantAttribute': 'expr26',
+      'selector': '[expr26]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'class',
@@ -4950,8 +4950,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr10',
-      'selector': '[expr10]',
+      'redundantAttribute': 'expr27',
+      'selector': '[expr27]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -4964,16 +4964,16 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.props.soundEnable;
       },
-      'redundantAttribute': 'expr11',
-      'selector': '[expr11]',
+      'redundantAttribute': 'expr28',
+      'selector': '[expr28]',
       'template': _template('<i class="fas fa-volume-up"></i>', [])
     }, {
       'type': bindingTypes.IF,
       'evaluate': function evaluate(scope) {
         return scope.state.showSplit;
       },
-      'redundantAttribute': 'expr12',
-      'selector': '[expr12]',
+      'redundantAttribute': 'expr29',
+      'selector': '[expr29]',
       'template': _template(' ', [{
         'expressions': [{
           'type': expressionTypes.TEXT,
@@ -5039,7 +5039,7 @@ var _default = {
   'css': "video-view div.panel-container,[is=\"video-view\"] div.panel-container{ border: 2px solid rgba(255, 255, 255, 0.8); width: 100%; height: 100%; }",
   'exports': VideoView,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="columns is-marginless is-multiline panel-container"><video-panel expr1="expr1" class="column is-paddingless is-half top"></video-panel></div>', [{
+    return _template('<div class="columns is-marginless is-multiline panel-container"><video-panel expr0="expr0" class="column is-paddingless is-half top"></video-panel></div>', [{
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
@@ -5076,8 +5076,8 @@ var _default = {
           }
         }]
       }]),
-      'redundantAttribute': 'expr1',
-      'selector': '[expr1]',
+      'redundantAttribute': 'expr0',
+      'selector': '[expr0]',
       'itemName': 'team',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
@@ -5132,7 +5132,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63187" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -2972,22 +2972,22 @@ function CheckpointDetail() {
 }
 
 var _default = {
-  'css': "checkpoint-detail .top,[is=\"checkpoint-detail\"] .top{ width: 100%; height: 100%; display: flex; } checkpoint-detail .detail,[is=\"checkpoint-detail\"] .detail{ padding: 0.5rem; margin-right: 0.5rem; }",
+  'css': "checkpoint-detail .top,[is=\"checkpoint-detail\"] .top{ width: 100%; height: 100%; display: flex; } checkpoint-detail .detail,[is=\"checkpoint-detail\"] .detail{ padding: 0.5rem 0 0.5rem 0.5rem; margin-right: 0.25rem; }",
   'exports': CheckpointDetail,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="top columns is-marginless is-vcentered"><div expr6="expr6" style="margin-right: 0.5rem;"><div class="columns is-marginless is-multiline is-vcentered" style="height:100vh;padding:0 0.5rem;"><div class="column is-paddingless is-full is-size-7">チェックポイント通過タイム</div><div expr7="expr7" class="column is-paddingless is-full has-text-weight-bold"> </div></div></div><div expr8="expr8"></div><div class="column"></div></div>', [{
-      'redundantAttribute': 'expr6',
-      'selector': '[expr6]',
+    return _template('<div class="top columns is-marginless is-vcentered"><div expr108="expr108" style="margin-right: 0.5rem;"><div class="columns is-marginless is-multiline is-vcentered" style="height:100vh;padding:0 0.5rem;"><div class="column is-paddingless is-full is-size-7">チェックポイント</div><div expr109="expr109" class="column is-paddingless is-full has-text-weight-bold is-size-7"> </div></div></div><div expr110="expr110"></div><div class="column"></div></div>', [{
+      'redundantAttribute': 'expr108',
+      'selector': '[expr108]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'class',
         'evaluate': function evaluate(scope) {
-          return ['column is-3 is-paddingless is-narrow animated ', scope.state.existing ? 'slideOutLeft' : 'slideInLeft'].join('');
+          return ['column is-2 is-paddingless is-narrow animated ', scope.state.existing ? 'slideOutLeft' : 'slideInLeft'].join('');
         }
       }]
     }, {
-      'redundantAttribute': 'expr7',
-      'selector': '[expr7]',
+      'redundantAttribute': 'expr109',
+      'selector': '[expr109]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -2999,7 +2999,7 @@ var _default = {
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
-      'template': _template('<div class="columns is-marginless is-vcentered box is-paddingless"><div expr9="expr9" class="column is-narrow" style="border-right: 1px dashed black; font-size:25vh;"> </div><div class="column columns is-multiline"><div expr10="expr10" class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;"> </div><div expr11="expr11" class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;"> </div></div></div>', [{
+      'template': _template('<div class="columns is-marginless is-vcentered box is-paddingless"><div expr111="expr111" class="column is-narrow is-size-7" style="border-right: 1px dashed black; font-size:25vh;"> </div><div class="column columns is-multiline"><div expr112="expr112" class="column is-paddingless is-full is-size-7" style="margin-left: 0.5rem; font-size:25vh;"> </div><div expr113="expr113" class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;"> </div></div></div>', [{
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'class',
@@ -3008,8 +3008,8 @@ var _default = {
           }
         }]
       }, {
-        'redundantAttribute': 'expr9',
-        'selector': '[expr9]',
+        'redundantAttribute': 'expr111',
+        'selector': '[expr111]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -3018,8 +3018,8 @@ var _default = {
           }
         }]
       }, {
-        'redundantAttribute': 'expr10',
-        'selector': '[expr10]',
+        'redundantAttribute': 'expr112',
+        'selector': '[expr112]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -3028,8 +3028,8 @@ var _default = {
           }
         }]
       }, {
-        'redundantAttribute': 'expr11',
-        'selector': '[expr11]',
+        'redundantAttribute': 'expr113',
+        'selector': '[expr113]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -3038,8 +3038,8 @@ var _default = {
           }
         }]
       }]),
-      'redundantAttribute': 'expr8',
-      'selector': '[expr8]',
+      'redundantAttribute': 'expr110',
+      'selector': '[expr110]',
       'itemName': 'detail',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
@@ -3080,9 +3080,9 @@ var _default = {
   'css': "event-title .event-title,[is=\"event-title\"] .event-title{ font-weight: bold; font-size: 50vh; }",
   'exports': EventTitle,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr12="expr12"> </div>', [{
-      'redundantAttribute': 'expr12',
-      'selector': '[expr12]',
+    return _template('<div expr17="expr17"> </div>', [{
+      'redundantAttribute': 'expr17',
+      'selector': '[expr17]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -5141,9 +5141,9 @@ var _default = {
   'css': "omni-bar,[is=\"omni-bar\"]{ } omni-bar .timer,[is=\"omni-bar\"] .timer{ background-color: rgba(255, 255, 255, 0.9); line-height: 100vh; font-size: 50vh; font-weight: bold; } omni-bar .timer span,[is=\"omni-bar\"] .timer span{ padding: 0 0.5rem; } omni-bar .logo,[is=\"omni-bar\"] .logo{ height: 100vh; } omni-bar .omni,[is=\"omni-bar\"] .omni{ overflow: hidden; } omni-bar img,[is=\"omni-bar\"] img{ width: auto; height: 100%; }",
   'exports': OmniBar,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr0="expr0"><div expr1="expr1" class="column is-narrow is-paddingless"></div><div class="column is-paddingless omni is-vcentered"><event-title expr3="expr3"></event-title><checkpoint-detail expr4="expr4"></checkpoint-detail></div><div class="column is-narrow is-paddingless timer has-text-dark is-background-light"><span expr5="expr5"> </span></div></div>', [{
-      'redundantAttribute': 'expr0',
-      'selector': '[expr0]',
+    return _template('<div expr78="expr78"><div expr79="expr79" class="column is-narrow is-paddingless"></div><div class="column is-paddingless omni is-vcentered"><event-title expr81="expr81"></event-title><checkpoint-detail expr82="expr82"></checkpoint-detail></div><div style="min-width:10rem;" class="column is-narrow is-paddingless timer has-text-dark is-background-light has-text-right"><span expr83="expr83"> </span></div></div>', [{
+      'redundantAttribute': 'expr78',
+      'selector': '[expr78]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'class',
@@ -5162,11 +5162,11 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.logo != null && scope.state.logo != '';
       },
-      'redundantAttribute': 'expr1',
-      'selector': '[expr1]',
-      'template': _template('<figure class="image logo is-72x72"><img expr2="expr2"/></figure>', [{
-        'redundantAttribute': 'expr2',
-        'selector': '[expr2]',
+      'redundantAttribute': 'expr79',
+      'selector': '[expr79]',
+      'template': _template('<figure class="image logo is-72x72"><img expr80="expr80"/></figure>', [{
+        'redundantAttribute': 'expr80',
+        'selector': '[expr80]',
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'src',
@@ -5180,8 +5180,8 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.showInfo === 0;
       },
-      'redundantAttribute': 'expr3',
-      'selector': '[expr3]',
+      'redundantAttribute': 'expr81',
+      'selector': '[expr81]',
       'template': _template(null, [{
         'type': bindingTypes.TAG,
         'getComponent': getComponent,
@@ -5202,8 +5202,8 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.showInfo === 1;
       },
-      'redundantAttribute': 'expr4',
-      'selector': '[expr4]',
+      'redundantAttribute': 'expr82',
+      'selector': '[expr82]',
       'template': _template(null, [{
         'type': bindingTypes.TAG,
         'getComponent': getComponent,
@@ -5214,8 +5214,8 @@ var _default = {
         'attributes': []
       }])
     }, {
-      'redundantAttribute': 'expr5',
-      'selector': '[expr5]',
+      'redundantAttribute': 'expr83',
+      'selector': '[expr83]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -5278,7 +5278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63187" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
