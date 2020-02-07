@@ -4913,9 +4913,9 @@ var _default = {
   'css': "video-panel,[is=\"video-panel\"]{ border: 2px solid rgba(255, 255, 255, 0.9); position: relative; } video-panel div.label-container,[is=\"video-panel\"] div.label-container{ font-weight: bold; font-size: 24px; padding: 0.1rem 0.5rem; position: absolute; height: 10%; width: 100%; background-color: white; } video-panel div.is-top,[is=\"video-panel\"] div.is-top{ top: 0%; } video-panel div.split,[is=\"video-panel\"] div.split{ position: absolute; width: 100%; padding: 0.5rem 1rem; } video-panel div.is-top.split,[is=\"video-panel\"] div.is-top.split{ top: 10%; } video-panel div.is-bottom,[is=\"video-panel\"] div.is-bottom{ bottom: 0%; } video-panel div.is-bottom.split,[is=\"video-panel\"] div.is-bottom.split{ bottom: 10%; }",
   'exports': VideoPanel,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr24="expr24" class="border-tr"></div><div expr25="expr25" class="border-bl"></div><div expr26="expr26"><div class="columns is-marginless label-content"><div expr27="expr27" class="column is-paddingless has-text-centered"> <span expr28="expr28" class="icon" style="margin: 0 0.5rem;"></span></div></div></div><div expr29="expr29"></div>', [{
-      'redundantAttribute': 'expr24',
-      'selector': '[expr24]',
+    return _template('<div expr229="expr229" class="border-tr"></div><div expr230="expr230" class="border-bl"></div><div expr231="expr231"><div class="columns is-marginless label-content"><div expr232="expr232" class="column is-paddingless has-text-centered"> <span expr233="expr233" class="icon" style="margin-left:0.5rem;"></span><span expr234="expr234" style="position: absolute; bottom: 0%; margin-left: 0.5rem;"><span expr235="expr235"></span><span expr236="expr236"></span><span expr237="expr237"></span></span></div></div></div><div expr238="expr238"></div>', [{
+      'redundantAttribute': 'expr229',
+      'selector': '[expr229]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'style',
@@ -4924,8 +4924,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr25',
-      'selector': '[expr25]',
+      'redundantAttribute': 'expr230',
+      'selector': '[expr230]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'style',
@@ -4934,8 +4934,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr26',
-      'selector': '[expr26]',
+      'redundantAttribute': 'expr231',
+      'selector': '[expr231]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'class',
@@ -4950,13 +4950,13 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr27',
-      'selector': '[expr27]',
+      'redundantAttribute': 'expr232',
+      'selector': '[expr232]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
         'evaluate': function evaluate(scope) {
-          return [scope.props.team.players[scope.state.progress.segments.current.runIndex].name, '\r\n            '].join('');
+          return [scope.props.team.players[scope.state.progress.segments.current.runIndex].name, '\r\n                '].join('');
         }
       }]
     }, {
@@ -4964,16 +4964,74 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.props.soundEnable;
       },
-      'redundantAttribute': 'expr28',
-      'selector': '[expr28]',
+      'redundantAttribute': 'expr233',
+      'selector': '[expr233]',
       'template': _template('<i class="fas fa-volume-up"></i>', [])
+    }, {
+      'redundantAttribute': 'expr234',
+      'selector': '[expr234]',
+      'expressions': [{
+        'type': expressionTypes.ATTRIBUTE,
+        'name': 'class',
+        'evaluate': function evaluate(scope) {
+          return ['animated ', scope.props.socialFading ? 'fadeOutRight' : 'fadeInRight', ' is-size-5'].join('');
+        }
+      }]
+    }, {
+      'type': bindingTypes.IF,
+      'evaluate': function evaluate(scope) {
+        return scope.props.socialState === 0 && scope.props.team.players[scope.state.progress.segments.current.runIndex].twitter;
+      },
+      'redundantAttribute': 'expr235',
+      'selector': '[expr235]',
+      'template': _template('<span class="icon"><i class="fab fa-twitter"></i></span> ', [{
+        'expressions': [{
+          'type': expressionTypes.TEXT,
+          'childNodeIndex': 1,
+          'evaluate': function evaluate(scope) {
+            return ['\r\n                        ', scope.props.team.players[scope.state.progress.segments.current.runIndex].twitter, '\r\n                    '].join('');
+          }
+        }]
+      }])
+    }, {
+      'type': bindingTypes.IF,
+      'evaluate': function evaluate(scope) {
+        return scope.props.socialState === 1 && scope.props.team.players[scope.state.progress.segments.current.runIndex].twitch;
+      },
+      'redundantAttribute': 'expr236',
+      'selector': '[expr236]',
+      'template': _template('<span class="icon"><i class="fab fa-twitch"></i></span> ', [{
+        'expressions': [{
+          'type': expressionTypes.TEXT,
+          'childNodeIndex': 1,
+          'evaluate': function evaluate(scope) {
+            return ['\r\n                        ', scope.props.team.players[scope.state.progress.segments.current.runIndex].twitch, '\r\n                    '].join('');
+          }
+        }]
+      }])
+    }, {
+      'type': bindingTypes.IF,
+      'evaluate': function evaluate(scope) {
+        return scope.props.socialState === 2 && scope.props.team.players[scope.state.progress.segments.current.runIndex].nico;
+      },
+      'redundantAttribute': 'expr237',
+      'selector': '[expr237]',
+      'template': _template(' ', [{
+        'expressions': [{
+          'type': expressionTypes.TEXT,
+          'childNodeIndex': 0,
+          'evaluate': function evaluate(scope) {
+            return ['\r\n                        ', scope.props.team.players[scope.state.progress.segments.current.runIndex].nico, '\r\n                    '].join('');
+          }
+        }]
+      }])
     }, {
       'type': bindingTypes.IF,
       'evaluate': function evaluate(scope) {
         return scope.state.showSplit;
       },
-      'redundantAttribute': 'expr29',
-      'selector': '[expr29]',
+      'redundantAttribute': 'expr238',
+      'selector': '[expr238]',
       'template': _template(' ', [{
         'expressions': [{
           'type': expressionTypes.TEXT,
@@ -5013,7 +5071,9 @@ function VideoView() {
   return {
     state: {
       teamList: [],
-      soundEnableIndex: -1
+      soundEnableIndex: -1,
+      socialFading: false,
+      socialState: 0
     },
     onMounted: function onMounted() {
       var _this = this;
@@ -5028,6 +5088,17 @@ function VideoView() {
 
         _this.update();
       });
+      setInterval(function () {
+        _this.state.socialFading = true;
+        setTimeout(function () {
+          _this.state.socialState = (_this.state.socialState + 1) % 3;
+          _this.state.socialFading = false;
+
+          _this.update();
+        }, 1000);
+
+        _this.update();
+      }, 15000);
     }
   };
 }
@@ -5039,7 +5110,7 @@ var _default = {
   'css': "video-view div.panel-container,[is=\"video-view\"] div.panel-container{ border: 2px solid rgba(255, 255, 255, 0.8); width: 100%; height: 100%; }",
   'exports': VideoView,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="columns is-marginless is-multiline panel-container"><video-panel expr0="expr0" class="column is-paddingless is-half top"></video-panel></div>', [{
+    return _template('<div class="columns is-marginless is-multiline panel-container"><video-panel expr239="expr239" class="column is-paddingless is-half top"></video-panel></div>', [{
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
@@ -5074,10 +5145,22 @@ var _default = {
           'evaluate': function evaluate(scope) {
             return scope.state.soundEnableIndex === scope.idx;
           }
+        }, {
+          'type': expressionTypes.ATTRIBUTE,
+          'name': 'socialState',
+          'evaluate': function evaluate(scope) {
+            return scope.state.socialState;
+          }
+        }, {
+          'type': expressionTypes.ATTRIBUTE,
+          'name': 'socialFading',
+          'evaluate': function evaluate(scope) {
+            return scope.state.socialFading;
+          }
         }]
       }]),
-      'redundantAttribute': 'expr0',
-      'selector': '[expr0]',
+      'redundantAttribute': 'expr239',
+      'selector': '[expr239]',
       'itemName': 'team',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
@@ -5132,7 +5215,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63187" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64526" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -43,11 +43,28 @@
     <div class="border-bl" style="border-color: {props.team.color}"></div>
     <div class="label-container {props.idx < 2 ? 'is-bottom' : 'is-top'} {teamColorIsLight() ? 'has-text-dark' : 'has-text-light'}" style="background-color: {props.team.color};">
         <div class="columns is-marginless label-content">
-            <!--  <div class="column is-paddingless is-narrow">{props.idx + 1}</div>  -->
             <div class="column is-paddingless has-text-centered">{props.team.players[state.progress.segments.current.runIndex].name}
-            <span class="icon" style="margin: 0 0.5rem;" if={props.soundEnable}>
-                <i class="fas fa-volume-up"></i>
-            </span></div>
+                <span class="icon" style="margin-left:0.5rem;" if={props.soundEnable}>
+                    <i class="fas fa-volume-up"></i>
+                </span>
+                <span style="position: absolute; bottom: 0%; margin-left: 0.5rem;" class="animated {props.socialFading ? 'fadeOutRight' : 'fadeInRight'} is-size-5">
+                    <span if={props.socialState === 0 && props.team.players[state.progress.segments.current.runIndex].twitter}>
+                        <span class="icon">
+                            <i class="fab fa-twitter"></i>
+                        </span>
+                        {props.team.players[state.progress.segments.current.runIndex].twitter}
+                    </span>
+                    <span if={props.socialState === 1 && props.team.players[state.progress.segments.current.runIndex].twitch}>
+                        <span class="icon">
+                            <i class="fab fa-twitch"></i>
+                        </span>
+                        {props.team.players[state.progress.segments.current.runIndex].twitch}
+                    </span>
+                    <span if={props.socialState === 2 && props.team.players[state.progress.segments.current.runIndex].nico}>
+                        {props.team.players[state.progress.segments.current.runIndex].nico}
+                    </span>
+                </span>
+            </div>
         </div>
     </div>
     <div class="notification is-info is-light split animated {props.idx < 2 ? 'is-bottom' : 'is-top'} {state.exit ? 'fadeOut' : 'fadeIn'}" if={ state.showSplit }>
