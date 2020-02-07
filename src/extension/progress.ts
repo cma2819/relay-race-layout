@@ -87,15 +87,15 @@ export const progress = (nodecg: NodeCG) => {
         relayRep.value.runs[beforeCurrent.runIndex].segments[
           beforeCurrent.segIndex
         ],
-      time: runTime.formatted
+      time: totalTime.formatted
     });
-    const timestampDate = new Date(runTime.timestamp);
+    const timestampDate = new Date(totalTime.timestamp);
     nodecg.sendMessage("gas:split", {
       teamId: idx + 1,
       runId: beforeCurrent.runIndex + 1,
       segmentId: beforeCurrent.segIndex + 1,
-      formatted: runTime.formatted,
-      raw: runTime.raw,
+      formatted: totalTime.formatted,
+      raw: totalTime.raw,
       timestamp:
         timestampDate.getFullYear() +
         "-" +

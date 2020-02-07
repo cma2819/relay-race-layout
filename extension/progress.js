@@ -69,15 +69,15 @@ exports.progress = function (nodecg) {
         nodecg.sendMessage("event:showSplit", {
             teamIdx: idx,
             segment: relayRep.value.runs[beforeCurrent.runIndex].segments[beforeCurrent.segIndex],
-            time: runTime.formatted
+            time: totalTime.formatted
         });
-        var timestampDate = new Date(runTime.timestamp);
+        var timestampDate = new Date(totalTime.timestamp);
         nodecg.sendMessage("gas:split", {
             teamId: idx + 1,
             runId: beforeCurrent.runIndex + 1,
             segmentId: beforeCurrent.segIndex + 1,
-            formatted: runTime.formatted,
-            raw: runTime.raw,
+            formatted: totalTime.formatted,
+            raw: totalTime.raw,
             timestamp: timestampDate.getFullYear() +
                 "-" +
                 (timestampDate.getMonth() + 1) +
