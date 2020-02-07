@@ -2975,9 +2975,9 @@ var _default = {
   'css': "checkpoint-detail .top,[is=\"checkpoint-detail\"] .top{ width: 100%; height: 100%; display: flex; } checkpoint-detail .detail,[is=\"checkpoint-detail\"] .detail{ padding: 0.5rem 0 0.5rem 0.5rem; margin-right: 0.25rem; }",
   'exports': CheckpointDetail,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="top columns is-marginless is-vcentered"><div expr9="expr9" style="margin-right: 0.5rem;"><div class="columns is-marginless is-multiline is-vcentered" style="height:100vh;padding:0 0.5rem;"><div class="column is-paddingless is-full is-size-7">チェックポイント</div><div expr10="expr10" class="column is-paddingless is-full has-text-weight-bold is-size-7"> </div></div></div><div expr11="expr11"></div><div class="column"></div></div>', [{
-      'redundantAttribute': 'expr9',
-      'selector': '[expr9]',
+    return _template('<div class="top columns is-marginless is-vcentered"><div expr6="expr6" style="margin-right: 0.5rem;"><div class="columns is-marginless is-multiline is-vcentered" style="height:100vh;padding:0 0.5rem;"><div class="column is-paddingless is-full is-size-7">チェックポイント</div><div expr7="expr7" class="column is-paddingless is-full has-text-weight-bold is-size-7"> </div></div></div><div expr8="expr8"></div><div class="column"></div></div>', [{
+      'redundantAttribute': 'expr6',
+      'selector': '[expr6]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'class',
@@ -2986,8 +2986,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr10',
-      'selector': '[expr10]',
+      'redundantAttribute': 'expr7',
+      'selector': '[expr7]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -2999,7 +2999,7 @@ var _default = {
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
-      'template': _template('<div class="columns is-marginless is-vcentered box is-paddingless"><div expr12="expr12" class="column is-narrow is-size-7" style="border-right: 1px dashed black; font-size:25vh;"> </div><div class="column columns is-multiline"><div expr13="expr13" class="column is-paddingless is-full is-size-7" style="margin-left: 0.5rem; font-size:25vh;"> </div><div expr14="expr14" class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;"> </div></div></div>', [{
+      'template': _template('<div class="columns is-marginless is-vcentered box is-paddingless"><div expr9="expr9" class="column is-narrow is-size-7" style="border-right: 1px dashed black; font-size:25vh;"> </div><div class="column columns is-multiline"><div expr10="expr10" class="column is-paddingless is-full is-size-7" style="margin-left: 0.5rem; font-size:25vh;"> </div><div expr11="expr11" class="column is-paddingless is-full" style="margin-left: 0.5rem; font-size:25vh;"> </div></div></div>', [{
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'class',
@@ -3008,8 +3008,8 @@ var _default = {
           }
         }]
       }, {
-        'redundantAttribute': 'expr12',
-        'selector': '[expr12]',
+        'redundantAttribute': 'expr9',
+        'selector': '[expr9]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -3018,8 +3018,8 @@ var _default = {
           }
         }]
       }, {
-        'redundantAttribute': 'expr13',
-        'selector': '[expr13]',
+        'redundantAttribute': 'expr10',
+        'selector': '[expr10]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -3028,8 +3028,8 @@ var _default = {
           }
         }]
       }, {
-        'redundantAttribute': 'expr14',
-        'selector': '[expr14]',
+        'redundantAttribute': 'expr11',
+        'selector': '[expr11]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -3038,8 +3038,8 @@ var _default = {
           }
         }]
       }]),
-      'redundantAttribute': 'expr11',
-      'selector': '[expr11]',
+      'redundantAttribute': 'expr8',
+      'selector': '[expr8]',
       'itemName': 'detail',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
@@ -3080,9 +3080,9 @@ var _default = {
   'css': "event-title .event-title,[is=\"event-title\"] .event-title{ font-weight: bold; font-size: 50vh; }",
   'exports': EventTitle,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr15="expr15"> </div>', [{
-      'redundantAttribute': 'expr15',
-      'selector': '[expr15]',
+    return _template('<div expr12="expr12"> </div>', [{
+      'redundantAttribute': 'expr12',
+      'selector': '[expr12]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -5141,9 +5141,9 @@ var _default = {
   'css': "omni-bar,[is=\"omni-bar\"]{ } omni-bar .timer,[is=\"omni-bar\"] .timer{ background-color: rgba(255, 255, 255, 0.9); line-height: 100vh; font-size: 50vh; font-weight: bold; } omni-bar .timer span,[is=\"omni-bar\"] .timer span{ padding: 0 0.5rem; } omni-bar .logo,[is=\"omni-bar\"] .logo{ height: 100vh; } omni-bar .omni,[is=\"omni-bar\"] .omni{ overflow: hidden; } omni-bar img,[is=\"omni-bar\"] img{ width: auto; height: 100%; }",
   'exports': OmniBar,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr2="expr2"><div expr3="expr3" class="column is-narrow is-paddingless"></div><div class="column is-paddingless omni is-vcentered"><event-title expr5="expr5"></event-title><checkpoint-detail expr6="expr6"></checkpoint-detail></div><div style="min-width:10rem;" class="column is-narrow is-paddingless timer has-text-dark is-background-light has-text-right"><span expr7="expr7"> </span></div></div>', [{
-      'redundantAttribute': 'expr2',
-      'selector': '[expr2]',
+    return _template('<div expr0="expr0"><div expr1="expr1" class="column is-narrow is-paddingless"></div><div class="column is-paddingless omni is-vcentered"><event-title expr3="expr3"></event-title><checkpoint-detail expr4="expr4"></checkpoint-detail></div><div style="min-width:10rem;" class="column is-narrow is-paddingless timer has-text-dark is-background-light has-text-right"><span expr5="expr5"> </span></div></div>', [{
+      'redundantAttribute': 'expr0',
+      'selector': '[expr0]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'class',
@@ -5162,11 +5162,11 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.logo != null && scope.state.logo != '';
       },
-      'redundantAttribute': 'expr3',
-      'selector': '[expr3]',
-      'template': _template('<figure class="image logo is-72x72"><img expr4="expr4"/></figure>', [{
-        'redundantAttribute': 'expr4',
-        'selector': '[expr4]',
+      'redundantAttribute': 'expr1',
+      'selector': '[expr1]',
+      'template': _template('<figure class="image logo is-72x72"><img expr2="expr2"/></figure>', [{
+        'redundantAttribute': 'expr2',
+        'selector': '[expr2]',
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'src',
@@ -5180,8 +5180,8 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.showInfo === 0;
       },
-      'redundantAttribute': 'expr5',
-      'selector': '[expr5]',
+      'redundantAttribute': 'expr3',
+      'selector': '[expr3]',
       'template': _template(null, [{
         'type': bindingTypes.TAG,
         'getComponent': getComponent,
@@ -5202,8 +5202,8 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.showInfo === 1;
       },
-      'redundantAttribute': 'expr6',
-      'selector': '[expr6]',
+      'redundantAttribute': 'expr4',
+      'selector': '[expr4]',
       'template': _template(null, [{
         'type': bindingTypes.TAG,
         'getComponent': getComponent,
@@ -5214,8 +5214,8 @@ var _default = {
         'attributes': []
       }])
     }, {
-      'redundantAttribute': 'expr7',
-      'selector': '[expr7]',
+      'redundantAttribute': 'expr5',
+      'selector': '[expr5]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -5278,7 +5278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64526" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56035" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
