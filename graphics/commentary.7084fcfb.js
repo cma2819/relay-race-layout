@@ -2918,9 +2918,9 @@ var _default = {
   'css': "commentary .title-label,[is=\"commentary\"] .title-label{ border-bottom-width: 2px; border-bottom-style: solid; padding: 0.5rem; } commentary .speaker,[is=\"commentary\"] .speaker{ align-items: center; background-color: rgba(0, 0, 0, 0.8); margin: 0.25rem; margin-top: 0; padding: 0.5rem; border-radius: 0.5rem; }",
   'exports': Commentary,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="columns is-multiline"><div class="column is-full has-text-centered"><h1 expr2="expr2" class="title is-4 title-label has-text-white">\r\n                解説・聞き手\r\n            </h1></div><div class="column is-flex" style="justify-content: space-around; flex-wrap: wrap;"><div expr3="expr3" class="is-flex speaker"></div><article expr6="expr6" class="message is-warning"></article></div></div>', [{
-      'redundantAttribute': 'expr2',
-      'selector': '[expr2]',
+    return _template('<div class="columns is-multiline"><div class="column is-full has-text-centered"><h1 expr0="expr0" class="title is-4 title-label has-text-white">\r\n                解説・聞き手\r\n            </h1></div><div class="column is-flex" style="justify-content: space-around; flex-wrap: wrap;"><div expr1="expr1" class="is-flex speaker"></div><article expr4="expr4" class="message is-warning"></article></div></div>', [{
+      'redundantAttribute': 'expr0',
+      'selector': '[expr0]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'style',
@@ -2932,9 +2932,9 @@ var _default = {
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
-      'template': _template('<div><figure class="image is-48x48"><img expr4="expr4" class="is-rounded"/></figure></div><div expr5="expr5" class="is-size-4 has-text-white" style="margin: 0 0.5rem;"> </div>', [{
-        'redundantAttribute': 'expr4',
-        'selector': '[expr4]',
+      'template': _template('<div><figure class="image is-48x48"><img expr2="expr2" class="is-rounded"/></figure></div><div expr3="expr3" class="is-size-4 has-text-white" style="margin: 0 0.5rem;"> </div>', [{
+        'redundantAttribute': 'expr2',
+        'selector': '[expr2]',
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'src',
@@ -2943,8 +2943,8 @@ var _default = {
           }
         }]
       }, {
-        'redundantAttribute': 'expr5',
-        'selector': '[expr5]',
+        'redundantAttribute': 'expr3',
+        'selector': '[expr3]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -2953,8 +2953,8 @@ var _default = {
           }
         }]
       }]),
-      'redundantAttribute': 'expr3',
-      'selector': '[expr3]',
+      'redundantAttribute': 'expr1',
+      'selector': '[expr1]',
       'itemName': 'speaker',
       'indexName': null,
       'evaluate': function evaluate(scope) {
@@ -2965,8 +2965,8 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return !scope.state.enableDiscordBundle;
       },
-      'redundantAttribute': 'expr6',
-      'selector': '[expr6]',
+      'redundantAttribute': 'expr4',
+      'selector': '[expr4]',
       'template': _template('<div class="message-body">\r\n                    This graphic needs \'nodecg-discord-widget\' bundle!!\r\n                </div>', [])
     }]);
   },
@@ -3017,7 +3017,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56035" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55621" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

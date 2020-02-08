@@ -2948,11 +2948,11 @@ var _default = {
   'css': "segment .top,[is=\"segment\"] .top{ background-color: rgba(255, 255, 255, 0.8); } segment .no-reached,[is=\"segment\"] .no-reached{ background-color: rgba(0, 0, 0, 0.8); } segment .not-last-segment,[is=\"segment\"] .not-last-segment{ border-right: 1px solid white; } segment .flag,[is=\"segment\"] .flag{ margin-right: auto; margin-left: auto; font-size: 24px; }",
   'exports': Segment,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="columns is-vcentered is-marginless is-mobile is-multiline top"><div expr18="expr18"></div><div expr23="expr23" class="column is-full has-background-dark has-text-white"> </div></div>', [{
+    return _template('<div class="columns is-vcentered is-marginless is-mobile is-multiline top"><div expr12="expr12"></div><div expr17="expr17" class="column is-full has-background-dark has-text-white"> </div></div>', [{
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
-      'template': _template('<figure expr19="expr19" class="image is-48x48 flag"></figure><figure expr21="expr21" class="image flag"></figure>', [{
+      'template': _template('<figure expr13="expr13" class="image is-48x48 flag"></figure><figure expr15="expr15" class="image flag"></figure>', [{
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'class',
@@ -2965,15 +2965,15 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.idx === scope.state.topIndex ? scope.state.icons.top !== '' : scope.state.icons.other !== '';
         },
-        'redundantAttribute': 'expr19',
-        'selector': '[expr19]',
-        'template': _template('<img expr20="expr20"/>', [{
+        'redundantAttribute': 'expr13',
+        'selector': '[expr13]',
+        'template': _template('<img expr14="expr14"/>', [{
           'type': bindingTypes.IF,
           'evaluate': function evaluate(scope) {
             return scope.current != null && scope.current.runIndex == scope.props.runIdx && scope.current.segIndex == scope.props.segIdx;
           },
-          'redundantAttribute': 'expr20',
-          'selector': '[expr20]',
+          'redundantAttribute': 'expr14',
+          'selector': '[expr14]',
           'template': _template(null, [{
             'expressions': [{
               'type': expressionTypes.ATTRIBUTE,
@@ -2989,28 +2989,28 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.idx === scope.state.topIndex ? scope.state.icons.top === '' : scope.state.icons.other === '';
         },
-        'redundantAttribute': 'expr21',
-        'selector': '[expr21]',
-        'template': _template('<span class="icon"><i expr22="expr22" class="fas fa-flag"></i></span>', [{
+        'redundantAttribute': 'expr15',
+        'selector': '[expr15]',
+        'template': _template('<span class="icon"><i expr16="expr16" class="fas fa-flag"></i></span>', [{
           'type': bindingTypes.IF,
           'evaluate': function evaluate(scope) {
             return scope.current != null && scope.current.runIndex == scope.props.runIdx && scope.current.segIndex == scope.props.segIdx;
           },
-          'redundantAttribute': 'expr22',
-          'selector': '[expr22]',
+          'redundantAttribute': 'expr16',
+          'selector': '[expr16]',
           'template': _template(null, [])
         }])
       }]),
-      'redundantAttribute': 'expr18',
-      'selector': '[expr18]',
+      'redundantAttribute': 'expr12',
+      'selector': '[expr12]',
       'itemName': 'current',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
         return scope.state.currentSegments;
       }
     }, {
-      'redundantAttribute': 'expr23',
-      'selector': '[expr23]',
+      'redundantAttribute': 'expr17',
+      'selector': '[expr17]',
       'expressions': [{
         'type': expressionTypes.TEXT,
         'childNodeIndex': 0,
@@ -5070,7 +5070,7 @@ var _default = {
   'css': "checkpoint .hero-body,[is=\"checkpoint\"] .hero-body{ padding: 1.5rem 1.5rem; } checkpoint .not-last-segment,[is=\"checkpoint\"] .not-last-segment{ border-right: 1px solid white; } checkpoint .game-imaged,[is=\"checkpoint\"] .game-imaged{ background-position: center; background-size: cover; } checkpoint .game-imaged > div,[is=\"checkpoint\"] .game-imaged > div{ background-color: rgba(0, 0, 0, 0.5); }",
   'exports': Checkpoint,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="container"><section class="hero has-background-light"><div class="hero-body"><div class="container"><h1 class="title is-5">\r\n                        チェックポイント\r\n                    </h1></div></div></section><div class="columns is-marginless is-mobile has-text-white has-background-dark"><div expr0="expr0"></div></div><div expr1="expr1"></div></div>', [{
+    return _template('<div class="container"><section class="hero has-background-light"><div class="hero-body"><div class="container"><h1 class="title is-5">\r\n                        チェックポイント\r\n                    </h1></div></div></section><div class="columns is-marginless is-mobile has-text-white has-background-dark"><div expr7="expr7"></div></div><div expr8="expr8"></div></div>', [{
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
@@ -5095,8 +5095,8 @@ var _default = {
           }
         }]
       }]),
-      'redundantAttribute': 'expr0',
-      'selector': '[expr0]',
+      'redundantAttribute': 'expr7',
+      'selector': '[expr7]',
       'itemName': 'team',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
@@ -5106,14 +5106,14 @@ var _default = {
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
-      'template': _template('<div expr2="expr2"></div><segment expr4="expr4"></segment>', [{
+      'template': _template('<div expr9="expr9"></div><segment expr11="expr11"></segment>', [{
         'type': bindingTypes.IF,
         'evaluate': function evaluate(scope) {
           return scope.runIdx >= scope.state.minCpIdxs.run;
         },
-        'redundantAttribute': 'expr2',
-        'selector': '[expr2]',
-        'template': _template('<div class="column has-text-centered"><div expr3="expr3"> </div></div>', [{
+        'redundantAttribute': 'expr9',
+        'selector': '[expr9]',
+        'template': _template('<div class="column has-text-centered"><div expr10="expr10"> </div></div>', [{
           'expressions': [{
             'type': expressionTypes.ATTRIBUTE,
             'name': 'class',
@@ -5128,8 +5128,8 @@ var _default = {
             }
           }]
         }, {
-          'redundantAttribute': 'expr3',
-          'selector': '[expr3]',
+          'redundantAttribute': 'expr10',
+          'selector': '[expr10]',
           'expressions': [{
             'type': expressionTypes.TEXT,
             'childNodeIndex': 0,
@@ -5171,16 +5171,16 @@ var _default = {
             }
           }]
         }]),
-        'redundantAttribute': 'expr4',
-        'selector': '[expr4]',
+        'redundantAttribute': 'expr11',
+        'selector': '[expr11]',
         'itemName': 'segment',
         'indexName': 'idx',
         'evaluate': function evaluate(scope) {
           return scope.run.segments;
         }
       }]),
-      'redundantAttribute': 'expr1',
-      'selector': '[expr1]',
+      'redundantAttribute': 'expr8',
+      'selector': '[expr8]',
       'itemName': 'run',
       'indexName': 'runIdx',
       'evaluate': function evaluate(scope) {
@@ -5235,7 +5235,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56035" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55621" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

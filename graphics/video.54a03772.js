@@ -4913,9 +4913,9 @@ var _default = {
   'css': "video-panel,[is=\"video-panel\"]{ border: 2px solid rgba(255, 255, 255, 0.9); position: relative; } video-panel div.label-container,[is=\"video-panel\"] div.label-container{ font-weight: bold; font-size: 24px; padding: 0.1rem 0.5rem; position: absolute; height: 10%; width: 100%; background-color: white; } video-panel div.is-top,[is=\"video-panel\"] div.is-top{ top: 0%; } video-panel div.split,[is=\"video-panel\"] div.split{ position: absolute; width: 100%; padding: 0.5rem 1rem; } video-panel div.is-top.split,[is=\"video-panel\"] div.is-top.split{ top: 10%; } video-panel div.is-bottom,[is=\"video-panel\"] div.is-bottom{ bottom: 0%; } video-panel div.is-bottom.split,[is=\"video-panel\"] div.is-bottom.split{ bottom: 10%; }",
   'exports': VideoPanel,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div expr35="expr35" class="border-tr"></div><div expr36="expr36" class="border-bl"></div><div expr37="expr37"><div expr38="expr38" class="columns is-marginless label-content"></div></div><div expr45="expr45"></div>', [{
-      'redundantAttribute': 'expr35',
-      'selector': '[expr35]',
+    return _template('<div expr24="expr24" class="border-tr"></div><div expr25="expr25" class="border-bl"></div><div expr26="expr26"><div expr27="expr27" class="columns is-marginless label-content"></div></div><div expr34="expr34"></div>', [{
+      'redundantAttribute': 'expr24',
+      'selector': '[expr24]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'style',
@@ -4924,8 +4924,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr36',
-      'selector': '[expr36]',
+      'redundantAttribute': 'expr25',
+      'selector': '[expr25]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'style',
@@ -4934,8 +4934,8 @@ var _default = {
         }
       }]
     }, {
-      'redundantAttribute': 'expr37',
-      'selector': '[expr37]',
+      'redundantAttribute': 'expr26',
+      'selector': '[expr26]',
       'expressions': [{
         'type': expressionTypes.ATTRIBUTE,
         'name': 'class',
@@ -4954,11 +4954,11 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.progress.segments.current;
       },
-      'redundantAttribute': 'expr38',
-      'selector': '[expr38]',
-      'template': _template('<div expr39="expr39" class="column is-paddingless has-text-centered"> <span expr40="expr40" class="icon" style="margin-left:0.5rem;"></span><span expr41="expr41" style="position: absolute; bottom: 0%; margin-left: 0.5rem;"><span expr42="expr42"></span><span expr43="expr43"></span><span expr44="expr44"></span></span></div>', [{
-        'redundantAttribute': 'expr39',
-        'selector': '[expr39]',
+      'redundantAttribute': 'expr27',
+      'selector': '[expr27]',
+      'template': _template('<div expr28="expr28" class="column is-paddingless has-text-centered"> <span expr29="expr29" class="icon" style="margin-left:0.5rem;"></span><span expr30="expr30" style="position: absolute; bottom: 0%; margin-left: 0.5rem;"><span expr31="expr31"></span><span expr32="expr32"></span><span expr33="expr33"></span></span></div>', [{
+        'redundantAttribute': 'expr28',
+        'selector': '[expr28]',
         'expressions': [{
           'type': expressionTypes.TEXT,
           'childNodeIndex': 0,
@@ -4971,12 +4971,12 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.props.soundEnable;
         },
-        'redundantAttribute': 'expr40',
-        'selector': '[expr40]',
+        'redundantAttribute': 'expr29',
+        'selector': '[expr29]',
         'template': _template('<i class="fas fa-volume-up"></i>', [])
       }, {
-        'redundantAttribute': 'expr41',
-        'selector': '[expr41]',
+        'redundantAttribute': 'expr30',
+        'selector': '[expr30]',
         'expressions': [{
           'type': expressionTypes.ATTRIBUTE,
           'name': 'class',
@@ -4989,8 +4989,8 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.props.socialState === 0 && scope.props.team.players[scope.state.progress.segments.current.runIndex].twitter;
         },
-        'redundantAttribute': 'expr42',
-        'selector': '[expr42]',
+        'redundantAttribute': 'expr31',
+        'selector': '[expr31]',
         'template': _template('<span class="icon"><i class="fab fa-twitter"></i></span> ', [{
           'expressions': [{
             'type': expressionTypes.TEXT,
@@ -5005,8 +5005,8 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.props.socialState === 1 && scope.props.team.players[scope.state.progress.segments.current.runIndex].twitch;
         },
-        'redundantAttribute': 'expr43',
-        'selector': '[expr43]',
+        'redundantAttribute': 'expr32',
+        'selector': '[expr32]',
         'template': _template('<span class="icon"><i class="fab fa-twitch"></i></span> ', [{
           'expressions': [{
             'type': expressionTypes.TEXT,
@@ -5021,8 +5021,8 @@ var _default = {
         'evaluate': function evaluate(scope) {
           return scope.props.socialState === 2 && scope.props.team.players[scope.state.progress.segments.current.runIndex].nico;
         },
-        'redundantAttribute': 'expr44',
-        'selector': '[expr44]',
+        'redundantAttribute': 'expr33',
+        'selector': '[expr33]',
         'template': _template(' ', [{
           'expressions': [{
             'type': expressionTypes.TEXT,
@@ -5038,8 +5038,8 @@ var _default = {
       'evaluate': function evaluate(scope) {
         return scope.state.showSplit;
       },
-      'redundantAttribute': 'expr45',
-      'selector': '[expr45]',
+      'redundantAttribute': 'expr34',
+      'selector': '[expr34]',
       'template': _template(' ', [{
         'expressions': [{
           'type': expressionTypes.TEXT,
@@ -5118,7 +5118,7 @@ var _default = {
   'css': "video-view div.panel-container,[is=\"video-view\"] div.panel-container{ border: 2px solid rgba(255, 255, 255, 0.8); width: 100%; height: 100%; }",
   'exports': VideoView,
   'template': function template(_template, expressionTypes, bindingTypes, getComponent) {
-    return _template('<div class="columns is-marginless is-multiline panel-container"><video-panel expr5="expr5" class="column is-paddingless is-half top"></video-panel></div>', [{
+    return _template('<div class="columns is-marginless is-multiline panel-container"><video-panel expr0="expr0" class="column is-paddingless is-half top"></video-panel></div>', [{
       'type': bindingTypes.EACH,
       'getKey': null,
       'condition': null,
@@ -5167,8 +5167,8 @@ var _default = {
           }
         }]
       }]),
-      'redundantAttribute': 'expr5',
-      'selector': '[expr5]',
+      'redundantAttribute': 'expr0',
+      'selector': '[expr0]',
       'itemName': 'team',
       'indexName': 'idx',
       'evaluate': function evaluate(scope) {
@@ -5223,7 +5223,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56035" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55621" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
